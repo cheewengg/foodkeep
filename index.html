@@ -5,6 +5,153 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foodkeep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/queries.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="section-header">
+      <a href="#">
+        <img class="header-logo" src="logos/foodkeep_cropped-v2.png" />
+      </a>
+      <nav class="header-nav">
+        <a href="#" class="nav-link">Search Meal</a>
+        <a href="#" class="nav-link">View Summary</a>
+        <a href="#" class="nav-link">Update Profile</a>
+      </nav>
+    </div>
+    <div class="section-hero">
+      <div class="hero-content">
+        <div class="hero-form">
+          <div class="form-field">
+            <label for="food">Search</label>
+            <input
+              id="food"
+              type="text"
+              placeholder="Chicken Burger"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="expense">Expense</label>
+            <input id="expense" type="text" placeholder="10" required />
+          </div>
+        </div>
+        <div class="hero-search-results">
+          <div class="search-result">
+            <div class="search-result-content">
+              <div class="result-title">KFC Chicken</div>
+              <div class="result-details">100kJ 10P/10C/10F</div>
+            </div>
+            <button class="button-addmeal">Add meal</button>
+          </div>
+          <div class="search-result">
+            <div class="search-result-content">
+              <div class="result-title">KFC Popcorn Chicken</div>
+              <div class="result-details">100kJ 10P/10C/10F</div>
+            </div>
+            <button class="button-addmeal">Add meal</button>
+          </div>
+          <div class="search-result">
+            <div class="search-result-content">
+              <div class="result-title">KFC Biscuit</div>
+              <div class="result-details">100kJ 10P/10C/10F</div>
+            </div>
+            <button class="button-addmeal">Add meal</button>
+          </div>
+          <div class="search-result">
+            <div class="search-result-content">
+              <div class="result-title">KFC Chicken</div>
+              <div class="result-details">100kJ 10P/10C/10F</div>
+            </div>
+            <button class="button-addmeal">Add meal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-summary">
+      <div class="summary-title">Summary</div>
+      <div class="summary-content">
+        <div class="content-box">
+          <div class="content-header">
+            <div class="header-desc">Today</div>
+            <div class="header-date">25/02/2022</div>
+          </div>
+          <div class="content--inline">
+            <div class="content-title">Calories</div>
+            <div class="content--inline-details on-target">1980kJ</div>
+          </div>
+          <div class="content--inline">
+            <div class="content-title">Expenses</div>
+            <div class="content--inline-details">$25</div>
+          </div>
+          <div class="content-table">
+            <div class="table-row">
+              <div class="row-time">0800h</div>
+              <div class="row-meal">Egg (Boiled)</div>
+              <div class="row-expense">$0.80</div>
+            </div>
+            <div class="table-row">
+              <div class="row-time">0805h</div>
+              <div class="row-meal">Coffee (Black)</div>
+              <div class="row-expense">$0.80</div>
+            </div>
+            <div class="table-row">
+              <div class="row-time">1205h</div>
+              <div class="row-meal">Fried Chicken</div>
+              <div class="row-expense">$6.80</div>
+            </div>
+            <div class="table-row">
+              <div class="row-time">1210h</div>
+              <div class="row-meal">Pepsi</div>
+              <div class="row-expense">$0.00</div>
+            </div>
+            <div class="table-row">
+              <div class="row-time">1210h</div>
+              <div class="row-meal">Pepsi</div>
+              <div class="row-expense">$0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="content-box">
+          <div class="content-header">
+            <div class="header-desc">This month</div>
+            <div class="header-date">January 2022</div>
+          </div>
+          <div class="content--inline">
+            <div class="content-title">You were on target</div>
+            <div class="content--inline-details on-target">20/31 days</div>
+          </div>
+          <div class="content--multi-line">
+            <div class="content-title">You spent</div>
+            <div class="content--multi-line-details">
+              <div class="details-row">
+                <div class="detail-row-title">Total</div>
+                <div class="detail-row-details">$215</div>
+              </div>
+              <div class="details-row">
+                <div class="detail-row-title">Daily average</div>
+                <div class="detail-row-details">$20</div>
+              </div>
+            </div>
+          </div>
+          <div class="content--multi-line">
+            <div class="content-title">Your most frequented meal</div>
+            <div class="content--multi-line-details">
+              <div class="details-row">
+                <div class="detail-row-title">Egg (Boiled)</div>
+                <div class="detail-row-details">5 times</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

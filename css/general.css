@@ -1,0 +1,89 @@
+/*
+-- 01 Typography
+
+- FONT SIZE SYSTEM (px): 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font weights:
+Default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+
+- Line heights:
+Default: 1
+Small: 1.05
+Medium: 1.2
+Paragraph default: 1.6
+Large: 1.8
+
+- Letter spacing
+-0.5px
+0.75px
+
+-- 02 Colors
+
+Primary: #845ef7
+
+Tints: 
+#f3f0ff;
+#906ef8;
+
+
+Shades: 
+#7755de
+#4f3894
+#0d0919;
+
+Accents:
+
+Greys:
+#888
+#767676 (lightest grey allowed on #fff)
+#6f6f6f (lightest grey allowed on #fdf2e9)
+#555
+#333
+
+--05 Shadows
+
+0 2.4rem 4.8rem rgba(0, 0, 0, 0.075)
+-- 06 Border-radius
+
+Default: 9px
+11px
+
+-- 07 Whitespace
+
+- SPACING SYSTEM (px): 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 75%;
+  overflow-x: hidden;
+  /* scroll-behavior: smooth; */
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+  overflow-x: hidden;
+}
+
+/***********************************?
+  /* General Reusable Components/States */
+/***********************************/
+.hidden {
+  display: none;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgb(119, 85, 222, 0.5);
+}

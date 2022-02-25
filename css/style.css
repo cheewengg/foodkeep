@@ -1,0 +1,250 @@
+/***********************************?
+  /* Header */
+/***********************************/
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1.8rem;
+  padding: 1.2rem 4.8rem 0 2.4rem;
+  background-color: #f3f0ff;
+}
+
+.header-logo {
+  height: 4.8rem;
+}
+
+.header-nav {
+  display: flex;
+  gap: 4rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.nav-link:hover,
+.main-nav-link:active {
+  color: #7755de;
+}
+/***********************************?
+  /* Hero */
+/***********************************/
+.section-hero {
+  display: flex;
+  justify-content: center;
+  gap: 3.2rem;
+  padding: 2rem 0 4.8rem 0;
+  background-color: #f3f0ff;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.hero-form {
+  display: flex;
+  gap: 1.6rem;
+
+  padding: 1.2rem 2rem 2rem 2rem;
+  background-color: #906ef8;
+  border-radius: 1rem;
+
+  color: #0d0919;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.hero-form *:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgb(253, 242, 233, 0.5);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.form-field label {
+  margin-left: 0.2rem;
+}
+
+.form-field input {
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  border: none;
+  background-color: #f3effe;
+  color: #333;
+}
+
+.form-field input::placeholder {
+  color: #b6bbc0;
+  font-size: 1.4rem;
+}
+
+.hero-search-results {
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: scroll;
+  height: 16rem;
+  background-color: #fff;
+  padding: 0rem 1.2rem 0rem 1.2rem;
+}
+
+.search-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem;
+}
+
+.search-result-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  padding-top: 1.2rem;
+}
+
+.result-title {
+  font-weight: 500;
+  color: #333;
+  font-size: 1.4rem;
+}
+
+.button-addmeal {
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  background-color: #845ef7;
+
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 550;
+
+  transition: all 0.3s;
+}
+
+.button-addmeal:hover {
+  cursor: pointer;
+  background-color: #4f3894;
+}
+
+/***********************************?
+  /* Summary */
+/***********************************/
+.section-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2.4rem;
+}
+
+.summary-title {
+  font-weight: 500;
+  font-size: 2.4rem;
+  margin-bottom: 2.4rem;
+}
+
+.summary-content {
+  display: flex;
+  justify-content: center;
+  gap: 4.8rem;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  background-color: #f3f0ff;
+  padding: 1.6rem;
+  border-radius: 1rem;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  width: 30rem;
+
+  transition: all 0.3s;
+}
+
+.content-box:hover {
+  transform: translateY(-1.2rem);
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+}
+
+.content-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-desc {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+.header-date {
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.content--inline {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-title {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.content--inline-details {
+  font-size: 1.4rem;
+}
+
+.content--inline-details.on-target {
+  color: #2f9e44;
+}
+
+.content--multi-line {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.content--multi-line-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 1.2rem;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-table {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  font-size: 1.2rem;
+
+  padding-right: 1.2rem;
+  overflow-y: scroll;
+  height: 10rem;
+}
+
+.table-row {
+  display: flex;
+  justify-content: space-between;
+}
