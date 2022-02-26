@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: center;
 
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   padding: 1.2rem 4.8rem 0 2.4rem;
   background-color: #f3f0ff;
 }
@@ -42,12 +42,6 @@
   background-color: #f3f0ff;
 }
 
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-}
-
 .hero-form {
   display: flex;
   gap: 1.6rem;
@@ -63,30 +57,13 @@
 
 .hero-form *:focus {
   outline: none;
-  box-shadow: 0 0 0 0.8rem rgb(253, 242, 233, 0.5);
+  box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
 }
 
-.form-field {
+.hero-content {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-}
-
-.form-field label {
-  margin-left: 0.2rem;
-}
-
-.form-field input {
-  padding: 0.8rem;
-  border-radius: 0.6rem;
-  border: none;
-  background-color: #f3effe;
-  color: #333;
-}
-
-.form-field input::placeholder {
-  color: #b6bbc0;
-  font-size: 1.4rem;
+  gap: 1.6rem;
 }
 
 .hero-search-results {
@@ -120,24 +97,6 @@
   font-size: 1.4rem;
 }
 
-.button-addmeal {
-  border: none;
-  border-radius: 0.4rem;
-  padding: 0.6rem 0.8rem;
-  background-color: #845ef7;
-
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 550;
-
-  transition: all 0.3s;
-}
-
-.button-addmeal:hover {
-  cursor: pointer;
-  background-color: #4f3894;
-}
-
 /***********************************?
   /* Summary */
 /***********************************/
@@ -145,13 +104,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 2.4rem;
+  padding: 2.4rem 0 3.2rem 0;
 }
 
 .summary-title {
   font-weight: 500;
   font-size: 2.4rem;
-  margin-bottom: 2.4rem;
+  margin-bottom: 1.6rem;
+}
+
+.summary-form {
+  display: flex;
+  gap: 1.6rem;
+  margin-bottom: 2.8rem;
+}
+
+.summary-form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgb(119, 85, 222, 0.5);
 }
 
 .summary-content {
@@ -163,13 +133,13 @@
 .content-box {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.8rem;
 
   background-color: #f3f0ff;
-  padding: 1.6rem;
+  padding: 2.4rem;
   border-radius: 1rem;
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
-  width: 30rem;
+  width: 34rem;
 
   transition: all 0.3s;
 }
@@ -210,7 +180,8 @@
   font-size: 1.4rem;
 }
 
-.content--inline-details.on-target {
+.content--inline-details.on-target,
+.detail-row-details.on-target {
   color: #2f9e44;
 }
 
@@ -239,6 +210,7 @@
 
   font-size: 1.2rem;
 
+  margin-top: 1.2rem;
   padding-right: 1.2rem;
   overflow-y: scroll;
   height: 10rem;

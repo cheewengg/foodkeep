@@ -1,0 +1,118 @@
+Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-js-classes.html)
+- SearchResult
+	- Fields
+		- val foodId: Int
+		- val foodName: String
+		- val caloriesContent: Int
+		- val carbContent: Int
+		- val proteinContent: Int
+		- val fatContent: Int
+- Profile
+	- Fields
+		- val startDate: String
+		- val endDate: Date		// *set default value = infinite
+		- val name: String, age: Int, gender: String, weight: Double, height: Double, levelOfActivity: String
+		- val caloriesTarget: Int
+	- Method
+		- static def generateCaloriesTarget		// calculate calories target based on formula; defined in companion object
+		- def getCaloriesTarget()				// return caloriesTarget
+		- def parseEndDate(date)				// return new Profile(...)
+- Meal
+	- Fields
+		- val dateTime: String
+		- val foodId: Int
+		- val foodName: String
+		- val expense: Double
+		- val caloriesContent: Int
+- DailyMeal		// keeps track of all meals per day
+	- Fields
+		- val date: String
+		- val record: immutable.Seq[Meal]
+		- val totalExpenses: Double
+		- val totalCalories: Int
+		- val caloriesTarget: Int
+	- Methods:
+		- def pushNewMeal()		// val updatedRecord = record :+ newMeal(...); return new DailyMeal(...)
+- MonthlyMeal	// keeps track of all DailyMeal in the month
+	- Fields
+		- val monthYear: String
+		- val record: immutable.Seq[DailyMeal]
+		- val totalExpense: Double
+		- val totalCalories: Int
+	- Methods
+		- def pushNewMeal(newMeal)						// val updatedRecord = record[-1].pushNewMeal(newMeal); return new MonthlyMeal(...)
+		- def pushNewDailyMeal(currentCaloriesTarget)	// val updatedRecord = record :+ new DailyMeal(...); return new MonthlyMeal(...)
+		- def getDailyMeal(date)						// linear/binary search record for DailyMeal with matching date 
+- State
+	- Fields
+		- val profileHistory: immutable.Seq[Profile]		
+		- val mealHistory: immutable.Seq[MonthlyMeal]		
+		- val searchResults: immutable.Seq[SearchResult]	
+	- Methods
+		- setter
+			- def pushNewProfile()
+			- def pushNewMeal(newMeal: Meal)				// val updatedMealHistory = mealHistory[-1].pushNewMeal(newMeal); return new State(...)
+			- def pushNewDailyMeal(currentCaloriesTarget)	// val updatedMealHistory = mealHistory[-1].pushNewDailyMeal(currentCaloriesTarget); return new State(...)
+			- def pushNewMonthlyMeal()						// val updatedMealHistory = mealHistory :+ new MonthlyMeal; return new State(...)
+			- def parseNewSearchResults(newResults: immutable.Seq[SearchResult])
+		- getter
+			- def getCurrentProfile()
+			- def getCurrentCaloriesTarget()			// getCurrentProfile().getCaloriesTarget()
+			- def getDailyMeal(date: String)			// return mealHistory[-1].getDailyMeal(date)
+			- def getMonthlyMeal(monthYear: String)		// linear/binary search mealHistory mealHistory for matching monthYear
+			- def getSearchResults()					// return searchResults
+
+			
+MVC		
+- Model
+	- var state		// initialise State
+	- Functions
+		- handler for setState
+			- def loadSearchMealData(foodQuery)				// initiate search; setState(state.parseNewSearchResults(newResults))
+			- def loadSelectedMeal(index)					// newMeal = state.getSearchResults()(index); *check if MonthlyMeal and DailyMeal exist*; setState(state.pushNewMeal(newMeal))
+		- indirect access to state
+			- def accessSearchMealResults()					// return state.getSearchResults()
+			- def accessSearchDateData(dateQuery: String)		// DailyMeal = state.getDailyMeal; MonthlyMeal = state.getMonthlyMeal(); return Pair(DailyMeal, MonthlyMeal)
+		- misc
+			- def setState(newState)						// replace state; e.g. newState = state.pushNewMeal()
+			- def persistState(state)						// store state in local storage
+			- def init()									// get state from local storage (if any); else state = new State
+- View
+	- SearchMealView
+		- def addHandlerSearchMeal(handler)						// handler = controlSearchMeal; see: "controller :: controlSearchMeal"
+	- SearchMealResultsView
+		- def generateMarkUpSearchResults(searchResults)		// searchResults = model.loadSearchMealResult()
+		- def render(searchResults)								// set container.innerHTML = generateMarkUpSearchResults(searchResults)
+	- AddMealView
+		- def addHandlerAddMeal(handler)						// handler = controlAddMeal; see: "controller :: controlAddMeal"
+	- SummarySearchView
+		- def addHandlerSummarySearch(handler) 					// handler = controlSummarySearch; see: "controller :: controlSummarySearch"
+	- SummaryView
+		- def generateMarkUpSummaryTable(selectedDailyMeal)		
+		- def render(selectedMeal)								// set container.innerHTML = generateMarkUpSummaryTable(selectedMeal._1) + ...
+	- ProfileView												// KIV
+- Controller
+	- def controlSearchMeal(foodQuery)				// "model :: loadSearchMealData(foodQuery)"  >>   searchResults = model.accessSearchMealResults()  >>  "view :: SearchMealResultsView(searchResults)"
+	- def controlAddMeal(index)						//  "model :: loadSelectedMeal(index)"  >>  selectedMeal = model.accessSearchDateData(currentDate)  >>  "view :: SummaryView.render(selectedMeal)"
+	- def controlSummarySearch(dateQuery: String)	// "model :: accessSearchDateData(dateQuery)"  >>  returns selectedMeal  >>  "view :: SummaryView.render(selectedMeal)"
+	- def init()									// SearchMealResultsView.render(...); SummaryView.render(...)
+
+
+Misc
+- Search meal
+	- api: https://api.nal.usda.gov/fdc/v1/foods/search?query=hotdog&pageSize=1&api_key=mjJCK2kNtXWJuEsJ4eUWSrxjce9RPmf3hfEdjRdu
+	- workflow: 
+		- "keydown": setTimeout; initiate search in x ms
+		- "keyup": clearTimeout; cancel most recent setTimeout	// not an error to clear timer that has alr lapsed
+		- render search result
+			- foods.map(
+				- food.fdcId
+				- food.description		// name of food	(= 1 serving)
+				- food.foodNutrients.filter
+					- nutrientId		// Calories (kCal), Carb (g), Protein (g), Fat (g) == 1008, 1005 ,1003, 1004
+						- .value		// if nutrientId = undefined, return 0
+		- display up to 10 search results
+			- narrow down search if cannot find food item within the 10 search results
+			- if food.description.length > 28, render ... after 28th char 
+				- e.g. "Roast Chicken Marinated With Rose Mary" == "Roast Chicken Marinated With..."
+			

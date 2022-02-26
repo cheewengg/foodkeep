@@ -85,5 +85,76 @@ body {
 
 *:focus {
   outline: none;
-  box-shadow: 0 0 0 0.8rem rgb(119, 85, 222, 0.5);
+}
+
+.button--general {
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  background-color: #845ef7;
+
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 550;
+
+  transition: all 0.3s;
+}
+
+.button--general:hover {
+  cursor: pointer;
+  background-color: #4f3894;
+}
+
+/***********************************?
+  /* Scrollbar */
+/***********************************/
+/* width */
+.hero-search-results::-webkit-scrollbar,
+.content-table::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #bbb;
+  border-radius: 1rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/***********************************?
+  /* Form */
+/***********************************/
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.form-field label {
+  margin-left: 0.2rem;
+}
+
+.form-field input {
+  padding: 0.8rem 0.8rem 0.6rem 0.8rem;
+  border-radius: 0.6rem;
+  border: none;
+  background-color: #f3effe;
+  color: #333;
+  font-family: "Rubik", sans-serif;
+}
+
+.form-field input::placeholder {
+  color: #b6bbc0;
+  font-size: 1.2rem;
 }
