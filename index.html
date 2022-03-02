@@ -79,7 +79,7 @@
       <div class="section-title">Summary</div>
       <div class="summary-form">
         <div class="form-field">
-          <input id="food" type="text" placeholder="DDMMYYYY" required />
+          <input id="filter" type="text" placeholder="DDMMYYYY" required />
         </div>
         <button class="button button-filter">Filter</button>
       </div>
@@ -189,6 +189,10 @@
           </div>
         </div>
         <div class="content--inline">
+          <div class="content-title">Gender</div>
+          <div class="content--inline-details profile--gender">M</div>
+        </div>
+        <div class="content--inline">
           <div class="content-title">Weight</div>
           <div class="content--inline-details profile--weight">65.0 kg</div>
         </div>
@@ -216,16 +220,18 @@
         <input id="name" type="text" placeholder="John Smith" required />
         <label class="content-title" for="birthdate">Birth Date</label>
         <input id="birthdate" type="text" placeholder="DDMMYYYY" required />
+        <label class="content-title" for="gender">Gender</label>
+        <input id="gender" type="text" placeholder="M" required />
         <label class="content-title" for="weight">Weight (kg)</label>
         <input id="weight" type="text" required />
         <label class="content-title" for="height">Height (m)</label>
         <input id="height" type="text" required />
-        <label class="content-title" for="weight">Level of Activity</label>
-        <select id="weight" required>
+        <label class="content-title" for="activitylvl">Level of Activity</label>
+        <select id="activitylvl" required>
           <option>Select one</option>
-          <option value="light">Light</option>
-          <option value="moderate">Moderate</option>
-          <option value="heavy">Heavy</option>
+          <option value="Light">Light</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Heavy">Heavy</option>
         </select>
         <button class="button button-submit">Submit</button>
       </form>

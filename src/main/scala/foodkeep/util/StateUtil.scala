@@ -43,7 +43,7 @@ package object StateUtil {
             State(sC.profileHistory, updatedMealHistory, sC.searchResults)
         }
 
-        def pushSearchResults(results: js.Array[SearchResult]) = {
+        def pushNewSearchResults(results: js.Array[SearchResult]) = {
             val sC = State(s)
             State(sC.profileHistory, sC.mealHistory, results)
         }   
