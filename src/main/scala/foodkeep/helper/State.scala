@@ -10,7 +10,7 @@ trait State extends js.Object {
 }
 
 object State {
-    def apply(profileHistory: js.Array[Profile]	, mealHistory: js.Array[MonthlyMeal], searchResults: js.Array[SearchResult]) = 
+    def apply(profileHistory: js.Array[Profile]	, mealHistory: js.Array[MonthlyMeal], searchResults: js.Array[SearchResult]): State = 
         js.Dynamic.literal(profileHistory = profileHistory, mealHistory = mealHistory, searchResults = searchResults).asInstanceOf[State]
 
     def apply(s: js.Dynamic): State = {

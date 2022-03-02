@@ -10,8 +10,7 @@ object MonthlyMealUtil {
     implicit class MonthlyMealUtil[MonthlyMeal](m: js.Object) {
         def pushNewMealMonthly(meal: Meal) = {
             val mC = MonthlyMeal(m)
-            val updatedRecord = mC.record.slice(0, mC.record.length-1) :+ mC.record(mC.record.length-1).pushNewMealDaily(meal)
-
+            val updatedRecord = mC.record.dropRight(1) :+ mC.record.last.pushNewMealDaily(meal)
             val updatedExpenses = mC.totalExpenses + meal.expense
             val updatedCalories = mC.totalCalories + meal.caloriesContent
             
@@ -25,11 +24,11 @@ object MonthlyMealUtil {
             MonthlyMeal(getDateMY, updatedRecord, mC.totalExpenses, mC.totalCalories)
         }
 
-        def getDailyMeal(date: String) = {
+        def getDailyMeal(date: String): Option[DailyMeal] = {
             val mC = MonthlyMeal(m)
             mC.record.filter(daily => daily.date == date).lastOption match {
-                case Some(res) => res
-                case _ => js.undefined
+                case Some(d) => Some(d)
+                case _ => None
             }     
         }
     }

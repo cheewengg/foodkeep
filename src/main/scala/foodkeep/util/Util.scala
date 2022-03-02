@@ -31,7 +31,16 @@ object util {
         year + month
     }   
 
+    def getCustomDateDMY(daysAhead: Int): String = {
+        val date = new js.Date()
+        date.setDate(date.getDate() + daysAhead)
 
+        val day = padZero(date.getDate())
+        val month = padZero(date.getMonth() + 1)
+        val year = padZero(date.getFullYear())
+
+        year + month + day
+    }
 
 
 }

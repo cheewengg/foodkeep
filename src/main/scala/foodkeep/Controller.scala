@@ -20,9 +20,9 @@ import foodkeep.util.StateUtil._
 
 object Controller {
     def main(args: Array[String]): Unit = {
-        val meal1 = Meal("1", 1, "1", 1, 1)
-        val meal2 = Meal("2", 2, "2", 2, 2)
-        val meal3 = Meal("3", 3, "3", 3, 3)
+        val meal1 = Meal(getDateDMYT, 1, "Chicken", 1, 1000)
+        val meal2 = Meal(getDateDMYT, 2, "Rice", 2, 500)
+        val meal3 = Meal(getDateDMYT, 3, "Pepsi", 3, 300)
 
         val daily1 = DailyMeal(getDateDMY, js.Array[Meal](), 0, 0, 1000)
         dom.window.localStorage.setItem("daily1", js.JSON.stringify(daily1))
@@ -35,21 +35,21 @@ object Controller {
 
         // dom.console.log(monthly1.pushNewDailyMealMonthly(1000).getDailyMeal("20220302"))
 
-        val profile1 = Profile(getDateDMY, "99999999", "john", getDateDMY, "M", 65.0, 2.00, "moderate", 0)
+        val profile1 = Profile("", "", "john", getDateDMY, "M", 65.0, 2.00, "moderate", 0)
         val profile2 = Profile(getDateDMY, "99999999", "john", getDateDMY, "M", 65.0, 185, "moderate", 0)
         
         dom.console.log(profile1.updateCaloriesTarget.updateEndDate("20230101").getCaloriesTarget)
         
         val state1 = State(js.Array[Profile](), js.Array[MonthlyMeal](), js.Array[SearchResult]())
 
-        val state2 = state1.pushNewProfile(profile1.updateCaloriesTarget).pushNewMonthlyMealState.pushNewDailyMealState(2000).pushNewMealState(meal1).pushNewMonthlyMealState.pushNewProfile(profile1.updateCaloriesTarget).pushNewProfile(profile1.updateCaloriesTarget)
+        val state2 = state1.pushNewProfile(profile1).pushNewMonthlyMealState.pushNewDailyMealState(1000).pushNewMealState(meal1).pushNewProfile(profile1)
 
         dom.window.localStorage.setItem("state", js.JSON.stringify(state2))
 
         val stateFromStorage = js.JSON.parse(dom.window.localStorage.getItem("state")).asInstanceOf[State]
 
-        dom.console.log(stateFromStorage.pushNewProfile(profile1.updateCaloriesTarget).pushNewDailyMealState(20110).getFilterQuery(getDateDMY))
-
-
+        dom.console.log(stateFromStorage)
+        dom.console.log(stateFromStorage.getCurrentProfile)
+        dom.console.log(state1.getCurrentProfile)
     }
 }

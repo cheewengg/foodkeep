@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\src\main\scala\foodkeep\Controller.scala:51:117: value getDailyMealState is not a member of foodkeep.helper.State[0m
-[0m[[0m[31merror[0m] [0m[0m        dom.console.log(stateFromStorage.pushNewProfile(profile1.updateCaloriesTarget).pushNewDailyMealState(20110).getDailyMealState(getDateDMY))[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\src\main\scala\foodkeep\Controller.scala:53:32: value getCurrentProfileOption is not a member of foodkeep.helper.State[0m
+[0m[[0m[31merror[0m] [0m[0m        dom.console.log(state1.getCurrentProfileOption)[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

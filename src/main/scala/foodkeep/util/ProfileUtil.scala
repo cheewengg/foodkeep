@@ -13,12 +13,18 @@ package object ProfileUtil {
 
             Profile(pC.startDate, pC.endDate, pC.name, pC.birthDate, pC.gender, pC.weight, pC.height, pC.levelOfActivity, caloriesTarget)
         }
-
-        def getCaloriesTarget = Profile(p).caloriesTarget
         
-        def updateEndDate(date: String) = {
+        def updateEndDate(date: String = "99999999") = {
             val pC = Profile(p)
             Profile(pC.startDate, date, pC.name, pC.birthDate, pC.gender, pC.weight, pC.height, pC.levelOfActivity, pC.caloriesTarget)
         }
+
+        def updateStartDate(date: String = getDateDMY) = {
+            val pC = Profile(p)
+            Profile(date, pC.endDate, pC.name, pC.birthDate, pC.gender, pC.weight, pC.height, pC.levelOfActivity, pC.caloriesTarget)
+        }
+
+        def getCaloriesTarget: Int = Profile(p).caloriesTarget
+
     }
 }

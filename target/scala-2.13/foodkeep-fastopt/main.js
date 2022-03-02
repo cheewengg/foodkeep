@@ -872,33 +872,30 @@ function $h_LController$() {
 }
 $h_LController$.prototype = $c_LController$.prototype;
 $c_LController$.prototype.main__AT__V = (function(args) {
-  var meal1 = $m_Lfoodkeep_helper_Meal$().apply__T__I__T__D__I__Lfoodkeep_helper_Meal("1", 1, "1", 1.0, 1);
-  $m_Lfoodkeep_helper_Meal$().apply__T__I__T__D__I__Lfoodkeep_helper_Meal("2", 2, "2", 2.0, 2);
-  $m_Lfoodkeep_helper_Meal$().apply__T__I__T__D__I__Lfoodkeep_helper_Meal("3", 3, "3", 3.0, 3);
+  var meal1 = $m_Lfoodkeep_helper_Meal$().apply__T__I__T__D__I__Lfoodkeep_helper_Meal($m_Lfoodkeep_util_util$().getDateDMYT__T(), 1, "Chicken", 1.0, 1000);
+  $m_Lfoodkeep_helper_Meal$().apply__T__I__T__D__I__Lfoodkeep_helper_Meal($m_Lfoodkeep_util_util$().getDateDMYT__T(), 2, "Rice", 2.0, 500);
+  $m_Lfoodkeep_helper_Meal$().apply__T__I__T__D__I__Lfoodkeep_helper_Meal($m_Lfoodkeep_util_util$().getDateDMYT__T(), 3, "Pepsi", 3.0, 300);
   var daily1 = $m_Lfoodkeep_helper_DailyMeal$().apply__T__sjs_js_Array__D__I__I__Lfoodkeep_helper_DailyMeal($m_Lfoodkeep_util_util$().getDateDMY__T(), [], 0.0, 0, 1000);
   window.localStorage.setItem("daily1", $as_T(JSON.stringify(daily1)));
   JSON.parse($as_T(window.localStorage.getItem("daily1")));
   $m_Lfoodkeep_helper_MonthlyMeal$().apply__T__sjs_js_Array__D__I__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().getDateMY__T(), [], 0.0, 0);
-  var profile1 = $m_Lfoodkeep_helper_Profile$().apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().getDateDMY__T(), "99999999", "john", $m_Lfoodkeep_util_util$().getDateDMY__T(), "M", 65.0, 2.0, "moderate", 0);
+  var profile1 = $m_Lfoodkeep_helper_Profile$().apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile("", "", "john", $m_Lfoodkeep_util_util$().getDateDMY__T(), "M", 65.0, 2.0, "moderate", 0);
   $m_Lfoodkeep_helper_Profile$().apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().getDateDMY__T(), "99999999", "john", $m_Lfoodkeep_util_util$().getDateDMY__T(), "M", 65.0, 185.0, "moderate", 0);
   var $$x1 = console;
   var p = new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(profile1).updateCaloriesTarget__Lfoodkeep_helper_Profile();
   var p$1 = new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p).updateEndDate__T__Lfoodkeep_helper_Profile("20230101");
   $$x1.log(new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p$1).getCaloriesTarget__I());
   var state1 = $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State([], [], []);
-  var s = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(state1).pushNewProfile__Lfoodkeep_helper_Profile__Lfoodkeep_helper_State(new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(profile1).updateCaloriesTarget__Lfoodkeep_helper_Profile());
+  var s = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(state1).pushNewProfile__Lfoodkeep_helper_Profile__Lfoodkeep_helper_State(profile1);
   var s$1 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).pushNewMonthlyMealState__Lfoodkeep_helper_State();
-  var s$2 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$1).pushNewDailyMealState__I__Lfoodkeep_helper_State(2000);
+  var s$2 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$1).pushNewDailyMealState__I__Lfoodkeep_helper_State(1000);
   var s$3 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$2).pushNewMealState__Lfoodkeep_helper_Meal__Lfoodkeep_helper_State(meal1);
-  var s$4 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$3).pushNewMonthlyMealState__Lfoodkeep_helper_State();
-  var s$5 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$4).pushNewProfile__Lfoodkeep_helper_Profile__Lfoodkeep_helper_State(new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(profile1).updateCaloriesTarget__Lfoodkeep_helper_Profile());
-  var state2 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$5).pushNewProfile__Lfoodkeep_helper_Profile__Lfoodkeep_helper_State(new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(profile1).updateCaloriesTarget__Lfoodkeep_helper_Profile());
+  var state2 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$3).pushNewProfile__Lfoodkeep_helper_Profile__Lfoodkeep_helper_State(profile1);
   window.localStorage.setItem("state", $as_T(JSON.stringify(state2)));
   var stateFromStorage = JSON.parse($as_T(window.localStorage.getItem("state")));
-  var $$x2 = console;
-  var s$6 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(stateFromStorage).pushNewProfile__Lfoodkeep_helper_Profile__Lfoodkeep_helper_State(new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(profile1).updateCaloriesTarget__Lfoodkeep_helper_Profile());
-  var s$7 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$6).pushNewDailyMealState__I__Lfoodkeep_helper_State(20110);
-  $$x2.log(new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$7).getFilterQuery__T__O($m_Lfoodkeep_util_util$().getDateDMY__T()))
+  console.log(stateFromStorage);
+  console.log(new $c_Lfoodkeep_util_StateUtil_package$StateUtil(stateFromStorage).getCurrentProfile__s_Option());
+  console.log(new $c_Lfoodkeep_util_StateUtil_package$StateUtil(state1).getCurrentProfile__s_Option())
 });
 var $d_LController$ = new $TypeData().initClass({
   LController$: 0
@@ -1140,10 +1137,12 @@ function $h_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil() {
 $h_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype = $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype;
 $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype.pushNewMealMonthly__Lfoodkeep_helper_Meal__Lfoodkeep_helper_MonthlyMeal = (function(meal) {
   var mC = $m_Lfoodkeep_helper_MonthlyMeal$().apply__sjs_js_Dynamic__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil__f_m));
+  var $$x1 = $m_sjs_js_ArrayOps$();
   var array = mC.record;
-  var until = (((-1) + $uI(mC.record.length)) | 0);
-  var array$1 = array.slice(0, ((until > 0) ? until : 0));
-  var d = mC.record[(((-1) + $uI(mC.record.length)) | 0)];
+  var array$1 = $$x1.dropRight$extension__sjs_js_Array__I__sjs_js_Array(array, 1);
+  var $$x2 = $m_sjs_js_ArrayOps$();
+  var array$2 = mC.record;
+  var d = $$x2.last$extension__sjs_js_Array__O(array$2);
   var x = new $c_Lfoodkeep_util_DailyMealUtil$DailyMealUtil(d).pushNewMealDaily__Lfoodkeep_helper_Meal__Lfoodkeep_helper_DailyMeal(meal);
   var updatedRecord = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$1, x);
   var updatedExpenses = ($uD(mC.totalExpenses) + $uD(meal.expense));
@@ -1156,29 +1155,6 @@ $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype.pushNewDailyMealMont
   var x = $m_Lfoodkeep_helper_DailyMeal$().apply__T__sjs_js_Array__D__I__I__Lfoodkeep_helper_DailyMeal($m_Lfoodkeep_util_util$().getDateDMY__T(), [], 0.0, 0, caloriesTarget);
   var updatedRecord = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array, x);
   return $m_Lfoodkeep_helper_MonthlyMeal$().apply__T__sjs_js_Array__D__I__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().getDateMY__T(), updatedRecord, $uD(mC.totalExpenses), $uI(mC.totalCalories))
-});
-$c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype.getDailyMeal__T__O = (function(date) {
-  var mC = $m_Lfoodkeep_helper_MonthlyMeal$().apply__sjs_js_Dynamic__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil__f_m));
-  var $$x1 = $m_sjs_js_ArrayOps$();
-  var array = mC.record;
-  var res = [];
-  var len = $uI(array.length);
-  var i = 0;
-  while ((i < len)) {
-    var arg1 = array[i];
-    if (($as_T(arg1.date) === date)) {
-      $uI(res.push(arg1))
-    };
-    i = ((1 + i) | 0)
-  };
-  var x1 = $$x1.lastOption$extension__sjs_js_Array__s_Option(res);
-  if ((x1 instanceof $c_s_Some)) {
-    var x2 = $as_s_Some(x1);
-    var res$1 = x2.s_Some__f_value;
-    return res$1
-  } else {
-    return (void 0)
-  }
 });
 var $d_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil = new $TypeData().initClass({
   Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil: 0
@@ -1204,12 +1180,16 @@ $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.updateCaloriesTarget
   var caloriesTarget = $doubleToInt((10.0 * ($uD(pC.height) * $uD(pC.weight))));
   return $m_Lfoodkeep_helper_Profile$().apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile($as_T(pC.startDate), $as_T(pC.endDate), $as_T(pC.name), $as_T(pC.birthDate), $as_T(pC.gender), $uD(pC.weight), $uD(pC.height), $as_T(pC.levelOfActivity), caloriesTarget)
 });
-$c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.getCaloriesTarget__I = (function() {
-  return $uI($m_Lfoodkeep_helper_Profile$().apply__sjs_js_Dynamic__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_ProfileUtil_package$ProfileUtil__f_p)).caloriesTarget)
-});
 $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.updateEndDate__T__Lfoodkeep_helper_Profile = (function(date) {
   var pC = $m_Lfoodkeep_helper_Profile$().apply__sjs_js_Dynamic__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_ProfileUtil_package$ProfileUtil__f_p));
   return $m_Lfoodkeep_helper_Profile$().apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile($as_T(pC.startDate), date, $as_T(pC.name), $as_T(pC.birthDate), $as_T(pC.gender), $uD(pC.weight), $uD(pC.height), $as_T(pC.levelOfActivity), $uI(pC.caloriesTarget))
+});
+$c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.updateStartDate__T__Lfoodkeep_helper_Profile = (function(date) {
+  var pC = $m_Lfoodkeep_helper_Profile$().apply__sjs_js_Dynamic__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_ProfileUtil_package$ProfileUtil__f_p));
+  return $m_Lfoodkeep_helper_Profile$().apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile(date, $as_T(pC.endDate), $as_T(pC.name), $as_T(pC.birthDate), $as_T(pC.gender), $uD(pC.weight), $uD(pC.height), $as_T(pC.levelOfActivity), $uI(pC.caloriesTarget))
+});
+$c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.getCaloriesTarget__I = (function() {
+  return $uI($m_Lfoodkeep_helper_Profile$().apply__sjs_js_Dynamic__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_ProfileUtil_package$ProfileUtil__f_p)).caloriesTarget)
 });
 var $d_Lfoodkeep_util_ProfileUtil_package$ProfileUtil = new $TypeData().initClass({
   Lfoodkeep_util_ProfileUtil_package$ProfileUtil: 0
@@ -1241,29 +1221,43 @@ $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.pushNewProfile__Lfoodkee
     var p = $$x2.last$extension__sjs_js_Array__O(array$2);
     var x = new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p).updateEndDate__T__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().getDateDMY__T());
     var array$3 = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$1, x);
-    var updatedProfileHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$3, profile)
+    var p$1 = new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(profile).updateStartDate__T__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().getCustomDateDMY__I__T(1));
+    var qual$1 = new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p$1);
+    var p$2 = qual$1.updateEndDate__T__Lfoodkeep_helper_Profile("99999999");
+    var x$1 = new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p$2).updateCaloriesTarget__Lfoodkeep_helper_Profile();
+    var updatedProfileHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$3, x$1)
   } else {
     var array$4 = sC.profileHistory;
-    var updatedProfileHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$4, profile)
+    var qual$2 = new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(profile);
+    var x$2 = $m_Lfoodkeep_util_util$().getDateDMY__T();
+    var p$3 = qual$2.updateStartDate__T__Lfoodkeep_helper_Profile(x$2);
+    var qual$3 = new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p$3);
+    var p$4 = qual$3.updateEndDate__T__Lfoodkeep_helper_Profile("99999999");
+    var x$3 = new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p$4).updateCaloriesTarget__Lfoodkeep_helper_Profile();
+    var updatedProfileHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$4, x$3)
   };
   return $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State(updatedProfileHistory, sC.mealHistory, sC.searchResults)
 });
 $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.pushNewMealState__Lfoodkeep_helper_Meal__Lfoodkeep_helper_State = (function(meal) {
   var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
+  var $$x1 = $m_sjs_js_ArrayOps$();
   var array = sC.mealHistory;
-  var until = (((-1) + $uI(sC.mealHistory.length)) | 0);
-  var array$1 = array.slice(0, ((until > 0) ? until : 0));
-  var m = sC.mealHistory[(((-1) + $uI(sC.mealHistory.length)) | 0)];
+  var array$1 = $$x1.dropRight$extension__sjs_js_Array__I__sjs_js_Array(array, 1);
+  var $$x2 = $m_sjs_js_ArrayOps$();
+  var array$2 = sC.mealHistory;
+  var m = $$x2.last$extension__sjs_js_Array__O(array$2);
   var x = new $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil(m).pushNewMealMonthly__Lfoodkeep_helper_Meal__Lfoodkeep_helper_MonthlyMeal(meal);
   var updatedMealHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$1, x);
   return $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State(sC.profileHistory, updatedMealHistory, sC.searchResults)
 });
 $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.pushNewDailyMealState__I__Lfoodkeep_helper_State = (function(caloriesTarget) {
   var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
+  var $$x1 = $m_sjs_js_ArrayOps$();
   var array = sC.mealHistory;
-  var until = (((-1) + $uI(sC.mealHistory.length)) | 0);
-  var array$1 = array.slice(0, ((until > 0) ? until : 0));
-  var m = sC.mealHistory[(((-1) + $uI(sC.mealHistory.length)) | 0)];
+  var array$1 = $$x1.dropRight$extension__sjs_js_Array__I__sjs_js_Array(array, 1);
+  var $$x2 = $m_sjs_js_ArrayOps$();
+  var array$2 = sC.mealHistory;
+  var m = $$x2.last$extension__sjs_js_Array__O(array$2);
   var x = new $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil(m).pushNewDailyMealMonthly__I__Lfoodkeep_helper_MonthlyMeal(caloriesTarget);
   var updatedMealHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$1, x);
   return $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State(sC.profileHistory, updatedMealHistory, sC.searchResults)
@@ -1275,28 +1269,34 @@ $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.pushNewMonthlyMealState_
   var updatedMealHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array, x);
   return $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State(sC.profileHistory, updatedMealHistory, sC.searchResults)
 });
-$c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.getFilterQuery__T__O = (function(date) {
+$c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.getCurrentProfile__s_Option = (function() {
   var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
+  var rc5 = false;
+  var x2 = null;
   var $$x1 = $m_sjs_js_ArrayOps$();
-  var array = sC.mealHistory;
-  var res = [];
-  var len = $uI(array.length);
-  var i = 0;
-  while ((i < len)) {
-    var arg1 = array[i];
-    if (($as_T(arg1.monthYear) === $m_sc_StringOps$().dropRight$extension__T__I__T(date, 2))) {
-      $uI(res.push(arg1))
-    };
-    i = ((1 + i) | 0)
-  };
-  var x1 = $$x1.lastOption$extension__sjs_js_Array__s_Option(res);
+  var array = sC.profileHistory;
+  var x1 = $$x1.lastOption$extension__sjs_js_Array__s_Option(array);
   if ((x1 instanceof $c_s_Some)) {
-    var x2 = $as_s_Some(x1);
-    var m = x2.s_Some__f_value;
-    return [m, new $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil(m).getDailyMeal__T__O(date)]
-  } else {
-    return (void 0)
-  }
+    rc5 = true;
+    x2 = $as_s_Some(x1);
+    var p = x2.s_Some__f_value;
+    var x = $as_T(p.startDate);
+    var this$4 = $m_jl_Integer$();
+    var $$x2 = this$4.parseInt__T__I__I(x, 10);
+    var x$1 = $m_Lfoodkeep_util_util$().getDateDMY__T();
+    var this$7 = $m_jl_Integer$();
+    if (($$x2 <= this$7.parseInt__T__I__I(x$1, 10))) {
+      return new $c_s_Some(p)
+    }
+  };
+  if (rc5) {
+    var $$x4 = $m_Lfoodkeep_helper_State$();
+    var $$x3 = $m_sjs_js_ArrayOps$();
+    var array$1 = sC.profileHistory;
+    var s = $$x4.apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State($$x3.dropRight$extension__sjs_js_Array__I__sjs_js_Array(array$1, 1), sC.mealHistory, sC.searchResults);
+    return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).getCurrentProfile__s_Option()
+  };
+  return $m_s_None$()
 });
 var $d_Lfoodkeep_util_StateUtil_package$StateUtil = new $TypeData().initClass({
   Lfoodkeep_util_StateUtil_package$StateUtil: 0
@@ -1328,6 +1328,12 @@ $c_Lfoodkeep_util_util$.prototype.padZero__D__T = (function(num) {
   var x$2 = $$x2.padTo$extension__T__I__C__T(x$1, 2, 48);
   return $$x3.reverse$extension__T__T(x$2)
 });
+$c_Lfoodkeep_util_util$.prototype.getDateDMYT__T = (function() {
+  var dateNow = new Date();
+  var hour = this.padZero__D__T($uD(dateNow.getHours()));
+  var minute = this.padZero__D__T($uD(dateNow.getMinutes()));
+  return ((("" + this.getDateDMY__T()) + hour) + minute)
+});
 $c_Lfoodkeep_util_util$.prototype.getDateDMY__T = (function() {
   var dateNow = new Date();
   var day = this.padZero__D__T($uD(dateNow.getDate()));
@@ -1338,6 +1344,14 @@ $c_Lfoodkeep_util_util$.prototype.getDateMY__T = (function() {
   var month = this.padZero__D__T(($uD(dateNow.getMonth()) + 1.0));
   var year = this.padZero__D__T($uD(dateNow.getFullYear()));
   return (("" + year) + month)
+});
+$c_Lfoodkeep_util_util$.prototype.getCustomDateDMY__I__T = (function(daysAhead) {
+  var date = new Date();
+  date.setDate(($uD(date.getDate()) + daysAhead));
+  var day = this.padZero__D__T($uD(date.getDate()));
+  var month = this.padZero__D__T(($uD(date.getMonth()) + 1.0));
+  var year = this.padZero__D__T($uD(date.getFullYear()));
+  return ((("" + year) + month) + day)
 });
 var $d_Lfoodkeep_util_util$ = new $TypeData().initClass({
   Lfoodkeep_util_util$: 0
@@ -2132,22 +2146,8 @@ $c_sc_StringOps$.prototype.padTo$extension__T__I__C__T = (function(this$, len, e
     return sb.jl_StringBuilder__f_java$lang$StringBuilder$$content
   }
 });
-$c_sc_StringOps$.prototype.slice$extension__T__I__I__T = (function(this$, from, until) {
-  var start = ((from > 0) ? from : 0);
-  var that = $uI(this$.length);
-  var end = ((until < that) ? until : that);
-  return ((start >= end) ? "" : $as_T(this$.substring(start, end)))
-});
 $c_sc_StringOps$.prototype.reverse$extension__T__T = (function(this$) {
   return $ct_jl_StringBuilder__T__(new $c_jl_StringBuilder(), this$).reverse__jl_StringBuilder().jl_StringBuilder__f_java$lang$StringBuilder$$content
-});
-$c_sc_StringOps$.prototype.take$extension__T__I__T = (function(this$, n) {
-  var $$x1 = $m_sc_StringOps$();
-  var y = $uI(this$.length);
-  return $$x1.slice$extension__T__I__I__T(this$, 0, ((n < y) ? n : y))
-});
-$c_sc_StringOps$.prototype.dropRight$extension__T__I__T = (function(this$, n) {
-  return $m_sc_StringOps$().take$extension__T__I__T(this$, (($uI(this$.length) - ((n > 0) ? n : 0)) | 0))
 });
 var $d_sc_StringOps$ = new $TypeData().initClass({
   sc_StringOps$: 0

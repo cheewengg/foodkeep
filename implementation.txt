@@ -1,3 +1,4 @@
+src/main/scala/foodkeep/helper
 Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-js-classes.html)
 - SearchResult
 	- Fields
@@ -10,13 +11,19 @@ Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-j
 - Profile
 	- Fields
 		- val startDate: String
-		- val endDate: Date		// *set default value = infinite
-		- val name: String, age: Int, gender: String, weight: Double, height: Double, levelOfActivity: String
+		- val endDate: String	// *set default value = "99999999"
+		- val name: String
+		- val birthDate: String
+		- val gender: String
+		- val weight: Double
+		- val height: Double
+		- val levelOfActivity: String
 		- val caloriesTarget: Int
 	- Method
-		- static def generateCaloriesTarget		// calculate calories target based on formula; defined in companion object
-		- def getCaloriesTarget()				// return caloriesTarget
-		- def parseEndDate(date)				// return new Profile(...)
+		- def updateCaloriesTarget: Profile	
+		- def updateEndDate(date: String): Profile
+		- def updateStartDate(date: String): Profile
+		- def getCaloriesTarget: Int					// use State.getCurrentCaloriesTarget
 - Meal
 	- Fields
 		- val dateTime: String
@@ -24,43 +31,42 @@ Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-j
 		- val foodName: String
 		- val expense: Double
 		- val caloriesContent: Int
-- DailyMeal		// keeps track of all meals per day
+- DailyMeal
 	- Fields
 		- val date: String
-		- val record: immutable.Seq[Meal]
+		- val record: js.Array[Meal]
 		- val totalExpenses: Double
 		- val totalCalories: Int
 		- val caloriesTarget: Int
 	- Methods:
-		- def pushNewMeal()		// val updatedRecord = record :+ newMeal(...); return new DailyMeal(...)
-- MonthlyMeal	// keeps track of all DailyMeal in the month
+		- def pushNewMeal(): DailyMeal
+- MonthlyMeal
 	- Fields
 		- val monthYear: String
-		- val record: immutable.Seq[DailyMeal]
-		- val totalExpense: Double
+		- val record: js.Array[DailyMeal]
+		- val totalExpenses: Double
 		- val totalCalories: Int
 	- Methods
-		- def pushNewMeal(newMeal)						// val updatedRecord = record[-1].pushNewMeal(newMeal); return new MonthlyMeal(...)
-		- def pushNewDailyMeal(currentCaloriesTarget)	// val updatedRecord = record :+ new DailyMeal(...); return new MonthlyMeal(...)
-		- def getDailyMeal(date)						// linear/binary search record for DailyMeal with matching date 
+		- def pushNewMealMonthly(meal: Meal): MonthlyMeal			
+		- def pushNewDailyMeal(caloriesTarget: Int): MonthlyMeal
+		- def getDailyMeal(date): Option[DailyMeal]					// use State.getFilterQuery(date: String) 		
 - State
 	- Fields
-		- val profileHistory: immutable.Seq[Profile]		
-		- val mealHistory: immutable.Seq[MonthlyMeal]		
-		- val searchResults: immutable.Seq[SearchResult]	
+		- val profileHistory: js.Array[Profile]		
+		- val mealHistory: js.Array[MonthlyMeal]		
+		- val searchResults: js.Array[SearchResult]	
 	- Methods
 		- setter
-			- def pushNewProfile()
-			- def pushNewMeal(newMeal: Meal)				// val updatedMealHistory = mealHistory[-1].pushNewMeal(newMeal); return new State(...)
-			- def pushNewDailyMeal(currentCaloriesTarget)	// val updatedMealHistory = mealHistory[-1].pushNewDailyMeal(currentCaloriesTarget); return new State(...)
-			- def pushNewMonthlyMeal()						// val updatedMealHistory = mealHistory :+ new MonthlyMeal; return new State(...)
-			- def parseNewSearchResults(newResults: immutable.Seq[SearchResult])
+			- def pushNewProfile(profile: Profile): State
+			- def pushNewMealState(meal: Meal): State						
+			- def pushNewDailyMealState(caloriesTarget: Int): State					
+			- def pushNewMonthlyMealState: State								
+			- def pushNewSearchResults(results: js.Array[SearchResult]): State
 		- getter
-			- def getCurrentProfile()
-			- def getCurrentCaloriesTarget()			// getCurrentProfile().getCaloriesTarget()
-			- def getDailyMeal(date: String)			// return mealHistory[-1].getDailyMeal(date)
-			- def getMonthlyMeal(monthYear: String)		// linear/binary search mealHistory mealHistory for matching monthYear
-			- def getSearchResults()					// return searchResults
+			- def getCurrentProfile: Option[Profile]
+			- def getCurrentCaloriesTarget: Option[Int]			
+			- def getFilterQuery(date: String): Option[(DailyMeal, MonthlyMeal)]
+			- def getSearchResults(): Option[js.Array[SearchResult]]
 
 			
 MVC		
@@ -68,11 +74,12 @@ MVC
 	- var state		// initialise State
 	- Functions
 		- handler for setState
-			- def loadSearchMealData(foodQuery)				// initiate search; setState(state.parseNewSearchResults(newResults))
-			- def loadSelectedMeal(index)					// newMeal = state.getSearchResults()(index); *check if MonthlyMeal and DailyMeal exist*; setState(state.pushNewMeal(newMeal))
+			- def loadSearchMealData(foodQuery: String)				// initiate search; setState(state.parseNewSearchResults(newResults))
+			- def loadSelectedMeal(index: Int)						// newMeal = state.getSearchResults()(index); *check if corresponding MonthlyMeal and DailyMeal exist*; setState(state.pushNewMeal(newMeal))
+			- def loadNewProfile(profile: js.object)				// 
 		- indirect access to state
-			- def accessSearchMealResults()					// return state.getSearchResults()
-			- def accessSearchDateData(dateQuery: String)		// DailyMeal = state.getDailyMeal; MonthlyMeal = state.getMonthlyMeal(); return Pair(DailyMeal, MonthlyMeal)
+			- def accessSearchMealResults()						// return state.getSearchResults()
+			- def accessSearchDateData(dateQuery: String)		// val (dailyMeal, monthlyMeal) = getFilterQuery(date: String)
 		- misc
 			- def setState(newState)						// replace state; e.g. newState = state.pushNewMeal()
 			- def persistState(state)						// store state in local storage
@@ -90,12 +97,18 @@ MVC
 	- SummaryView
 		- def generateMarkUpSummaryTable(selectedDailyMeal)		
 		- def render(selectedMeal)								// set container.innerHTML = generateMarkUpSummaryTable(selectedMeal._1) + ...
-	- ProfileView												// KIV
+	- ProfileView
+		- def addHandlerGoToProfileUpdate						// remove/toggle "hidden" class from modal and overlay
+		- def render(profile)										
+	- ProfileUpdateView
+		- def addHandlerCloseProfileUpdate						// add/toggle "hidden" class to modal and overlay
+		- def addHandlerProfileUpdate							// add form validation; parse form values to a js.object; call handler(js.object)
 - Controller
 	- def controlSearchMeal(foodQuery)				// "model :: loadSearchMealData(foodQuery)"  >>   searchResults = model.accessSearchMealResults()  >>  "view :: SearchMealResultsView(searchResults)"
 	- def controlAddMeal(index)						//  "model :: loadSelectedMeal(index)"  >>  selectedMeal = model.accessSearchDateData(currentDate)  >>  "view :: SummaryView.render(selectedMeal)"
 	- def controlSummarySearch(dateQuery: String)	// "model :: accessSearchDateData(dateQuery)"  >>  returns selectedMeal  >>  "view :: SummaryView.render(selectedMeal)"
-	- def init()									// SearchMealResultsView.render(...); SummaryView.render(...)
+	- def controlProfileUpdate(profile: js.object)	// 
+	- def init()									// initialise empty state; unload state from local storage (if any); SearchMealResultsView.render(...); SummaryView.render(...); ProfileView.render(...)
 
 
 Misc
