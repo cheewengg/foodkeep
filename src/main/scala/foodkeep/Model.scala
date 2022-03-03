@@ -44,6 +44,8 @@ object Model {
         }
     }
 
+    def getProfileHistoryFromState: Option[js.Array[Profile]] = state.getProfileHistory
+
     def getCurrentProfileFromState: Option[Profile] = state.getCurrentProfile
 
     def pushNewProfileToState(profile: Profile): Unit = setState(state.pushNewProfile(profile))
@@ -81,7 +83,7 @@ object Model {
 
     private def findNutrientValue(nutrientId: Int, nutrients: js.Array[js.Dynamic]): Int = {
         nutrients.filter(nutrient => nutrient.nutrientId.asInstanceOf[Int] == nutrientId).lastOption match {
-            case Some(n) => n.value.asInstanceOf[String].toInt
+            case Some(n) => n.value.asInstanceOf[Double].toInt
             case None => 0
         }
     }

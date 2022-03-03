@@ -954,9 +954,7 @@ $c_LController$.prototype.main__AT__V = (function(args) {
   $m_Lfoodkeep_view_ProfileUpdateView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getCurrentProfileFromState__s_Option());
   $m_Lfoodkeep_view_SearchMealResultsView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getSearchResultsFromState__s_Option());
   $m_Lfoodkeep_view_ProfileUpdateView$().addHandlerToggleUpdateProfile__V();
-  $m_Lfoodkeep_view_ProfileUpdateView$().addHandlerSubmitUpdateProfile__F1__V(new $c_sjsr_AnonFunction1(((this$1) => ((profile$2) => {
-    $m_LController$().controlSubmitUpdateProfile__Lfoodkeep_helper_Profile__V(profile$2)
-  }))(this)));
+  $m_Lfoodkeep_view_ProfileUpdateView$().addHandlerSubmitUpdateProfile__F1__V(new $c_sjsr_AnonFunction1(((this$1) => ((profile$2) => $m_LController$().controlSubmitUpdateProfile__Lfoodkeep_helper_Profile__Z(profile$2)))(this)));
   $m_Lfoodkeep_view_SearchMealView$().addHandlerStartSearchTimer__F1__V(new $c_sjsr_AnonFunction1(((this$2) => ((query$2) => {
     var query = $as_T(query$2);
     $m_LController$().controlSearchMeal__T__V(query)
@@ -968,10 +966,19 @@ $c_LController$.prototype.main__AT__V = (function(args) {
     return $m_LController$().controlAddMeal__I__D__Z(index, expense)
   }))(this)))
 });
-$c_LController$.prototype.controlSubmitUpdateProfile__Lfoodkeep_helper_Profile__V = (function(profile) {
+$c_LController$.prototype.controlSubmitUpdateProfile__Lfoodkeep_helper_Profile__Z = (function(profile) {
   $m_Lfoodkeep_model_Model$().pushNewProfileToState__Lfoodkeep_helper_Profile__V(profile);
   $m_Lfoodkeep_view_ProfileView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getCurrentProfileFromState__s_Option());
-  $m_Lfoodkeep_view_ProfileUpdateView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getCurrentProfileFromState__s_Option())
+  $m_Lfoodkeep_view_ProfileUpdateView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getCurrentProfileFromState__s_Option());
+  var x1 = $m_Lfoodkeep_model_Model$().getProfileHistoryFromState__s_Option();
+  if ((x1 instanceof $c_s_Some)) {
+    var x2 = $as_s_Some(x1);
+    var r = x2.s_Some__f_value;
+    if (($uI(r.length) === 1)) {
+      return true
+    }
+  };
+  return false
 });
 $c_LController$.prototype.controlSearchMeal__T__V = (function(query) {
   $m_Lfoodkeep_model_Model$().pushNewSearchResultsToState__T__s_concurrent_Future(query).foreach__F1__s_concurrent_ExecutionContext__V(new $c_sjsr_AnonFunction1(((this$1) => ((results$2) => {
@@ -1307,12 +1314,10 @@ function $p_Lfoodkeep_model_Model$__findNutrientValue__I__sjs_js_Array__I($thiz,
   if ((x1 instanceof $c_s_Some)) {
     var x2 = $as_s_Some(x1);
     var n = x2.s_Some__f_value;
-    var x = $as_T(n.value);
-    var this$8 = $m_jl_Integer$();
-    return this$8.parseInt__T__I__I(x, 10)
+    return $doubleToInt($uD(n.value))
   } else {
-    var x$1 = $m_s_None$();
-    if ((x$1 === x1)) {
+    var x = $m_s_None$();
+    if ((x === x1)) {
       return 0
     } else {
       throw new $c_s_MatchError(x1)
@@ -1333,6 +1338,10 @@ function $h_Lfoodkeep_model_Model$() {
   /*<skip>*/
 }
 $h_Lfoodkeep_model_Model$.prototype = $c_Lfoodkeep_model_Model$.prototype;
+$c_Lfoodkeep_model_Model$.prototype.getProfileHistoryFromState__s_Option = (function() {
+  var s = this.Lfoodkeep_model_Model$__f_state;
+  return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).getProfileHistory__s_Option()
+});
 $c_Lfoodkeep_model_Model$.prototype.getCurrentProfileFromState__s_Option = (function() {
   var s = this.Lfoodkeep_model_Model$__f_state;
   return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).getCurrentProfile__s_Option()
@@ -1677,6 +1686,10 @@ $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.getSearchResults__s_Opti
   var x1 = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s)).searchResults;
   return (($uI(x1.length) > 0) ? new $c_s_Some(x1) : $m_s_None$())
 });
+$c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.getProfileHistory__s_Option = (function() {
+  var x1 = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s)).profileHistory;
+  return (($uI(x1.length) > 0) ? new $c_s_Some(x1) : $m_s_None$())
+});
 $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.checkDailyMonthlyPresent__T__T2 = (function(date) {
   var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
   var $$x1 = $m_sjs_js_ArrayOps$();
@@ -2016,7 +2029,9 @@ $c_Lfoodkeep_view_ProfileUpdateView$.prototype.foodkeep$view$ProfileUpdateView$$
     var $$x1 = $m_jl_Double$().parseDouble__T__D(x);
     var x$1 = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldHeight.value);
     var newProfile = $$x5.apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile("", "", $$x4, $$x3, $$x2, $$x1, $m_jl_Double$().parseDouble__T__D(x$1), $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldActivityLvl.value), 0);
-    handler$1.apply__O__O(newProfile);
+    if ((!$uZ(handler$1.apply__O__O(newProfile)))) {
+      window.alert("Updated profile will take effect tomorrow!")
+    };
     $m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_modalUpdateProfile.classList.toggle("hidden");
     return $uZ($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_overlayUpdateProfile.classList.toggle("hidden"))
   } else {

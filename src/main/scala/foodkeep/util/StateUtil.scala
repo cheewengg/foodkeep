@@ -81,6 +81,11 @@ package object StateUtil {
             case _ => None
         }
 
+        def getProfileHistory: Option[js.Array[Profile]] = State(s).profileHistory match {
+            case r if r.length > 0 => Some(r)
+            case _ => None
+        }
+
         def checkDailyMonthlyPresent(date: String): (Boolean, Boolean) = {
             val sC = State(s)
 

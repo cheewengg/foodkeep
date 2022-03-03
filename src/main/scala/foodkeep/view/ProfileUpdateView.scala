@@ -51,13 +51,13 @@ object ProfileUpdateView {
         }))
     }
 
-    def addHandlerSubmitUpdateProfile(handler: Profile => Unit): Unit = {
+    def addHandlerSubmitUpdateProfile(handler: Profile => Boolean): Unit = {
         btnSubmitUpdateProfile.addEventListener("click", (e: dom.Event) => {
             e.preventDefault()       
             if (validateFormInput) {
                 val newProfile = Profile("", "", fieldName.value, formatBirthDate(fieldBirthDate.value), fieldGender.value, fieldWeight.value.toDouble, fieldHeight.value.toDouble, fieldActivityLvl.value, 0)
                 
-                handler(newProfile)
+                if (!handler(newProfile)) dom.window.alert("Updated profile will take effect tomorrow!")
 
                 modalUpdateProfile.classList.toggle("hidden")
                 overlayUpdateProfile.classList.toggle("hidden")

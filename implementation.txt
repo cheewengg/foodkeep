@@ -69,6 +69,7 @@ Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-j
 			- def getCurrentCaloriesTarget: Option[Int]			
 			- def getFilterQuery(date: String): Option[(DailyMeal, MonthlyMeal)]
 			- def getSearchResults: Option[js.Array[SearchResult]]
+			- def getProfileHistory: Option[js.Array[Profile]]
 		- misc
 			- def checkDailyMonthlyPresent(date: String): (Boolean, Boolean) 
 
@@ -82,6 +83,7 @@ MVC
 			- def pushNewSearchResultsToState(query: String): Future[Option[js.Array[SearchResult]]]
 			- def pushNewMealToState(index: Int): Unit		
 		- access state
+			- def getProfileHistoryFromState: Option[js.Array[Profile]] 
 			- def getCurrentProfileFromState: Option[Profile]	
 			- def getSearchResultsFromState: Option[js.Array[SearchResult]]						
 			- def getCurrentCaloriesTargetFromState: Option[Int]
@@ -125,7 +127,7 @@ MVC
 		
 - Controller
 	- def main(args: Array[String]): Unit						// SearchMealResultsView.render(...); SummaryView.render(...); ProfileView.render(...)
-	- def controlSubmitUpdateProfile(profile: Profile): Unit	
+	- def controlSubmitUpdateProfile(profile: Profile): Boolean	
 	- def controlSearchMeal(query: String)						
 	- def controlAddMeal(index)def controlAddMeal(index: Int, expense: Double): Boolean	
 	- def controlSummarySearch(dateQuery: String)				// "model :: accessSearchDateData(dateQuery)"  >>  returns selectedMeal  >>  "view :: SummaryView.render(selectedMeal)"

@@ -39,10 +39,15 @@ object Controller {
         AddMealView.addHandlerAddMeal(controlAddMeal)
     }
 
-    def controlSubmitUpdateProfile(profile: Profile): Unit = {
+    def controlSubmitUpdateProfile(profile: Profile): Boolean = {
         Model.pushNewProfileToState(profile)
         ProfileView.render(Model.getCurrentProfileFromState)
         ProfileUpdateView.render(Model.getCurrentProfileFromState)
+
+        Model.getProfileHistoryFromState match {
+            case Some(r) if r.length == 1 => true
+            case _ => false
+        }
     }
 
     def controlSearchMeal(query: String): Unit = {
