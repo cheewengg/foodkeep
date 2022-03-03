@@ -11,7 +11,6 @@ import js.annotation._
 import js.Thenable.Implicits._
 import org.scalajs.macrotaskexecutor.MacrotaskExecutor.Implicits._
 
-
 import foodkeep.helper._
 import foodkeep.util.util._
 import foodkeep.util.ProfileUtil._
@@ -36,6 +35,8 @@ object Controller {
 
         SearchMealView.addHandlerStartSearchTimer(controlSearchMeal)
         SearchMealView.addHandlerClearSearchTimer
+        
+        AddMealView.addHandlerAddMeal(controlAddMeal)
     }
 
     def controlSubmitUpdateProfile(profile: Profile): Unit = {
@@ -47,9 +48,20 @@ object Controller {
     def controlSearchMeal(query: String): Unit = {
         Model.pushNewSearchResultsToState(query).foreach{
             results => {
-            dom.console.log(results)
             SearchMealResultsView.render(results)}
         }
     }
+
+    def controlAddMeal(index: Int, expense: Double): Boolean = {
+        Model.getCurrentCaloriesTargetFromState match {
+            case Some(calories) => {
+                Model.pushNewMealToState(index, calories, expense)
+                // render output to SummaryView
+                true
+            }
+            case _ => false
+        }
+    
+    }   
 
 }

@@ -19,5 +19,16 @@ object SearchResult {
                             carbContent = carbContent,
                             proteinContent = proteinContent,
                             fatContent = fatContent
-                            ).asInstanceOf[SearchResult]         
+                            ).asInstanceOf[SearchResult]
+
+    def apply(s: js.Dynamic): SearchResult = {
+        val foodId = s.foodId.asInstanceOf[Int]
+	    val foodName = s.foodName.asInstanceOf[String]
+	    val caloriesContent = s.caloriesContent.asInstanceOf[Int]
+	    val carbContent = s.carbContent.asInstanceOf[Int]
+	    val proteinContent = s.proteinContent.asInstanceOf[Int]
+	    val fatContent = s.fatContent.asInstanceOf[Int]
+
+        SearchResult(foodId, foodName, caloriesContent, carbContent, proteinContent, fatContent)
+    }       
 }

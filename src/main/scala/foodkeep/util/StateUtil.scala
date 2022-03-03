@@ -66,7 +66,7 @@ package object StateUtil {
 
         def getFilterQuery(date: String): Option[(DailyMeal, MonthlyMeal)] = {
             val sC = State(s)
-
+            
             sC.mealHistory.filter(monthly => monthly.monthYear == date.dropRight(2)).lastOption match {
                 case Some(m) => (Some(m), m.getDailyMeal(date)) match {
                     case (Some(m), Some(d)) => Some(d, m)
@@ -79,6 +79,18 @@ package object StateUtil {
         def getSearchResults: Option[js.Array[SearchResult]] = State(s).searchResults match {
             case r if r.length > 0 => Some(r)
             case _ => None
+        }
+
+        def checkDailyMonthlyPresent(date: String): (Boolean, Boolean) = {
+            val sC = State(s)
+
+            sC.mealHistory.filter(monthly => monthly.monthYear == date.dropRight(2)).lastOption match {
+                case Some(m) => (Some(m), m.getDailyMeal(date)) match {
+                    case (Some(m), Some(d)) => (true, true)
+                    case _ => (false, true)
+                }
+                case _ => (false, false)
+            }
         }
         
     }

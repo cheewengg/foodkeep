@@ -1,4 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\src\main\scala\foodkeep\view\SearchMealResultsView.scala:25:17: not found: value counter[0m
-[0m[[0m[31merror[0m] [0m[0m                counter += 1[0m
-[0m[[0m[31merror[0m] [0m[0m                ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\src\main\scala\foodkeep\view\AddMealView.scala:30:40: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: None[0m
+[0m[[0m[33mwarn[0m] [0m[0m                eventTarget.dataset.get("idx") match {[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                       ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m

@@ -18,7 +18,6 @@ object SearchMealView {
     private var timerId: Int = 9999
     private var lastSearchQuery: String = ""
     private val queryFieldFood = document.querySelector("#food").asInstanceOf[html.Input]
-    private val queryFieldExpense = document.querySelector("#expense").asInstanceOf[html.Input]
 
     def addHandlerStartSearchTimer(handler: String => Unit): Unit = {
         queryFieldFood.addEventListener("keyup", (e: dom.Event) => {

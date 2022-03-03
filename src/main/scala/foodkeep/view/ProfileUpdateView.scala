@@ -14,6 +14,8 @@ import foodkeep.util.DailyMealUtil._
 import foodkeep.util.MonthlyMealUtil._
 import foodkeep.util.StateUtil._
 
+import scala.util.{Try,Success,Failure}
+
 object ProfileUpdateView {
     private val btnOpenUpdateProfile = document.querySelector(".button-update")
     private val btnCloseUpdateProfile = document.querySelector(".button-close")
@@ -50,22 +52,32 @@ object ProfileUpdateView {
     }
 
     def addHandlerSubmitUpdateProfile(handler: Profile => Unit): Unit = {
-        btnSubmitUpdateProfile.addEventListener("click", (e: dom.Event) => {   
-            e.preventDefault()
-            if (!validateFormInput) return
-            
-            val newProfile = Profile("", "", fieldName.value, formatBirthDate(fieldBirthDate.value), fieldGender.value, fieldWeight.value.toDouble, fieldHeight.value.toDouble, fieldActivityLvl.value, 0)
+        btnSubmitUpdateProfile.addEventListener("click", (e: dom.Event) => {
+            e.preventDefault()       
+            if (validateFormInput) {
+                val newProfile = Profile("", "", fieldName.value, formatBirthDate(fieldBirthDate.value), fieldGender.value, fieldWeight.value.toDouble, fieldHeight.value.toDouble, fieldActivityLvl.value, 0)
+                
+                handler(newProfile)
 
-            handler(newProfile)
-
-            modalUpdateProfile.classList.toggle("hidden")
-            overlayUpdateProfile.classList.toggle("hidden")
-            
+                modalUpdateProfile.classList.toggle("hidden")
+                overlayUpdateProfile.classList.toggle("hidden")
+            } 
         })
     }
 
-    // KIV input validation
-    private def validateFormInput: Boolean = true
+    private def validateFormInput: Boolean = {
+        val birthDate = fieldBirthDate.value
+        val weight = fieldWeight.value
+        val height = fieldHeight.value
+        
+        (Try(birthDate.toInt), Try(weight.toDouble), Try(height.toDouble)) match {
+            case (Success(_), Success(_), Success(_)) if birthDate.length == 8 => true
+            case _ => {
+                dom.window.alert("Invalid input detected!")
+                false 
+            }
+        }    
+    }
 
     private def formatBirthDate(date: String): String = {
         // 02011994 --> 19940102

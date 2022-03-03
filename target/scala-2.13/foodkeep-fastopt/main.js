@@ -961,7 +961,12 @@ $c_LController$.prototype.main__AT__V = (function(args) {
     var query = $as_T(query$2);
     $m_LController$().controlSearchMeal__T__V(query)
   }))(this)));
-  $m_Lfoodkeep_view_SearchMealView$().addHandlerClearSearchTimer__V()
+  $m_Lfoodkeep_view_SearchMealView$().addHandlerClearSearchTimer__V();
+  $m_Lfoodkeep_view_AddMealView$().addHandlerAddMeal__F2__V(new $c_sjsr_AnonFunction2(((this$3) => ((index$2, expense$2) => {
+    var index = $uI(index$2);
+    var expense = $uD(expense$2);
+    return $m_LController$().controlAddMeal__I__D__Z(index, expense)
+  }))(this)))
 });
 $c_LController$.prototype.controlSubmitUpdateProfile__Lfoodkeep_helper_Profile__V = (function(profile) {
   $m_Lfoodkeep_model_Model$().pushNewProfileToState__Lfoodkeep_helper_Profile__V(profile);
@@ -971,9 +976,19 @@ $c_LController$.prototype.controlSubmitUpdateProfile__Lfoodkeep_helper_Profile__
 $c_LController$.prototype.controlSearchMeal__T__V = (function(query) {
   $m_Lfoodkeep_model_Model$().pushNewSearchResultsToState__T__s_concurrent_Future(query).foreach__F1__s_concurrent_ExecutionContext__V(new $c_sjsr_AnonFunction1(((this$1) => ((results$2) => {
     var results = $as_s_Option(results$2);
-    console.log(results);
     $m_Lfoodkeep_view_SearchMealResultsView$().render__s_Option__V(results)
   }))(this)), $m_Lorg_scalajs_macrotaskexecutor_MacrotaskExecutor$())
+});
+$c_LController$.prototype.controlAddMeal__I__D__Z = (function(index, expense) {
+  var x1 = $m_Lfoodkeep_model_Model$().getCurrentCaloriesTargetFromState__s_Option();
+  if ((x1 instanceof $c_s_Some)) {
+    var x2 = $as_s_Some(x1);
+    var calories = $uI(x2.s_Some__f_value);
+    $m_Lfoodkeep_model_Model$().pushNewMealToState__I__I__D__V(index, calories, expense);
+    return true
+  } else {
+    return false
+  }
 });
 var $d_LController$ = new $TypeData().initClass({
   LController$: 0
@@ -994,7 +1009,7 @@ function $c_Lfoodkeep_config_Config$() {
   this.Lfoodkeep_config_Config$__f_API_KEY = null;
   this.Lfoodkeep_config_Config$__f_MAX_NBR_QUERY = 0;
   this.Lfoodkeep_config_Config$__f_API_KEY = "mjJCK2kNtXWJuEsJ4eUWSrxjce9RPmf3hfEdjRdu";
-  this.Lfoodkeep_config_Config$__f_MAX_NBR_QUERY = 10
+  this.Lfoodkeep_config_Config$__f_MAX_NBR_QUERY = 15
 }
 $c_Lfoodkeep_config_Config$.prototype = new $h_O();
 $c_Lfoodkeep_config_Config$.prototype.constructor = $c_Lfoodkeep_config_Config$;
@@ -1018,6 +1033,112 @@ function $m_Lfoodkeep_config_Config$() {
   return $n_Lfoodkeep_config_Config$
 }
 /** @constructor */
+function $c_Lfoodkeep_helper_DailyMeal$() {
+  /*<skip>*/
+}
+$c_Lfoodkeep_helper_DailyMeal$.prototype = new $h_O();
+$c_Lfoodkeep_helper_DailyMeal$.prototype.constructor = $c_Lfoodkeep_helper_DailyMeal$;
+/** @constructor */
+function $h_Lfoodkeep_helper_DailyMeal$() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_helper_DailyMeal$.prototype = $c_Lfoodkeep_helper_DailyMeal$.prototype;
+$c_Lfoodkeep_helper_DailyMeal$.prototype.apply__T__sjs_js_Array__D__I__I__Lfoodkeep_helper_DailyMeal = (function(date, record, totalExpenses, totalCalories, caloriesTarget) {
+  var array = [$ct_T2__O__O__(new $c_T2(), "date", date), $ct_T2__O__O__(new $c_T2(), "record", record), $ct_T2__O__O__(new $c_T2(), "totalExpenses", totalExpenses), $ct_T2__O__O__(new $c_T2(), "totalCalories", totalCalories), $ct_T2__O__O__(new $c_T2(), "caloriesTarget", caloriesTarget)];
+  var fields = new $c_sjsr_WrappedVarArgs(array);
+  return $m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields)
+});
+$c_Lfoodkeep_helper_DailyMeal$.prototype.apply__sjs_js_Dynamic__Lfoodkeep_helper_DailyMeal = (function(d) {
+  var dC = JSON.parse($as_T(JSON.stringify(d)));
+  var date = $as_T(dC.date);
+  var record = dC.record;
+  var totalExpenses = $uD(dC.totalExpenses);
+  var totalCalories = $uI(dC.totalCalories);
+  var caloriesTarget = $uI(dC.caloriesTarget);
+  return $m_Lfoodkeep_helper_DailyMeal$().apply__T__sjs_js_Array__D__I__I__Lfoodkeep_helper_DailyMeal(date, record, totalExpenses, totalCalories, caloriesTarget)
+});
+var $d_Lfoodkeep_helper_DailyMeal$ = new $TypeData().initClass({
+  Lfoodkeep_helper_DailyMeal$: 0
+}, false, "foodkeep.helper.DailyMeal$", {
+  Lfoodkeep_helper_DailyMeal$: 1,
+  O: 1
+});
+$c_Lfoodkeep_helper_DailyMeal$.prototype.$classData = $d_Lfoodkeep_helper_DailyMeal$;
+var $n_Lfoodkeep_helper_DailyMeal$;
+function $m_Lfoodkeep_helper_DailyMeal$() {
+  if ((!$n_Lfoodkeep_helper_DailyMeal$)) {
+    $n_Lfoodkeep_helper_DailyMeal$ = new $c_Lfoodkeep_helper_DailyMeal$()
+  };
+  return $n_Lfoodkeep_helper_DailyMeal$
+}
+/** @constructor */
+function $c_Lfoodkeep_helper_Meal$() {
+  /*<skip>*/
+}
+$c_Lfoodkeep_helper_Meal$.prototype = new $h_O();
+$c_Lfoodkeep_helper_Meal$.prototype.constructor = $c_Lfoodkeep_helper_Meal$;
+/** @constructor */
+function $h_Lfoodkeep_helper_Meal$() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_helper_Meal$.prototype = $c_Lfoodkeep_helper_Meal$.prototype;
+$c_Lfoodkeep_helper_Meal$.prototype.apply__T__I__T__D__I__Lfoodkeep_helper_Meal = (function(dateTime, foodId, foodName, expense, caloriesContent) {
+  var array = [$ct_T2__O__O__(new $c_T2(), "dateTime", dateTime), $ct_T2__O__O__(new $c_T2(), "foodId", foodId), $ct_T2__O__O__(new $c_T2(), "foodName", foodName), $ct_T2__O__O__(new $c_T2(), "expense", expense), $ct_T2__O__O__(new $c_T2(), "caloriesContent", caloriesContent)];
+  var fields = new $c_sjsr_WrappedVarArgs(array);
+  return $m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields)
+});
+var $d_Lfoodkeep_helper_Meal$ = new $TypeData().initClass({
+  Lfoodkeep_helper_Meal$: 0
+}, false, "foodkeep.helper.Meal$", {
+  Lfoodkeep_helper_Meal$: 1,
+  O: 1
+});
+$c_Lfoodkeep_helper_Meal$.prototype.$classData = $d_Lfoodkeep_helper_Meal$;
+var $n_Lfoodkeep_helper_Meal$;
+function $m_Lfoodkeep_helper_Meal$() {
+  if ((!$n_Lfoodkeep_helper_Meal$)) {
+    $n_Lfoodkeep_helper_Meal$ = new $c_Lfoodkeep_helper_Meal$()
+  };
+  return $n_Lfoodkeep_helper_Meal$
+}
+/** @constructor */
+function $c_Lfoodkeep_helper_MonthlyMeal$() {
+  /*<skip>*/
+}
+$c_Lfoodkeep_helper_MonthlyMeal$.prototype = new $h_O();
+$c_Lfoodkeep_helper_MonthlyMeal$.prototype.constructor = $c_Lfoodkeep_helper_MonthlyMeal$;
+/** @constructor */
+function $h_Lfoodkeep_helper_MonthlyMeal$() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_helper_MonthlyMeal$.prototype = $c_Lfoodkeep_helper_MonthlyMeal$.prototype;
+$c_Lfoodkeep_helper_MonthlyMeal$.prototype.apply__T__sjs_js_Array__D__I__Lfoodkeep_helper_MonthlyMeal = (function(monthYear, record, totalExpenses, totalCalories) {
+  var array = [$ct_T2__O__O__(new $c_T2(), "monthYear", monthYear), $ct_T2__O__O__(new $c_T2(), "record", record), $ct_T2__O__O__(new $c_T2(), "totalExpenses", totalExpenses), $ct_T2__O__O__(new $c_T2(), "totalCalories", totalCalories)];
+  var fields = new $c_sjsr_WrappedVarArgs(array);
+  return $m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields)
+});
+$c_Lfoodkeep_helper_MonthlyMeal$.prototype.apply__sjs_js_Dynamic__Lfoodkeep_helper_MonthlyMeal = (function(m) {
+  var monthYear = $as_T(m.monthYear);
+  var record = m.record;
+  var totalExpenses = $uD(m.totalExpenses);
+  var totalCalories = $uI(m.totalCalories);
+  return $m_Lfoodkeep_helper_MonthlyMeal$().apply__T__sjs_js_Array__D__I__Lfoodkeep_helper_MonthlyMeal(monthYear, record, totalExpenses, totalCalories)
+});
+var $d_Lfoodkeep_helper_MonthlyMeal$ = new $TypeData().initClass({
+  Lfoodkeep_helper_MonthlyMeal$: 0
+}, false, "foodkeep.helper.MonthlyMeal$", {
+  Lfoodkeep_helper_MonthlyMeal$: 1,
+  O: 1
+});
+$c_Lfoodkeep_helper_MonthlyMeal$.prototype.$classData = $d_Lfoodkeep_helper_MonthlyMeal$;
+var $n_Lfoodkeep_helper_MonthlyMeal$;
+function $m_Lfoodkeep_helper_MonthlyMeal$() {
+  if ((!$n_Lfoodkeep_helper_MonthlyMeal$)) {
+    $n_Lfoodkeep_helper_MonthlyMeal$ = new $c_Lfoodkeep_helper_MonthlyMeal$()
+  };
+  return $n_Lfoodkeep_helper_MonthlyMeal$
+}
+/** @constructor */
 function $c_Lfoodkeep_helper_Profile$() {
   /*<skip>*/
 }
@@ -1029,7 +1150,7 @@ function $h_Lfoodkeep_helper_Profile$() {
 }
 $h_Lfoodkeep_helper_Profile$.prototype = $c_Lfoodkeep_helper_Profile$.prototype;
 $c_Lfoodkeep_helper_Profile$.prototype.apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile = (function(startDate, endDate, name, birthDate, gender, weight, height, levelOfActivity, caloriesTarget) {
-  var array = [new $c_T2("startDate", startDate), new $c_T2("endDate", endDate), new $c_T2("name", name), new $c_T2("birthDate", birthDate), new $c_T2("gender", gender), new $c_T2("weight", weight), new $c_T2("height", height), new $c_T2("levelOfActivity", levelOfActivity), new $c_T2("caloriesTarget", caloriesTarget)];
+  var array = [$ct_T2__O__O__(new $c_T2(), "startDate", startDate), $ct_T2__O__O__(new $c_T2(), "endDate", endDate), $ct_T2__O__O__(new $c_T2(), "name", name), $ct_T2__O__O__(new $c_T2(), "birthDate", birthDate), $ct_T2__O__O__(new $c_T2(), "gender", gender), $ct_T2__O__O__(new $c_T2(), "weight", weight), $ct_T2__O__O__(new $c_T2(), "height", height), $ct_T2__O__O__(new $c_T2(), "levelOfActivity", levelOfActivity), $ct_T2__O__O__(new $c_T2(), "caloriesTarget", caloriesTarget)];
   var fields = new $c_sjsr_WrappedVarArgs(array);
   return $m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields)
 });
@@ -1072,9 +1193,18 @@ function $h_Lfoodkeep_helper_SearchResult$() {
 }
 $h_Lfoodkeep_helper_SearchResult$.prototype = $c_Lfoodkeep_helper_SearchResult$.prototype;
 $c_Lfoodkeep_helper_SearchResult$.prototype.apply__I__T__I__I__I__I__Lfoodkeep_helper_SearchResult = (function(foodId, foodName, caloriesContent, carbContent, proteinContent, fatContent) {
-  var array = [new $c_T2("foodId", foodId), new $c_T2("foodName", foodName), new $c_T2("caloriesContent", caloriesContent), new $c_T2("carbContent", carbContent), new $c_T2("proteinContent", proteinContent), new $c_T2("fatContent", fatContent)];
+  var array = [$ct_T2__O__O__(new $c_T2(), "foodId", foodId), $ct_T2__O__O__(new $c_T2(), "foodName", foodName), $ct_T2__O__O__(new $c_T2(), "caloriesContent", caloriesContent), $ct_T2__O__O__(new $c_T2(), "carbContent", carbContent), $ct_T2__O__O__(new $c_T2(), "proteinContent", proteinContent), $ct_T2__O__O__(new $c_T2(), "fatContent", fatContent)];
   var fields = new $c_sjsr_WrappedVarArgs(array);
   return $m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields)
+});
+$c_Lfoodkeep_helper_SearchResult$.prototype.apply__sjs_js_Dynamic__Lfoodkeep_helper_SearchResult = (function(s) {
+  var foodId = $uI(s.foodId);
+  var foodName = $as_T(s.foodName);
+  var caloriesContent = $uI(s.caloriesContent);
+  var carbContent = $uI(s.carbContent);
+  var proteinContent = $uI(s.proteinContent);
+  var fatContent = $uI(s.fatContent);
+  return $m_Lfoodkeep_helper_SearchResult$().apply__I__T__I__I__I__I__Lfoodkeep_helper_SearchResult(foodId, foodName, caloriesContent, carbContent, proteinContent, fatContent)
 });
 var $d_Lfoodkeep_helper_SearchResult$ = new $TypeData().initClass({
   Lfoodkeep_helper_SearchResult$: 0
@@ -1102,7 +1232,7 @@ function $h_Lfoodkeep_helper_State$() {
 }
 $h_Lfoodkeep_helper_State$.prototype = $c_Lfoodkeep_helper_State$.prototype;
 $c_Lfoodkeep_helper_State$.prototype.apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State = (function(profileHistory, mealHistory, searchResults) {
-  var array = [new $c_T2("profileHistory", profileHistory), new $c_T2("mealHistory", mealHistory), new $c_T2("searchResults", searchResults)];
+  var array = [$ct_T2__O__O__(new $c_T2(), "profileHistory", profileHistory), $ct_T2__O__O__(new $c_T2(), "mealHistory", mealHistory), $ct_T2__O__O__(new $c_T2(), "searchResults", searchResults)];
   var fields = new $c_sjsr_WrappedVarArgs(array);
   return $m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields)
 });
@@ -1126,9 +1256,21 @@ function $m_Lfoodkeep_helper_State$() {
   };
   return $n_Lfoodkeep_helper_State$
 }
+function $p_Lfoodkeep_model_Model$__setState__Lfoodkeep_helper_State__V($thiz, newState) {
+  $thiz.Lfoodkeep_model_Model$__f_state = newState;
+  window.localStorage.setItem("state", $as_T(JSON.stringify($thiz.Lfoodkeep_model_Model$__f_state)))
+}
 function $p_Lfoodkeep_model_Model$__getStateFromLocalStorage__s_Option($thiz) {
   var x1 = JSON.parse($as_T(window.localStorage.getItem("state")));
   return ((x1 === null) ? $m_s_None$() : new $c_s_Some(x1))
+}
+function $p_Lfoodkeep_model_Model$__init__V($thiz) {
+  var x1 = $p_Lfoodkeep_model_Model$__getStateFromLocalStorage__s_Option($thiz);
+  if ((x1 instanceof $c_s_Some)) {
+    var x2 = $as_s_Some(x1);
+    var s = x2.s_Some__f_value;
+    $p_Lfoodkeep_model_Model$__setState__Lfoodkeep_helper_State__V($thiz, s)
+  }
 }
 function $p_Lfoodkeep_model_Model$__generateSearchResults__sjs_js_Array__sjs_js_Array($thiz, foods) {
   var len = $uI(foods.length);
@@ -1165,10 +1307,12 @@ function $p_Lfoodkeep_model_Model$__findNutrientValue__I__sjs_js_Array__I($thiz,
   if ((x1 instanceof $c_s_Some)) {
     var x2 = $as_s_Some(x1);
     var n = x2.s_Some__f_value;
-    return $doubleToInt($uD(n.value))
+    var x = $as_T(n.value);
+    var this$8 = $m_jl_Integer$();
+    return this$8.parseInt__T__I__I(x, 10)
   } else {
-    var x = $m_s_None$();
-    if ((x === x1)) {
+    var x$1 = $m_s_None$();
+    if ((x$1 === x1)) {
       return 0
     } else {
       throw new $c_s_MatchError(x1)
@@ -1180,7 +1324,7 @@ function $c_Lfoodkeep_model_Model$() {
   this.Lfoodkeep_model_Model$__f_state = null;
   $n_Lfoodkeep_model_Model$ = this;
   this.Lfoodkeep_model_Model$__f_state = $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State([], [], []);
-  this.init__V()
+  $p_Lfoodkeep_model_Model$__init__V(this)
 }
 $c_Lfoodkeep_model_Model$.prototype = new $h_O();
 $c_Lfoodkeep_model_Model$.prototype.constructor = $c_Lfoodkeep_model_Model$;
@@ -1189,25 +1333,13 @@ function $h_Lfoodkeep_model_Model$() {
   /*<skip>*/
 }
 $h_Lfoodkeep_model_Model$.prototype = $c_Lfoodkeep_model_Model$.prototype;
-$c_Lfoodkeep_model_Model$.prototype.setState__Lfoodkeep_helper_State__V = (function(newState) {
-  this.Lfoodkeep_model_Model$__f_state = newState;
-  window.localStorage.setItem("state", $as_T(JSON.stringify(this.Lfoodkeep_model_Model$__f_state)))
-});
-$c_Lfoodkeep_model_Model$.prototype.init__V = (function() {
-  var x1 = $p_Lfoodkeep_model_Model$__getStateFromLocalStorage__s_Option(this);
-  if ((x1 instanceof $c_s_Some)) {
-    var x2 = $as_s_Some(x1);
-    var s = x2.s_Some__f_value;
-    this.setState__Lfoodkeep_helper_State__V(s)
-  }
-});
 $c_Lfoodkeep_model_Model$.prototype.getCurrentProfileFromState__s_Option = (function() {
   var s = this.Lfoodkeep_model_Model$__f_state;
   return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).getCurrentProfile__s_Option()
 });
 $c_Lfoodkeep_model_Model$.prototype.pushNewProfileToState__Lfoodkeep_helper_Profile__V = (function(profile) {
   var s = this.Lfoodkeep_model_Model$__f_state;
-  this.setState__Lfoodkeep_helper_State__V(new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).pushNewProfile__Lfoodkeep_helper_Profile__Lfoodkeep_helper_State(profile))
+  $p_Lfoodkeep_model_Model$__setState__Lfoodkeep_helper_State__V(this, new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).pushNewProfile__Lfoodkeep_helper_Profile__Lfoodkeep_helper_State(profile))
 });
 $c_Lfoodkeep_model_Model$.prototype.getSearchResultsFromState__s_Option = (function() {
   var s = this.Lfoodkeep_model_Model$__f_state;
@@ -1221,10 +1353,45 @@ $c_Lfoodkeep_model_Model$.prototype.pushNewSearchResultsToState__T__s_concurrent
     var searchResults = $p_Lfoodkeep_model_Model$__generateSearchResults__sjs_js_Array__sjs_js_Array($m_Lfoodkeep_model_Model$(), foods);
     var $$x1 = $m_Lfoodkeep_model_Model$();
     var s = $m_Lfoodkeep_model_Model$().Lfoodkeep_model_Model$__f_state;
-    $$x1.setState__Lfoodkeep_helper_State__V(new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).pushNewSearchResults__sjs_js_Array__Lfoodkeep_helper_State(searchResults));
+    $p_Lfoodkeep_model_Model$__setState__Lfoodkeep_helper_State__V($$x1, new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).pushNewSearchResults__sjs_js_Array__Lfoodkeep_helper_State(searchResults));
     var s$1 = $m_Lfoodkeep_model_Model$().Lfoodkeep_model_Model$__f_state;
     return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$1).getSearchResults__s_Option()
   }))(this)), $m_Lorg_scalajs_macrotaskexecutor_MacrotaskExecutor$())
+});
+$c_Lfoodkeep_model_Model$.prototype.pushNewMealToState__I__I__D__V = (function(index, currentCaloriesTarget, expense) {
+  var s = this.Lfoodkeep_model_Model$__f_state;
+  var x1 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).checkDailyMonthlyPresent__T__T2($m_Lfoodkeep_util_util$().getDateDMY__T());
+  matchEnd11: {
+    if ((x1 !== null)) {
+      var p2 = x1._1$mcZ$sp__Z();
+      var p3 = x1._2$mcZ$sp__Z();
+      if (((p2 === false) && (p3 === false))) {
+        var s$1 = this.Lfoodkeep_model_Model$__f_state;
+        $p_Lfoodkeep_model_Model$__setState__Lfoodkeep_helper_State__V(this, new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$1).pushNewMonthlyMealState__Lfoodkeep_helper_State());
+        var s$2 = this.Lfoodkeep_model_Model$__f_state;
+        $p_Lfoodkeep_model_Model$__setState__Lfoodkeep_helper_State__V(this, new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$2).pushNewDailyMealState__I__Lfoodkeep_helper_State(currentCaloriesTarget));
+        break matchEnd11
+      }
+    };
+    if ((x1 !== null)) {
+      var p4 = x1._1$mcZ$sp__Z();
+      var p5 = x1._2$mcZ$sp__Z();
+      if (((p4 === false) && (p5 === true))) {
+        var s$3 = this.Lfoodkeep_model_Model$__f_state;
+        $p_Lfoodkeep_model_Model$__setState__Lfoodkeep_helper_State__V(this, new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$3).pushNewDailyMealState__I__Lfoodkeep_helper_State(currentCaloriesTarget));
+        break matchEnd11
+      }
+    }
+  };
+  var s$4 = this.Lfoodkeep_model_Model$__f_state;
+  var s$5 = new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$4).getSearchResults__s_Option().get__O()[index];
+  var selectedMeal = new $c_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil(s$5).parseSearchResultAsMeal__D__Lfoodkeep_helper_Meal(expense);
+  var s$6 = this.Lfoodkeep_model_Model$__f_state;
+  $p_Lfoodkeep_model_Model$__setState__Lfoodkeep_helper_State__V(this, new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s$6).pushNewMealState__Lfoodkeep_helper_Meal__Lfoodkeep_helper_State(selectedMeal))
+});
+$c_Lfoodkeep_model_Model$.prototype.getCurrentCaloriesTargetFromState__s_Option = (function() {
+  var s = this.Lfoodkeep_model_Model$__f_state;
+  return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).getCurrentCaloriesTarget__s_Option()
 });
 var $d_Lfoodkeep_model_Model$ = new $TypeData().initClass({
   Lfoodkeep_model_Model$: 0
@@ -1240,6 +1407,96 @@ function $m_Lfoodkeep_model_Model$() {
   };
   return $n_Lfoodkeep_model_Model$
 }
+/** @constructor */
+function $c_Lfoodkeep_util_DailyMealUtil$DailyMealUtil(d) {
+  this.Lfoodkeep_util_DailyMealUtil$DailyMealUtil__f_d = null;
+  this.Lfoodkeep_util_DailyMealUtil$DailyMealUtil__f_d = d
+}
+$c_Lfoodkeep_util_DailyMealUtil$DailyMealUtil.prototype = new $h_O();
+$c_Lfoodkeep_util_DailyMealUtil$DailyMealUtil.prototype.constructor = $c_Lfoodkeep_util_DailyMealUtil$DailyMealUtil;
+/** @constructor */
+function $h_Lfoodkeep_util_DailyMealUtil$DailyMealUtil() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_util_DailyMealUtil$DailyMealUtil.prototype = $c_Lfoodkeep_util_DailyMealUtil$DailyMealUtil.prototype;
+$c_Lfoodkeep_util_DailyMealUtil$DailyMealUtil.prototype.pushNewMealDaily__Lfoodkeep_helper_Meal__Lfoodkeep_helper_DailyMeal = (function(meal) {
+  var dC = $m_Lfoodkeep_helper_DailyMeal$().apply__sjs_js_Dynamic__Lfoodkeep_helper_DailyMeal($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_DailyMealUtil$DailyMealUtil__f_d));
+  var array = dC.record;
+  var updatedRecord = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array, meal);
+  var updatedExpenses = ($uD(dC.totalExpenses) + $uD(meal.expense));
+  var updatedCalories = (($uI(dC.totalCalories) + $uI(meal.caloriesContent)) | 0);
+  return $m_Lfoodkeep_helper_DailyMeal$().apply__T__sjs_js_Array__D__I__I__Lfoodkeep_helper_DailyMeal($m_Lfoodkeep_util_util$().getDateDMY__T(), updatedRecord, updatedExpenses, updatedCalories, $uI(dC.caloriesTarget))
+});
+var $d_Lfoodkeep_util_DailyMealUtil$DailyMealUtil = new $TypeData().initClass({
+  Lfoodkeep_util_DailyMealUtil$DailyMealUtil: 0
+}, false, "foodkeep.util.DailyMealUtil$DailyMealUtil", {
+  Lfoodkeep_util_DailyMealUtil$DailyMealUtil: 1,
+  O: 1
+});
+$c_Lfoodkeep_util_DailyMealUtil$DailyMealUtil.prototype.$classData = $d_Lfoodkeep_util_DailyMealUtil$DailyMealUtil;
+/** @constructor */
+function $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil(m) {
+  this.Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil__f_m = null;
+  this.Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil__f_m = m
+}
+$c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype = new $h_O();
+$c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype.constructor = $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil;
+/** @constructor */
+function $h_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype = $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype;
+$c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype.pushNewMealMonthly__Lfoodkeep_helper_Meal__Lfoodkeep_helper_MonthlyMeal = (function(meal) {
+  var mC = $m_Lfoodkeep_helper_MonthlyMeal$().apply__sjs_js_Dynamic__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil__f_m));
+  var $$x1 = $m_sjs_js_ArrayOps$();
+  var array = mC.record;
+  var array$1 = $$x1.dropRight$extension__sjs_js_Array__I__sjs_js_Array(array, 1);
+  var $$x2 = $m_sjs_js_ArrayOps$();
+  var array$2 = mC.record;
+  var d = $$x2.last$extension__sjs_js_Array__O(array$2);
+  var x = new $c_Lfoodkeep_util_DailyMealUtil$DailyMealUtil(d).pushNewMealDaily__Lfoodkeep_helper_Meal__Lfoodkeep_helper_DailyMeal(meal);
+  var updatedRecord = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$1, x);
+  var updatedExpenses = ($uD(mC.totalExpenses) + $uD(meal.expense));
+  var updatedCalories = (($uI(mC.totalCalories) + $uI(meal.caloriesContent)) | 0);
+  return $m_Lfoodkeep_helper_MonthlyMeal$().apply__T__sjs_js_Array__D__I__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().getDateMY__T(), updatedRecord, updatedExpenses, updatedCalories)
+});
+$c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype.pushNewDailyMealMonthly__I__Lfoodkeep_helper_MonthlyMeal = (function(caloriesTarget) {
+  var mC = $m_Lfoodkeep_helper_MonthlyMeal$().apply__sjs_js_Dynamic__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil__f_m));
+  var array = mC.record;
+  var x = $m_Lfoodkeep_helper_DailyMeal$().apply__T__sjs_js_Array__D__I__I__Lfoodkeep_helper_DailyMeal($m_Lfoodkeep_util_util$().getDateDMY__T(), [], 0.0, 0, caloriesTarget);
+  var updatedRecord = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array, x);
+  return $m_Lfoodkeep_helper_MonthlyMeal$().apply__T__sjs_js_Array__D__I__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().getDateMY__T(), updatedRecord, $uD(mC.totalExpenses), $uI(mC.totalCalories))
+});
+$c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype.getDailyMeal__T__s_Option = (function(date) {
+  var mC = $m_Lfoodkeep_helper_MonthlyMeal$().apply__sjs_js_Dynamic__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil__f_m));
+  var $$x1 = $m_sjs_js_ArrayOps$();
+  var array = mC.record;
+  var res = [];
+  var len = $uI(array.length);
+  var i = 0;
+  while ((i < len)) {
+    var arg1 = array[i];
+    if (($as_T(arg1.date) === date)) {
+      $uI(res.push(arg1))
+    };
+    i = ((1 + i) | 0)
+  };
+  var x1 = $$x1.lastOption$extension__sjs_js_Array__s_Option(res);
+  if ((x1 instanceof $c_s_Some)) {
+    var x2 = $as_s_Some(x1);
+    var d = x2.s_Some__f_value;
+    return new $c_s_Some(d)
+  } else {
+    return $m_s_None$()
+  }
+});
+var $d_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil = new $TypeData().initClass({
+  Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil: 0
+}, false, "foodkeep.util.MonthlyMealUtil$MonthlyMealUtil", {
+  Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil: 1,
+  O: 1
+});
+$c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype.$classData = $d_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil;
 /** @constructor */
 function $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p) {
   this.Lfoodkeep_util_ProfileUtil_package$ProfileUtil__f_p = null;
@@ -1265,6 +1522,9 @@ $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.updateStartDate__T__
   var pC = $m_Lfoodkeep_helper_Profile$().apply__sjs_js_Dynamic__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_ProfileUtil_package$ProfileUtil__f_p));
   return $m_Lfoodkeep_helper_Profile$().apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile(date, $as_T(pC.endDate), $as_T(pC.name), $as_T(pC.birthDate), $as_T(pC.gender), $uD(pC.weight), $uD(pC.height), $as_T(pC.levelOfActivity), $uI(pC.caloriesTarget))
 });
+$c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.getCaloriesTarget__I = (function() {
+  return $uI($m_Lfoodkeep_helper_Profile$().apply__sjs_js_Dynamic__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_ProfileUtil_package$ProfileUtil__f_p)).caloriesTarget)
+});
 var $d_Lfoodkeep_util_ProfileUtil_package$ProfileUtil = new $TypeData().initClass({
   Lfoodkeep_util_ProfileUtil_package$ProfileUtil: 0
 }, false, "foodkeep.util.ProfileUtil.package$ProfileUtil", {
@@ -1272,6 +1532,33 @@ var $d_Lfoodkeep_util_ProfileUtil_package$ProfileUtil = new $TypeData().initClas
   O: 1
 });
 $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.$classData = $d_Lfoodkeep_util_ProfileUtil_package$ProfileUtil;
+/** @constructor */
+function $c_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil(s) {
+  this.Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil__f_s = null;
+  this.Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil__f_s = s
+}
+$c_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil.prototype = new $h_O();
+$c_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil.prototype.constructor = $c_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil;
+/** @constructor */
+function $h_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil.prototype = $c_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil.prototype;
+$c_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil.prototype.parseSearchResultAsMeal__D__Lfoodkeep_helper_Meal = (function(spending) {
+  var sC = $m_Lfoodkeep_helper_SearchResult$().apply__sjs_js_Dynamic__Lfoodkeep_helper_SearchResult($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil__f_s));
+  var dateTime = $m_Lfoodkeep_util_util$().getDateDMYT__T();
+  var foodId = $uI(sC.foodId);
+  var foodName = $as_T(sC.foodName);
+  var caloriesContent = $uI(sC.caloriesContent);
+  return $m_Lfoodkeep_helper_Meal$().apply__T__I__T__D__I__Lfoodkeep_helper_Meal(dateTime, foodId, foodName, spending, caloriesContent)
+});
+var $d_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil = new $TypeData().initClass({
+  Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil: 0
+}, false, "foodkeep.util.SearchResultUtil.package$SearchResultUtil", {
+  Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil: 1,
+  O: 1
+});
+$c_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil.prototype.$classData = $d_Lfoodkeep_util_SearchResultUtil_package$SearchResultUtil;
 /** @constructor */
 function $c_Lfoodkeep_util_StateUtil_package$StateUtil(s) {
   this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s = null;
@@ -1312,6 +1599,37 @@ $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.pushNewProfile__Lfoodkee
   };
   return $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State(updatedProfileHistory, sC.mealHistory, sC.searchResults)
 });
+$c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.pushNewMealState__Lfoodkeep_helper_Meal__Lfoodkeep_helper_State = (function(meal) {
+  var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
+  var $$x1 = $m_sjs_js_ArrayOps$();
+  var array = sC.mealHistory;
+  var array$1 = $$x1.dropRight$extension__sjs_js_Array__I__sjs_js_Array(array, 1);
+  var $$x2 = $m_sjs_js_ArrayOps$();
+  var array$2 = sC.mealHistory;
+  var m = $$x2.last$extension__sjs_js_Array__O(array$2);
+  var x = new $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil(m).pushNewMealMonthly__Lfoodkeep_helper_Meal__Lfoodkeep_helper_MonthlyMeal(meal);
+  var updatedMealHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$1, x);
+  return $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State(sC.profileHistory, updatedMealHistory, sC.searchResults)
+});
+$c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.pushNewDailyMealState__I__Lfoodkeep_helper_State = (function(caloriesTarget) {
+  var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
+  var $$x1 = $m_sjs_js_ArrayOps$();
+  var array = sC.mealHistory;
+  var array$1 = $$x1.dropRight$extension__sjs_js_Array__I__sjs_js_Array(array, 1);
+  var $$x2 = $m_sjs_js_ArrayOps$();
+  var array$2 = sC.mealHistory;
+  var m = $$x2.last$extension__sjs_js_Array__O(array$2);
+  var x = new $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil(m).pushNewDailyMealMonthly__I__Lfoodkeep_helper_MonthlyMeal(caloriesTarget);
+  var updatedMealHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array$1, x);
+  return $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State(sC.profileHistory, updatedMealHistory, sC.searchResults)
+});
+$c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.pushNewMonthlyMealState__Lfoodkeep_helper_State = (function() {
+  var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
+  var array = sC.mealHistory;
+  var x = $m_Lfoodkeep_helper_MonthlyMeal$().apply__T__sjs_js_Array__D__I__Lfoodkeep_helper_MonthlyMeal($m_Lfoodkeep_util_util$().getDateMY__T(), [], 0.0, 0);
+  var updatedMealHistory = $m_sjs_js_ArrayOps$().appended$extension__sjs_js_Array__O__sjs_js_Array(array, x);
+  return $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State(sC.profileHistory, updatedMealHistory, sC.searchResults)
+});
 $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.pushNewSearchResults__sjs_js_Array__Lfoodkeep_helper_State = (function(results) {
   var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
   return $m_Lfoodkeep_helper_State$().apply__sjs_js_Array__sjs_js_Array__sjs_js_Array__Lfoodkeep_helper_State(sC.profileHistory, sC.mealHistory, results)
@@ -1345,9 +1663,44 @@ $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.getCurrentProfile__s_Opt
   };
   return $m_s_None$()
 });
+$c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.getCurrentCaloriesTarget__s_Option = (function() {
+  var x1 = this.getCurrentProfile__s_Option();
+  if ((x1 instanceof $c_s_Some)) {
+    var x2 = $as_s_Some(x1);
+    var p = x2.s_Some__f_value;
+    return new $c_s_Some(new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p).getCaloriesTarget__I())
+  } else {
+    return $m_s_None$()
+  }
+});
 $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.getSearchResults__s_Option = (function() {
   var x1 = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s)).searchResults;
   return (($uI(x1.length) > 0) ? new $c_s_Some(x1) : $m_s_None$())
+});
+$c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.checkDailyMonthlyPresent__T__T2 = (function(date) {
+  var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
+  var $$x1 = $m_sjs_js_ArrayOps$();
+  var array = sC.mealHistory;
+  var res = [];
+  var len = $uI(array.length);
+  var i = 0;
+  while ((i < len)) {
+    var arg1 = array[i];
+    if (($as_T(arg1.monthYear) === $m_sc_StringOps$().dropRight$extension__T__I__T(date, 2))) {
+      $uI(res.push(arg1))
+    };
+    i = ((1 + i) | 0)
+  };
+  var x1 = $$x1.lastOption$extension__sjs_js_Array__s_Option(res);
+  if ((x1 instanceof $c_s_Some)) {
+    var x2 = $as_s_Some(x1);
+    var m = x2.s_Some__f_value;
+    new $c_s_Some(m);
+    var _2 = new $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil(m).getDailyMeal__T__s_Option(date);
+    return ((_2 instanceof $c_s_Some) ? new $c_T2$mcZZ$sp(true, true) : new $c_T2$mcZZ$sp(false, true))
+  } else {
+    return new $c_T2$mcZZ$sp(false, false)
+  }
 });
 var $d_Lfoodkeep_util_StateUtil_package$StateUtil = new $TypeData().initClass({
   Lfoodkeep_util_StateUtil_package$StateUtil: 0
@@ -1378,6 +1731,12 @@ $c_Lfoodkeep_util_util$.prototype.padZero__D__T = (function(num) {
   var x$1 = $$x1.reverse$extension__T__T(x);
   var x$2 = $$x2.padTo$extension__T__I__C__T(x$1, 2, 48);
   return $$x3.reverse$extension__T__T(x$2)
+});
+$c_Lfoodkeep_util_util$.prototype.getDateDMYT__T = (function() {
+  var dateNow = new Date();
+  var hour = this.padZero__D__T($uD(dateNow.getHours()));
+  var minute = this.padZero__D__T($uD(dateNow.getMinutes()));
+  return ((("" + this.getDateDMY__T()) + hour) + minute)
 });
 $c_Lfoodkeep_util_util$.prototype.getDateDMY__T = (function() {
   var dateNow = new Date();
@@ -1411,6 +1770,162 @@ function $m_Lfoodkeep_util_util$() {
     $n_Lfoodkeep_util_util$ = new $c_Lfoodkeep_util_util$()
   };
   return $n_Lfoodkeep_util_util$
+}
+function $p_Lfoodkeep_view_AddMealView$__validateQueryFieldExpense__T__Z($thiz, expense) {
+  try {
+    var x1 = new $c_s_util_Success($m_jl_Double$().parseDouble__T__D(expense))
+  } catch (e) {
+    var e$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e);
+    if ((e$2 !== null)) {
+      matchEnd8: {
+        var x1;
+        if ((e$2 !== null)) {
+          var o11 = $m_s_util_control_NonFatal$().unapply__jl_Throwable__s_Option(e$2);
+          if ((!o11.isEmpty__Z())) {
+            var e$3 = $as_jl_Throwable(o11.get__O());
+            var x1 = new $c_s_util_Failure(e$3);
+            break matchEnd8
+          }
+        };
+        throw $m_sjsr_package$().unwrapJavaScriptException__jl_Throwable__O(e$2)
+      }
+    } else {
+      var x1;
+      throw e
+    }
+  };
+  return ((x1 instanceof $c_s_util_Success) || (window.alert("Invalid value detected!"), false))
+}
+function $p_Lfoodkeep_view_AddMealView$__renderTime__T__T($thiz, date) {
+  var $$x1 = $m_sc_StringOps$();
+  var x = $m_sc_StringOps$().drop$extension__T__I__T(date, 8);
+  return ((("" + $$x1.dropRight$extension__T__I__T(x, 2)) + $m_sc_StringOps$().drop$extension__T__I__T(date, 10)) + "h")
+}
+/** @constructor */
+function $c_Lfoodkeep_view_AddMealView$() {
+  this.Lfoodkeep_view_AddMealView$__f_queryFieldExpense = null;
+  this.Lfoodkeep_view_AddMealView$__f_searchResultsContainer = null;
+  $n_Lfoodkeep_view_AddMealView$ = this;
+  this.Lfoodkeep_view_AddMealView$__f_queryFieldExpense = document.querySelector("#expense");
+  this.Lfoodkeep_view_AddMealView$__f_searchResultsContainer = document.querySelector(".hero-search-results")
+}
+$c_Lfoodkeep_view_AddMealView$.prototype = new $h_O();
+$c_Lfoodkeep_view_AddMealView$.prototype.constructor = $c_Lfoodkeep_view_AddMealView$;
+/** @constructor */
+function $h_Lfoodkeep_view_AddMealView$() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_view_AddMealView$.prototype = $c_Lfoodkeep_view_AddMealView$.prototype;
+$c_Lfoodkeep_view_AddMealView$.prototype.addHandlerAddMeal__F2__V = (function(handler) {
+  this.Lfoodkeep_view_AddMealView$__f_searchResultsContainer.addEventListener("click", ((handler$1) => ((arg1$2) => $m_Lfoodkeep_view_AddMealView$().foodkeep$view$AddMealView$$$anonfun$addHandlerAddMeal$1__Lorg_scalajs_dom_Event__F2__O(arg1$2, handler$1)))(handler))
+});
+$c_Lfoodkeep_view_AddMealView$.prototype.foodkeep$view$AddMealView$$$anonfun$addHandlerAddMeal$1__Lorg_scalajs_dom_Event__F2__O = (function(e, handler$1) {
+  var eventTarget = e.target;
+  var expense = $as_T($m_Lfoodkeep_view_AddMealView$().Lfoodkeep_view_AddMealView$__f_queryFieldExpense.value);
+  if (($uZ(eventTarget.classList.contains("button-addmeal")) && $p_Lfoodkeep_view_AddMealView$__validateQueryFieldExpense__T__Z($m_Lfoodkeep_view_AddMealView$(), expense))) {
+    var dict = eventTarget.dataset;
+    var x1 = ($uZ($m_sjs_js_WrappedDictionary$Cache$().sjs_js_WrappedDictionary$Cache$__f_safeHasOwnProperty.call(dict, "idx")) ? new $c_s_Some(dict.idx) : $m_s_None$());
+    if ((x1 instanceof $c_s_Some)) {
+      var x2 = $as_s_Some(x1);
+      var i = $as_T(x2.s_Some__f_value);
+      var this$5 = $m_jl_Integer$();
+      var v1 = this$5.parseInt__T__I__I(i, 10);
+      var v2 = $m_jl_Double$().parseDouble__T__D(expense);
+      var x1$2 = $uZ(handler$1.apply__O__O__O(v1, v2));
+      return ((x1$2 === false) ? (window.alert("Cannot find valid profile!"), (void 0)) : (window.alert((("Meal added at " + $p_Lfoodkeep_view_AddMealView$__renderTime__T__T($m_Lfoodkeep_view_AddMealView$(), $m_Lfoodkeep_util_util$().getDateDMYT__T())) + "!")), (void 0)))
+    } else {
+      return (void 0)
+    }
+  } else {
+    return (void 0)
+  }
+});
+var $d_Lfoodkeep_view_AddMealView$ = new $TypeData().initClass({
+  Lfoodkeep_view_AddMealView$: 0
+}, false, "foodkeep.view.AddMealView$", {
+  Lfoodkeep_view_AddMealView$: 1,
+  O: 1
+});
+$c_Lfoodkeep_view_AddMealView$.prototype.$classData = $d_Lfoodkeep_view_AddMealView$;
+var $n_Lfoodkeep_view_AddMealView$;
+function $m_Lfoodkeep_view_AddMealView$() {
+  if ((!$n_Lfoodkeep_view_AddMealView$)) {
+    $n_Lfoodkeep_view_AddMealView$ = new $c_Lfoodkeep_view_AddMealView$()
+  };
+  return $n_Lfoodkeep_view_AddMealView$
+}
+function $p_Lfoodkeep_view_ProfileUpdateView$__validateFormInput__Z($thiz) {
+  var birthDate = $as_T($thiz.Lfoodkeep_view_ProfileUpdateView$__f_fieldBirthDate.value);
+  var weight = $as_T($thiz.Lfoodkeep_view_ProfileUpdateView$__f_fieldWeight.value);
+  var height = $as_T($thiz.Lfoodkeep_view_ProfileUpdateView$__f_fieldHeight.value);
+  try {
+    var this$4 = $m_jl_Integer$();
+    var _1 = new $c_s_util_Success(this$4.parseInt__T__I__I(birthDate, 10))
+  } catch (e) {
+    var e$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e);
+    if ((e$2 !== null)) {
+      matchEnd8: {
+        var _1;
+        if ((e$2 !== null)) {
+          var o11 = $m_s_util_control_NonFatal$().unapply__jl_Throwable__s_Option(e$2);
+          if ((!o11.isEmpty__Z())) {
+            var e$3 = $as_jl_Throwable(o11.get__O());
+            var _1 = new $c_s_util_Failure(e$3);
+            break matchEnd8
+          }
+        };
+        throw $m_sjsr_package$().unwrapJavaScriptException__jl_Throwable__O(e$2)
+      }
+    } else {
+      var _1;
+      throw e
+    }
+  };
+  try {
+    var _2 = new $c_s_util_Success($m_jl_Double$().parseDouble__T__D(weight))
+  } catch (e$1) {
+    var e$2$1 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e$1);
+    if ((e$2$1 !== null)) {
+      matchEnd8$1: {
+        var _2;
+        if ((e$2$1 !== null)) {
+          var o11$1 = $m_s_util_control_NonFatal$().unapply__jl_Throwable__s_Option(e$2$1);
+          if ((!o11$1.isEmpty__Z())) {
+            var e$3$1 = $as_jl_Throwable(o11$1.get__O());
+            var _2 = new $c_s_util_Failure(e$3$1);
+            break matchEnd8$1
+          }
+        };
+        throw $m_sjsr_package$().unwrapJavaScriptException__jl_Throwable__O(e$2$1)
+      }
+    } else {
+      var _2;
+      throw e$1
+    }
+  };
+  try {
+    var _3 = new $c_s_util_Success($m_jl_Double$().parseDouble__T__D(height))
+  } catch (e$4) {
+    var e$2$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e$4);
+    if ((e$2$2 !== null)) {
+      matchEnd8$2: {
+        var _3;
+        if ((e$2$2 !== null)) {
+          var o11$2 = $m_s_util_control_NonFatal$().unapply__jl_Throwable__s_Option(e$2$2);
+          if ((!o11$2.isEmpty__Z())) {
+            var e$3$2 = $as_jl_Throwable(o11$2.get__O());
+            var _3 = new $c_s_util_Failure(e$3$2);
+            break matchEnd8$2
+          }
+        };
+        throw $m_sjsr_package$().unwrapJavaScriptException__jl_Throwable__O(e$2$2)
+      }
+    } else {
+      var _3;
+      throw e$4
+    }
+  };
+  return (((_1 instanceof $c_s_util_Success) && ((_2 instanceof $c_s_util_Success) && ((_3 instanceof $c_s_util_Success) && ($uI(birthDate.length) === 8)))) || (window.alert("Invalid input detected!"), false))
 }
 function $p_Lfoodkeep_view_ProfileUpdateView$__formatBirthDate__T__T($thiz, date) {
   var $$x2 = $m_sc_StringOps$().drop$extension__T__I__T(date, 4);
@@ -1484,40 +1999,29 @@ $c_Lfoodkeep_view_ProfileUpdateView$.prototype.addHandlerToggleUpdateProfile__V 
   }
 });
 $c_Lfoodkeep_view_ProfileUpdateView$.prototype.addHandlerSubmitUpdateProfile__F1__V = (function(handler) {
-  var nonLocalReturnKey1 = $ct_O__(new $c_O());
-  try {
-    this.Lfoodkeep_view_ProfileUpdateView$__f_btnSubmitUpdateProfile.addEventListener("click", ((nonLocalReturnKey1$1, handler$1) => ((arg1$2) => $m_Lfoodkeep_view_ProfileUpdateView$().foodkeep$view$ProfileUpdateView$$$anonfun$addHandlerSubmitUpdateProfile$1__Lorg_scalajs_dom_Event__O__F1__Z(arg1$2, nonLocalReturnKey1$1, handler$1)))(nonLocalReturnKey1, handler))
-  } catch (e) {
-    if ((e instanceof $c_sr_NonLocalReturnControl)) {
-      var ex = $as_sr_NonLocalReturnControl(e);
-      if ((ex.sr_NonLocalReturnControl__f_key !== nonLocalReturnKey1)) {
-        throw ex
-      }
-    } else {
-      throw e
-    }
-  }
+  this.Lfoodkeep_view_ProfileUpdateView$__f_btnSubmitUpdateProfile.addEventListener("click", ((handler$1) => ((arg1$2) => $m_Lfoodkeep_view_ProfileUpdateView$().foodkeep$view$ProfileUpdateView$$$anonfun$addHandlerSubmitUpdateProfile$1__Lorg_scalajs_dom_Event__F1__O(arg1$2, handler$1)))(handler))
 });
 $c_Lfoodkeep_view_ProfileUpdateView$.prototype.foodkeep$view$ProfileUpdateView$$$anonfun$addHandlerToggleUpdateProfile$2__Lorg_scalajs_dom_Event__Z = (function(e) {
   $m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_modalUpdateProfile.classList.toggle("hidden");
   return $uZ($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_overlayUpdateProfile.classList.toggle("hidden"))
 });
-$c_Lfoodkeep_view_ProfileUpdateView$.prototype.foodkeep$view$ProfileUpdateView$$$anonfun$addHandlerSubmitUpdateProfile$1__Lorg_scalajs_dom_Event__O__F1__Z = (function(e, nonLocalReturnKey1$1, handler$1) {
+$c_Lfoodkeep_view_ProfileUpdateView$.prototype.foodkeep$view$ProfileUpdateView$$$anonfun$addHandlerSubmitUpdateProfile$1__Lorg_scalajs_dom_Event__F1__O = (function(e, handler$1) {
   e.preventDefault();
-  if ((!($m_Lfoodkeep_view_ProfileUpdateView$(), true))) {
-    throw new $c_sr_NonLocalReturnControl$mcV$sp(nonLocalReturnKey1$1, (void 0))
-  };
-  var $$x5 = $m_Lfoodkeep_helper_Profile$();
-  var $$x4 = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldName.value);
-  var $$x3 = $p_Lfoodkeep_view_ProfileUpdateView$__formatBirthDate__T__T($m_Lfoodkeep_view_ProfileUpdateView$(), $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldBirthDate.value));
-  var $$x2 = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldGender.value);
-  var x = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldWeight.value);
-  var $$x1 = $m_jl_Double$().parseDouble__T__D(x);
-  var x$1 = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldHeight.value);
-  var newProfile = $$x5.apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile("", "", $$x4, $$x3, $$x2, $$x1, $m_jl_Double$().parseDouble__T__D(x$1), $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldActivityLvl.value), 0);
-  handler$1.apply__O__O(newProfile);
-  $m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_modalUpdateProfile.classList.toggle("hidden");
-  return $uZ($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_overlayUpdateProfile.classList.toggle("hidden"))
+  if ($p_Lfoodkeep_view_ProfileUpdateView$__validateFormInput__Z($m_Lfoodkeep_view_ProfileUpdateView$())) {
+    var $$x5 = $m_Lfoodkeep_helper_Profile$();
+    var $$x4 = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldName.value);
+    var $$x3 = $p_Lfoodkeep_view_ProfileUpdateView$__formatBirthDate__T__T($m_Lfoodkeep_view_ProfileUpdateView$(), $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldBirthDate.value));
+    var $$x2 = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldGender.value);
+    var x = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldWeight.value);
+    var $$x1 = $m_jl_Double$().parseDouble__T__D(x);
+    var x$1 = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldHeight.value);
+    var newProfile = $$x5.apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile("", "", $$x4, $$x3, $$x2, $$x1, $m_jl_Double$().parseDouble__T__D(x$1), $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldActivityLvl.value), 0);
+    handler$1.apply__O__O(newProfile);
+    $m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_modalUpdateProfile.classList.toggle("hidden");
+    return $uZ($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_overlayUpdateProfile.classList.toggle("hidden"))
+  } else {
+    return (void 0)
+  }
 });
 var $d_Lfoodkeep_view_ProfileUpdateView$ = new $TypeData().initClass({
   Lfoodkeep_view_ProfileUpdateView$: 0
@@ -1669,12 +2173,10 @@ function $c_Lfoodkeep_view_SearchMealView$() {
   this.Lfoodkeep_view_SearchMealView$__f_timerId = 0;
   this.Lfoodkeep_view_SearchMealView$__f_lastSearchQuery = null;
   this.Lfoodkeep_view_SearchMealView$__f_queryFieldFood = null;
-  this.Lfoodkeep_view_SearchMealView$__f_queryFieldExpense = null;
   $n_Lfoodkeep_view_SearchMealView$ = this;
   this.Lfoodkeep_view_SearchMealView$__f_timerId = 9999;
   this.Lfoodkeep_view_SearchMealView$__f_lastSearchQuery = "";
-  this.Lfoodkeep_view_SearchMealView$__f_queryFieldFood = document.querySelector("#food");
-  this.Lfoodkeep_view_SearchMealView$__f_queryFieldExpense = document.querySelector("#expense")
+  this.Lfoodkeep_view_SearchMealView$__f_queryFieldFood = document.querySelector("#food")
 }
 $c_Lfoodkeep_view_SearchMealView$.prototype = new $h_O();
 $c_Lfoodkeep_view_SearchMealView$.prototype.constructor = $c_Lfoodkeep_view_SearchMealView$;
@@ -4088,7 +4590,7 @@ function $c_s_concurrent_Future$() {
   this.s_concurrent_Future$__f_unit = null;
   $n_s_concurrent_Future$ = this;
   var this$22 = $m_s_Predef$().s_Predef$__f_Map;
-  var array = [new $c_T2($d_Z.getClassOf(), $d_jl_Boolean.getClassOf()), new $c_T2($d_B.getClassOf(), $d_jl_Byte.getClassOf()), new $c_T2($d_C.getClassOf(), $d_jl_Character.getClassOf()), new $c_T2($d_S.getClassOf(), $d_jl_Short.getClassOf()), new $c_T2($d_I.getClassOf(), $d_jl_Integer.getClassOf()), new $c_T2($d_J.getClassOf(), $d_jl_Long.getClassOf()), new $c_T2($d_F.getClassOf(), $d_jl_Float.getClassOf()), new $c_T2($d_D.getClassOf(), $d_jl_Double.getClassOf()), new $c_T2($d_V.getClassOf(), $d_jl_Void.getClassOf())];
+  var array = [$ct_T2__O__O__(new $c_T2(), $d_Z.getClassOf(), $d_jl_Boolean.getClassOf()), $ct_T2__O__O__(new $c_T2(), $d_B.getClassOf(), $d_jl_Byte.getClassOf()), $ct_T2__O__O__(new $c_T2(), $d_C.getClassOf(), $d_jl_Character.getClassOf()), $ct_T2__O__O__(new $c_T2(), $d_S.getClassOf(), $d_jl_Short.getClassOf()), $ct_T2__O__O__(new $c_T2(), $d_I.getClassOf(), $d_jl_Integer.getClassOf()), $ct_T2__O__O__(new $c_T2(), $d_J.getClassOf(), $d_jl_Long.getClassOf()), $ct_T2__O__O__(new $c_T2(), $d_F.getClassOf(), $d_jl_Float.getClassOf()), $ct_T2__O__O__(new $c_T2(), $d_D.getClassOf(), $d_jl_Double.getClassOf()), $ct_T2__O__O__(new $c_T2(), $d_V.getClassOf(), $d_jl_Void.getClassOf())];
   var elems = new $c_sjsr_WrappedVarArgs(array);
   this.s_concurrent_Future$__f_toBoxed = this$22.from__sc_IterableOnce__sci_Map(elems);
   this.s_concurrent_Future$__f__cachedId = new $c_sjsr_AnonFunction1(((this$23) => ((x$2) => x$2))(this));
@@ -4107,7 +4609,7 @@ function $c_s_concurrent_Future$() {
     $as_jl_Throwable(t$3$2);
     return $m_s_concurrent_Future$().s_concurrent_Future$__f_recoverWithFailedMarker
   }))(this));
-  this.s_concurrent_Future$__f__zipWithTuple2 = new $c_sjsr_AnonFunction2(((this$5$1) => ((_1$2, _2$2) => new $c_T2(_1$2, _2$2)))(this));
+  this.s_concurrent_Future$__f__zipWithTuple2 = new $c_sjsr_AnonFunction2(((this$5$1) => ((_1$2, _2$2) => $ct_T2__O__O__(new $c_T2(), _1$2, _2$2)))(this));
   this.s_concurrent_Future$__f__addToBuilderFun = new $c_sjsr_AnonFunction2(((this$6$1) => ((b$2, e$2) => {
     var b = $as_scm_Builder(b$2);
     return $as_scm_Builder(b.addOne__O__scm_Growable(e$2))
@@ -4206,7 +4708,7 @@ $c_s_concurrent_impl_Promise$.prototype.scala$concurrent$impl$Promise$$resolve__
     return value
   } else {
     var t = $as_s_util_Failure(value).s_util_Failure__f_exception;
-    return ((((t instanceof $c_s_util_control_ControlThrowable) || false) || (t instanceof $c_jl_Error)) ? ((t instanceof $c_sr_NonLocalReturnControl) ? new $c_s_util_Success(($as_sr_NonLocalReturnControl(t), (void 0))) : new $c_s_util_Failure(new $c_ju_concurrent_ExecutionException("Boxed Exception", t))) : value)
+    return (((false || false) || (t instanceof $c_jl_Error)) ? (false ? new $c_s_util_Success($as_sr_NonLocalReturnControl(t).value__O()) : new $c_s_util_Failure(new $c_ju_concurrent_ExecutionException("Boxed Exception", t))) : value)
   }
 });
 var $d_s_concurrent_impl_Promise$ = new $TypeData().initClass({
@@ -4765,6 +5267,33 @@ function $m_sjs_js_Thenable$ThenableOps$() {
   return $n_sjs_js_Thenable$ThenableOps$
 }
 /** @constructor */
+function $c_sjs_js_WrappedDictionary$Cache$() {
+  this.sjs_js_WrappedDictionary$Cache$__f_safeHasOwnProperty = null;
+  $n_sjs_js_WrappedDictionary$Cache$ = this;
+  this.sjs_js_WrappedDictionary$Cache$__f_safeHasOwnProperty = Object.prototype.hasOwnProperty
+}
+$c_sjs_js_WrappedDictionary$Cache$.prototype = new $h_O();
+$c_sjs_js_WrappedDictionary$Cache$.prototype.constructor = $c_sjs_js_WrappedDictionary$Cache$;
+/** @constructor */
+function $h_sjs_js_WrappedDictionary$Cache$() {
+  /*<skip>*/
+}
+$h_sjs_js_WrappedDictionary$Cache$.prototype = $c_sjs_js_WrappedDictionary$Cache$.prototype;
+var $d_sjs_js_WrappedDictionary$Cache$ = new $TypeData().initClass({
+  sjs_js_WrappedDictionary$Cache$: 0
+}, false, "scala.scalajs.js.WrappedDictionary$Cache$", {
+  sjs_js_WrappedDictionary$Cache$: 1,
+  O: 1
+});
+$c_sjs_js_WrappedDictionary$Cache$.prototype.$classData = $d_sjs_js_WrappedDictionary$Cache$;
+var $n_sjs_js_WrappedDictionary$Cache$;
+function $m_sjs_js_WrappedDictionary$Cache$() {
+  if ((!$n_sjs_js_WrappedDictionary$Cache$)) {
+    $n_sjs_js_WrappedDictionary$Cache$ = new $c_sjs_js_WrappedDictionary$Cache$()
+  };
+  return $n_sjs_js_WrappedDictionary$Cache$
+}
+/** @constructor */
 function $c_sjs_js_defined$() {
   /*<skip>*/
 }
@@ -4807,7 +5336,7 @@ $c_sjs_js_special_package$.prototype.objectLiteral__sci_Seq__sjs_js_Object = (fu
   var result = {};
   properties.foreach__F1__V(new $c_sjsr_AnonFunction1(((this$1, result$1) => ((pair$2) => {
     var pair = $as_T2(pair$2);
-    result$1[pair.T2__f__1] = pair.T2__f__2
+    result$1[pair._1__O()] = pair._2__O()
   }))(this, result)));
   return result
 });
@@ -4887,7 +5416,7 @@ function $h_s_util_control_NonFatal$() {
 }
 $h_s_util_control_NonFatal$.prototype = $c_s_util_control_NonFatal$.prototype;
 $c_s_util_control_NonFatal$.prototype.apply__jl_Throwable__Z = (function(t) {
-  return (!((t instanceof $c_jl_VirtualMachineError) || (false || (false || (false || (t instanceof $c_s_util_control_ControlThrowable))))))
+  return (!((t instanceof $c_jl_VirtualMachineError) || (false || (false || (false || false)))))
 });
 $c_s_util_control_NonFatal$.prototype.unapply__jl_Throwable__s_Option = (function(t) {
   return (this.apply__jl_Throwable__Z(t) ? new $c_s_Some(t) : $m_s_None$())
@@ -6863,11 +7392,11 @@ function $m_s_Predef$() {
 function $f_s_Product2__productElement__I__O($thiz, n) {
   switch (n) {
     case 0: {
-      return $thiz.T2__f__1;
+      return $thiz._1__O();
       break
     }
     case 1: {
-      return $thiz.T2__f__2;
+      return $thiz._2__O();
       break
     }
     default: {
@@ -7097,7 +7626,7 @@ $c_sci_BitmapIndexedMapNode.prototype.getValue__I__O = (function(index) {
   return this.sci_BitmapIndexedMapNode__f_content.get(((1 + (index << 1)) | 0))
 });
 $c_sci_BitmapIndexedMapNode.prototype.getPayload__I__T2 = (function(index) {
-  return new $c_T2(this.sci_BitmapIndexedMapNode__f_content.get((index << 1)), this.sci_BitmapIndexedMapNode__f_content.get(((1 + (index << 1)) | 0)))
+  return $ct_T2__O__O__(new $c_T2(), this.sci_BitmapIndexedMapNode__f_content.get((index << 1)), this.sci_BitmapIndexedMapNode__f_content.get(((1 + (index << 1)) | 0)))
 });
 $c_sci_BitmapIndexedMapNode.prototype.getHash__I__I = (function(index) {
   return this.sci_BitmapIndexedMapNode__f_originalHashes.get(index)
@@ -7191,7 +7720,7 @@ $c_sci_BitmapIndexedMapNode.prototype.updated__O__O__I__I__I__Z__sci_BitmapIndex
 $c_sci_BitmapIndexedMapNode.prototype.mergeTwoKeyValPairs__O__O__I__I__O__O__I__I__I__sci_MapNode = (function(key0, value0, originalHash0, keyHash0, key1, value1, originalHash1, keyHash1, shift) {
   if ((shift >= 32)) {
     var this$4 = $m_sci_Vector$();
-    var array = [new $c_T2(key0, value0), new $c_T2(key1, value1)];
+    var array = [$ct_T2__O__O__(new $c_T2(), key0, value0), $ct_T2__O__O__(new $c_T2(), key1, value1)];
     var elems = new $c_sjsr_WrappedVarArgs(array);
     return new $c_sci_HashCollisionMapNode(originalHash0, keyHash0, this$4.from__sc_IterableOnce__sci_Vector(elems))
   } else {
@@ -7697,7 +8226,7 @@ $c_sci_HashCollisionMapNode.prototype.indexOf__O__I = (function(key) {
   var iter = this.sci_HashCollisionMapNode__f_content.iterator__sc_Iterator();
   var i = 0;
   while (iter.hasNext__Z()) {
-    if ($m_sr_BoxesRunTime$().equals__O__O__Z($as_T2(iter.next__O()).T2__f__1, key)) {
+    if ($m_sr_BoxesRunTime$().equals__O__O__Z($as_T2(iter.next__O())._1__O(), key)) {
       return i
     };
     i = ((1 + i) | 0)
@@ -7718,7 +8247,7 @@ $c_sci_HashCollisionMapNode.prototype.apply__O__I__I__I__O = (function(key, orig
 $c_sci_HashCollisionMapNode.prototype.get__O__I__I__I__s_Option = (function(key, originalHash, hash, shift) {
   if ((this.sci_HashCollisionMapNode__f_hash === hash)) {
     var index = this.indexOf__O__I(key);
-    return ((index >= 0) ? new $c_s_Some($as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(index)).T2__f__2) : $m_s_None$())
+    return ((index >= 0) ? new $c_s_Some($as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(index))._2__O()) : $m_s_None$())
   } else {
     return $m_s_None$()
   }
@@ -7726,7 +8255,7 @@ $c_sci_HashCollisionMapNode.prototype.get__O__I__I__I__s_Option = (function(key,
 $c_sci_HashCollisionMapNode.prototype.getOrElse__O__I__I__I__F0__O = (function(key, originalHash, hash, shift, f) {
   if ((this.sci_HashCollisionMapNode__f_hash === hash)) {
     var x1 = this.indexOf__O__I(key);
-    return ((x1 === (-1)) ? f.apply__O() : $as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(x1)).T2__f__2)
+    return ((x1 === (-1)) ? f.apply__O() : $as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(x1))._2__O())
   } else {
     return f.apply__O()
   }
@@ -7736,7 +8265,7 @@ $c_sci_HashCollisionMapNode.prototype.containsKey__O__I__I__I__Z = (function(key
 });
 $c_sci_HashCollisionMapNode.prototype.updated__O__O__I__I__I__Z__sci_MapNode = (function(key, value, originalHash, hash, shift, replaceValue) {
   var index = this.indexOf__O__I(key);
-  return ((index >= 0) ? (replaceValue ? (Object.is($as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(index)).T2__f__2, value) ? this : new $c_sci_HashCollisionMapNode(originalHash, hash, this.sci_HashCollisionMapNode__f_content.updated__I__O__sci_Vector(index, new $c_T2(key, value)))) : this) : new $c_sci_HashCollisionMapNode(originalHash, hash, this.sci_HashCollisionMapNode__f_content.appended__O__sci_Vector(new $c_T2(key, value))))
+  return ((index >= 0) ? (replaceValue ? (Object.is($as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(index))._2__O(), value) ? this : new $c_sci_HashCollisionMapNode(originalHash, hash, this.sci_HashCollisionMapNode__f_content.updated__I__O__sci_Vector(index, $ct_T2__O__O__(new $c_T2(), key, value)))) : this) : new $c_sci_HashCollisionMapNode(originalHash, hash, this.sci_HashCollisionMapNode__f_content.appended__O__sci_Vector($ct_T2__O__O__(new $c_T2(), key, value))))
 });
 $c_sci_HashCollisionMapNode.prototype.hasNodes__Z = (function() {
   return false
@@ -7754,10 +8283,10 @@ $c_sci_HashCollisionMapNode.prototype.payloadArity__I = (function() {
   return this.sci_HashCollisionMapNode__f_content.length__I()
 });
 $c_sci_HashCollisionMapNode.prototype.getKey__I__O = (function(index) {
-  return $as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(index)).T2__f__1
+  return $as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(index))._1__O()
 });
 $c_sci_HashCollisionMapNode.prototype.getValue__I__O = (function(index) {
-  return $as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(index)).T2__f__2
+  return $as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(index))._2__O()
 });
 $c_sci_HashCollisionMapNode.prototype.getPayload__I__T2 = (function(index) {
   return $as_T2(this.sci_HashCollisionMapNode__f_content.apply__I__O(index))
@@ -7769,8 +8298,8 @@ $c_sci_HashCollisionMapNode.prototype.foreachEntry__F2__V = (function(f) {
   this.sci_HashCollisionMapNode__f_content.foreach__F1__V(new $c_sjsr_AnonFunction1(((this$1, f$1) => ((x0$1$2) => {
     var x0$1 = $as_T2(x0$1$2);
     if ((x0$1 !== null)) {
-      var k = x0$1.T2__f__1;
-      var v = x0$1.T2__f__2;
+      var k = x0$1._1__O();
+      var v = x0$1._2__O();
       return f$1.apply__O__O__O(k, v)
     } else {
       throw new $c_s_MatchError(x0$1)
@@ -7781,7 +8310,7 @@ $c_sci_HashCollisionMapNode.prototype.foreachWithHash__F3__V = (function(f) {
   var iter = this.sci_HashCollisionMapNode__f_content.iterator__sc_Iterator();
   while (iter.hasNext__Z()) {
     var next = $as_T2(iter.next__O());
-    f.apply__O__O__O__O(next.T2__f__1, next.T2__f__2, this.sci_HashCollisionMapNode__f_originalHash)
+    f.apply__O__O__O__O(next._1__O(), next._2__O(), this.sci_HashCollisionMapNode__f_originalHash)
   }
 });
 $c_sci_HashCollisionMapNode.prototype.equals__O__Z = (function(that) {
@@ -7796,10 +8325,10 @@ $c_sci_HashCollisionMapNode.prototype.equals__O__Z = (function(that) {
         if ((x1$2 === null)) {
           throw new $c_s_MatchError(x1$2)
         };
-        var key = x1$2.T2__f__1;
-        var value = x1$2.T2__f__2;
+        var key = x1$2._1__O();
+        var value = x1$2._2__O();
         var index = x2.indexOf__O__I(key);
-        if (((index < 0) || (!$m_sr_BoxesRunTime$().equals__O__O__Z(value, $as_T2(x2.sci_HashCollisionMapNode__f_content.apply__I__O(index)).T2__f__2)))) {
+        if (((index < 0) || (!$m_sr_BoxesRunTime$().equals__O__O__Z(value, $as_T2(x2.sci_HashCollisionMapNode__f_content.apply__I__O(index))._2__O())))) {
           return false
         }
       };
@@ -8621,10 +9150,8 @@ function $m_s_util_Random$() {
   };
   return $n_s_util_Random$
 }
-class $c_s_util_control_ControlThrowable extends $c_jl_Throwable {
-}
 function $as_s_util_control_ControlThrowable(obj) {
-  return (((obj instanceof $c_s_util_control_ControlThrowable) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.util.control.ControlThrowable"))
+  return ((false || (obj === null)) ? obj : $throwClassCastException(obj, "scala.util.control.ControlThrowable"))
 }
 function $isArrayOf_s_util_control_ControlThrowable(obj, depth) {
   return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.s_util_control_ControlThrowable)))
@@ -8898,7 +9425,7 @@ function $p_Lorg_scalajs_macrotaskexecutor_MacrotaskExecutor$__runIfPresent$1__I
       try {
         task.apply__O()
       } finally {
-        tasksByHandle$1.subtractOne__O__scm_HashMap(handle);
+        tasksByHandle$1.subtractOne__O__scm_Shrinkable(handle);
         currentlyRunningATask$1.sr_BooleanRef__f_elem = false
       }
     } else {
@@ -8943,7 +9470,8 @@ function $c_Lorg_scalajs_macrotaskexecutor_MacrotaskExecutor$() {
         var k = $as_F0(k$2);
         var handle = nextHandle$1.sr_IntRef__f_elem;
         nextHandle$1.sr_IntRef__f_elem = ((1 + nextHandle$1.sr_IntRef__f_elem) | 0);
-        $p_scm_HashMap__put0__O__O__Z__s_Some(tasksByHandle$3, handle, k, false);
+        var elem = $ct_T2__O__O__(new $c_T2(), handle, k);
+        tasksByHandle$3.addOne__O__scm_Growable(elem);
         var $$x5 = postMessage;
         var s = (("" + messagePrefix$3) + handle);
         $$x5(s, "*")
@@ -8957,7 +9485,8 @@ function $c_Lorg_scalajs_macrotaskexecutor_MacrotaskExecutor$() {
         var k$3 = $as_F0(k$3$2);
         var handle$1 = nextHandle$2.sr_IntRef__f_elem;
         nextHandle$2.sr_IntRef__f_elem = ((1 + nextHandle$2.sr_IntRef__f_elem) | 0);
-        $p_scm_HashMap__put0__O__O__Z__s_Some(tasksByHandle$5, handle$1, k$3, false);
+        var elem$1 = $ct_T2__O__O__(new $c_T2(), handle$1, k$3);
+        tasksByHandle$5.addOne__O__scm_Growable(elem$1);
         channel$1.port2.postMessage(handle$1)
       }))(this, nextHandle, tasksByHandle, channel))
     } else {
@@ -9524,24 +10053,8 @@ var $d_s_concurrent_Future$$anon$4 = new $TypeData().initClass({
   s_util_control_NoStackTrace: 1
 });
 $c_s_concurrent_Future$$anon$4.prototype.$classData = $d_s_concurrent_Future$$anon$4;
-function $ct_sr_NonLocalReturnControl__O__O__($thiz, key, value) {
-  $thiz.sr_NonLocalReturnControl__f_key = key;
-  $thiz.sr_NonLocalReturnControl__f_value = value;
-  $ct_jl_Throwable__T__jl_Throwable__Z__Z__($thiz, null, null, false, false);
-  return $thiz
-}
-class $c_sr_NonLocalReturnControl extends $c_s_util_control_ControlThrowable {
-  constructor() {
-    super();
-    this.sr_NonLocalReturnControl__f_key = null;
-    this.sr_NonLocalReturnControl__f_value = null
-  };
-  fillInStackTrace__jl_Throwable() {
-    return this
-  };
-}
 function $as_sr_NonLocalReturnControl(obj) {
-  return (((obj instanceof $c_sr_NonLocalReturnControl) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.runtime.NonLocalReturnControl"))
+  return ((false || (obj === null)) ? obj : $throwClassCastException(obj, "scala.runtime.NonLocalReturnControl"))
 }
 function $isArrayOf_sr_NonLocalReturnControl(obj, depth) {
   return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.sr_NonLocalReturnControl)))
@@ -9994,12 +10507,15 @@ function $isArrayOf_s_Option(obj, depth) {
 function $asArrayOf_s_Option(obj, depth) {
   return (($isArrayOf_s_Option(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.Option;", depth))
 }
+function $ct_T2__O__O__($thiz, _1, _2) {
+  $thiz.T2__f__1 = _1;
+  $thiz.T2__f__2 = _2;
+  return $thiz
+}
 /** @constructor */
-function $c_T2(_1, _2) {
+function $c_T2() {
   this.T2__f__1 = null;
-  this.T2__f__2 = null;
-  this.T2__f__1 = _1;
-  this.T2__f__2 = _2
+  this.T2__f__2 = null
 }
 $c_T2.prototype = new $h_O();
 $c_T2.prototype.constructor = $c_T2;
@@ -10014,8 +10530,14 @@ $c_T2.prototype.productArity__I = (function() {
 $c_T2.prototype.productElement__I__O = (function(n) {
   return $f_s_Product2__productElement__I__O(this, n)
 });
+$c_T2.prototype._1__O = (function() {
+  return this.T2__f__1
+});
+$c_T2.prototype._2__O = (function() {
+  return this.T2__f__2
+});
 $c_T2.prototype.toString__T = (function() {
-  return (((("(" + this.T2__f__1) + ",") + this.T2__f__2) + ")")
+  return (((("(" + this._1__O()) + ",") + this._2__O()) + ")")
 });
 $c_T2.prototype.productPrefix__T = (function() {
   return "Tuple2"
@@ -10032,10 +10554,16 @@ $c_T2.prototype.equals__O__Z = (function(x$1) {
     return true
   } else if ((x$1 instanceof $c_T2)) {
     var Tuple2$1 = $as_T2(x$1);
-    return ($m_sr_BoxesRunTime$().equals__O__O__Z(this.T2__f__1, Tuple2$1.T2__f__1) && $m_sr_BoxesRunTime$().equals__O__O__Z(this.T2__f__2, Tuple2$1.T2__f__2))
+    return ($m_sr_BoxesRunTime$().equals__O__O__Z(this._1__O(), Tuple2$1._1__O()) && $m_sr_BoxesRunTime$().equals__O__O__Z(this._2__O(), Tuple2$1._2__O()))
   } else {
     return false
   }
+});
+$c_T2.prototype._1$mcZ$sp__Z = (function() {
+  return $uZ(this._1__O())
+});
+$c_T2.prototype._2$mcZ$sp__Z = (function() {
+  return $uZ(this._2__O())
 });
 function $as_T2(obj) {
   return (((obj instanceof $c_T2) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.Tuple2"))
@@ -10559,9 +11087,9 @@ $c_sci_HashMapBuilder.prototype.update__sci_MapNode__O__O__I__I__I__V = (functio
     var x3 = $as_sci_HashCollisionMapNode(mapNode);
     var index$3 = x3.indexOf__O__I(key);
     if ((index$3 < 0)) {
-      x3.sci_HashCollisionMapNode__f_content = x3.sci_HashCollisionMapNode__f_content.appended__O__sci_Vector(new $c_T2(key, value))
+      x3.sci_HashCollisionMapNode__f_content = x3.sci_HashCollisionMapNode__f_content.appended__O__sci_Vector($ct_T2__O__O__(new $c_T2(), key, value))
     } else {
-      x3.sci_HashCollisionMapNode__f_content = x3.sci_HashCollisionMapNode__f_content.updated__I__O__sci_Vector(index$3, new $c_T2(key, value))
+      x3.sci_HashCollisionMapNode__f_content = x3.sci_HashCollisionMapNode__f_content.updated__I__O__sci_Vector(index$3, $ct_T2__O__O__(new $c_T2(), key, value))
     }
   } else {
     throw new $c_s_MatchError(mapNode)
@@ -10580,10 +11108,10 @@ $c_sci_HashMapBuilder.prototype.result__sci_HashMap = (function() {
 });
 $c_sci_HashMapBuilder.prototype.addOne__T2__sci_HashMapBuilder = (function(elem) {
   $p_sci_HashMapBuilder__ensureUnaliased__V(this);
-  var x = elem.T2__f__1;
+  var x = elem._1__O();
   var h = $m_sr_Statics$().anyHash__O__I(x);
   var im = $m_sc_Hashing$().improve__I__I(h);
-  this.update__sci_MapNode__O__O__I__I__I__V(this.sci_HashMapBuilder__f_scala$collection$immutable$HashMapBuilder$$rootNode, elem.T2__f__1, elem.T2__f__2, h, im, 0);
+  this.update__sci_MapNode__O__O__I__I__I__V(this.sci_HashMapBuilder__f_scala$collection$immutable$HashMapBuilder$$rootNode, elem._1__O(), elem._2__O(), h, im, 0);
   return this
 });
 $c_sci_HashMapBuilder.prototype.addOne__O__O__sci_HashMapBuilder = (function(key, value) {
@@ -10878,7 +11406,7 @@ function $c_sci_List$() {
   this.sci_List$__f_scala$collection$immutable$List$$TupleOfNil = null;
   this.sci_List$__f_partialNotApplied = null;
   $n_sci_List$ = this;
-  this.sci_List$__f_scala$collection$immutable$List$$TupleOfNil = new $c_T2($m_sci_Nil$(), $m_sci_Nil$());
+  this.sci_List$__f_scala$collection$immutable$List$$TupleOfNil = $ct_T2__O__O__(new $c_T2(), $m_sci_Nil$(), $m_sci_Nil$());
   this.sci_List$__f_partialNotApplied = new $c_sci_List$$anon$1()
 }
 $c_sci_List$.prototype = new $h_O();
@@ -10939,13 +11467,13 @@ $c_sci_Map$Map2$Map2Iterator.prototype.next__O = (function() {
     case 0: {
       var k = this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1;
       var v = this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1;
-      var result = new $c_T2(k, v);
+      var result = $ct_T2__O__O__(new $c_T2(), k, v);
       break
     }
     case 1: {
       var k$1 = this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2;
       var v$1 = this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2;
-      var result = new $c_T2(k$1, v$1);
+      var result = $ct_T2__O__O__(new $c_T2(), k$1, v$1);
       break
     }
     default: {
@@ -10989,19 +11517,19 @@ $c_sci_Map$Map3$Map3Iterator.prototype.next__O = (function() {
     case 0: {
       var k = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1;
       var v = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1;
-      var result = new $c_T2(k, v);
+      var result = $ct_T2__O__O__(new $c_T2(), k, v);
       break
     }
     case 1: {
       var k$1 = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2;
       var v$1 = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2;
-      var result = new $c_T2(k$1, v$1);
+      var result = $ct_T2__O__O__(new $c_T2(), k$1, v$1);
       break
     }
     case 2: {
       var k$2 = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3;
       var v$2 = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3;
-      var result = new $c_T2(k$2, v$2);
+      var result = $ct_T2__O__O__(new $c_T2(), k$2, v$2);
       break
     }
     default: {
@@ -11045,25 +11573,25 @@ $c_sci_Map$Map4$Map4Iterator.prototype.next__O = (function() {
     case 0: {
       var k = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1;
       var v = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value1;
-      var result = new $c_T2(k, v);
+      var result = $ct_T2__O__O__(new $c_T2(), k, v);
       break
     }
     case 1: {
       var k$1 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key2;
       var v$1 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value2;
-      var result = new $c_T2(k$1, v$1);
+      var result = $ct_T2__O__O__(new $c_T2(), k$1, v$1);
       break
     }
     case 2: {
       var k$2 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key3;
       var v$2 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value3;
-      var result = new $c_T2(k$2, v$2);
+      var result = $ct_T2__O__O__(new $c_T2(), k$2, v$2);
       break
     }
     case 3: {
       var k$3 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key4;
       var v$3 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value4;
-      var result = new $c_T2(k$3, v$3);
+      var result = $ct_T2__O__O__(new $c_T2(), k$3, v$3);
       break
     }
     default: {
@@ -11123,7 +11651,7 @@ $c_sci_MapBuilderImpl.prototype.addAll__sc_IterableOnce__scm_Growable = (functio
 });
 $c_sci_MapBuilderImpl.prototype.addOne__O__scm_Growable = (function(elem) {
   var elem$1 = $as_T2(elem);
-  return this.addOne__O__O__sci_MapBuilderImpl(elem$1.T2__f__1, elem$1.T2__f__2)
+  return this.addOne__O__O__sci_MapBuilderImpl(elem$1._1__O(), elem$1._2__O())
 });
 $c_sci_MapBuilderImpl.prototype.result__O = (function() {
   return this.result__sci_Map()
@@ -12599,25 +13127,6 @@ function $isArrayOf_s_reflect_ClassTag(obj, depth) {
 function $asArrayOf_s_reflect_ClassTag(obj, depth) {
   return (($isArrayOf_s_reflect_ClassTag(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.reflect.ClassTag;", depth))
 }
-class $c_sr_NonLocalReturnControl$mcV$sp extends $c_sr_NonLocalReturnControl {
-  constructor(key, value$mcV$sp) {
-    super();
-    this.sr_NonLocalReturnControl$mcV$sp__f_value$mcV$sp = null;
-    this.sr_NonLocalReturnControl$mcV$sp__f_value$mcV$sp = value$mcV$sp;
-    $ct_sr_NonLocalReturnControl__O__O__(this, key, (void 0))
-  };
-}
-var $d_sr_NonLocalReturnControl$mcV$sp = new $TypeData().initClass({
-  sr_NonLocalReturnControl$mcV$sp: 0
-}, false, "scala.runtime.NonLocalReturnControl$mcV$sp", {
-  sr_NonLocalReturnControl$mcV$sp: 1,
-  sr_NonLocalReturnControl: 1,
-  s_util_control_ControlThrowable: 1,
-  jl_Throwable: 1,
-  O: 1,
-  Ljava_io_Serializable: 1
-});
-$c_sr_NonLocalReturnControl$mcV$sp.prototype.$classData = $d_sr_NonLocalReturnControl$mcV$sp;
 /** @constructor */
 function $c_sr_ScalaRunTime$$anon$1(x$2) {
   this.sr_ScalaRunTime$$anon$1__f_c = 0;
@@ -13254,6 +13763,47 @@ var $d_s_Some = new $TypeData().initClass({
 });
 $c_s_Some.prototype.$classData = $d_s_Some;
 /** @constructor */
+function $c_T2$mcZZ$sp(_1$mcZ$sp, _2$mcZ$sp) {
+  this.T2__f__1 = null;
+  this.T2__f__2 = null;
+  this.T2$mcZZ$sp__f__1$mcZ$sp = false;
+  this.T2$mcZZ$sp__f__2$mcZ$sp = false;
+  this.T2$mcZZ$sp__f__1$mcZ$sp = _1$mcZ$sp;
+  this.T2$mcZZ$sp__f__2$mcZ$sp = _2$mcZ$sp;
+  $ct_T2__O__O__(this, null, null)
+}
+$c_T2$mcZZ$sp.prototype = new $h_T2();
+$c_T2$mcZZ$sp.prototype.constructor = $c_T2$mcZZ$sp;
+/** @constructor */
+function $h_T2$mcZZ$sp() {
+  /*<skip>*/
+}
+$h_T2$mcZZ$sp.prototype = $c_T2$mcZZ$sp.prototype;
+$c_T2$mcZZ$sp.prototype._1$mcZ$sp__Z = (function() {
+  return this.T2$mcZZ$sp__f__1$mcZ$sp
+});
+$c_T2$mcZZ$sp.prototype._2$mcZ$sp__Z = (function() {
+  return this.T2$mcZZ$sp__f__2$mcZ$sp
+});
+$c_T2$mcZZ$sp.prototype._2__O = (function() {
+  return this.T2$mcZZ$sp__f__2$mcZ$sp
+});
+$c_T2$mcZZ$sp.prototype._1__O = (function() {
+  return this.T2$mcZZ$sp__f__1$mcZ$sp
+});
+var $d_T2$mcZZ$sp = new $TypeData().initClass({
+  T2$mcZZ$sp: 0
+}, false, "scala.Tuple2$mcZZ$sp", {
+  T2$mcZZ$sp: 1,
+  T2: 1,
+  O: 1,
+  s_Product2: 1,
+  s_Product: 1,
+  s_Equals: 1,
+  Ljava_io_Serializable: 1
+});
+$c_T2$mcZZ$sp.prototype.$classData = $d_T2$mcZZ$sp;
+/** @constructor */
 function $c_sc_AbstractIterable() {
   /*<skip>*/
 }
@@ -13385,7 +13935,7 @@ function $f_sc_MapOps__foreachEntry__F2__V($thiz, f) {
   var it = $thiz.iterator__sc_Iterator();
   while (it.hasNext__Z()) {
     var next = $as_T2(it.next__O());
-    f.apply__O__O__O(next.T2__f__1, next.T2__f__2)
+    f.apply__O__O__O(next._1__O(), next._2__O())
   }
 }
 function $f_sc_MapOps__default__O__O($thiz, key) {
@@ -13396,8 +13946,8 @@ function $f_sc_MapOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(
   var f = new $c_sjsr_AnonFunction1(((this$1) => ((x0$1$2) => {
     var x0$1 = $as_T2(x0$1$2);
     if ((x0$1 !== null)) {
-      var k = x0$1.T2__f__1;
-      var v = x0$1.T2__f__2;
+      var k = x0$1._1__O();
+      var v = x0$1._2__O();
       return ((k + " -> ") + v)
     } else {
       throw new $c_s_MatchError(x0$1)
@@ -13550,7 +14100,7 @@ function $h_scm_HashMap$$anon$1() {
 }
 $h_scm_HashMap$$anon$1.prototype = $c_scm_HashMap$$anon$1.prototype;
 $c_scm_HashMap$$anon$1.prototype.extract__scm_HashMap$Node__O = (function(nd) {
-  return new $c_T2(nd.scm_HashMap$Node__f__key, nd.scm_HashMap$Node__f__value)
+  return $ct_T2__O__O__(new $c_T2(), nd.scm_HashMap$Node__f__key, nd.scm_HashMap$Node__f__value)
 });
 var $d_scm_HashMap$$anon$1 = new $TypeData().initClass({
   scm_HashMap$$anon$1: 0
@@ -15275,7 +15825,7 @@ function $f_sc_Map__equals__O__Z($thiz, o) {
       try {
         return $thiz.forall__F1__Z(new $c_sjsr_AnonFunction1(((this$1, x2$1) => ((kv$2) => {
           var kv = $as_T2(kv$2);
-          return $m_sr_BoxesRunTime$().equals__O__O__Z(x2$1.getOrElse__O__F0__O(kv.T2__f__1, $m_sc_Map$().sc_Map$__f_scala$collection$Map$$DefaultSentinelFn), kv.T2__f__2)
+          return $m_sr_BoxesRunTime$().equals__O__O__Z(x2$1.getOrElse__O__F0__O(kv._1__O(), $m_sc_Map$().sc_Map$__f_scala$collection$Map$$DefaultSentinelFn), kv._2__O())
         }))($thiz, x2)))
       } catch (e) {
         if ((e instanceof $c_jl_ClassCastException)) {
@@ -15623,7 +16173,7 @@ $c_sc_AbstractMap.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBui
   return $f_sc_MapOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, sb, start, sep, end)
 });
 $c_sc_AbstractMap.prototype.fromSpecific__sc_IterableOnce__O = (function(coll) {
-  return $as_sc_IterableOps(this.mapFactory__sc_MapFactory().from__sc_IterableOnce__O(coll))
+  return this.fromSpecific__sc_IterableOnce__sc_IterableOps(coll)
 });
 function $ct_sc_SeqView$Id__sc_SeqOps__($thiz, underlying) {
   $thiz.sc_SeqView$Id__f_underlying = underlying;
@@ -16538,14 +17088,14 @@ $c_sci_Map$Map1.prototype.getOrElse__O__F0__O = (function(key, default$1) {
 });
 $c_sci_Map$Map1.prototype.iterator__sc_Iterator = (function() {
   $m_sc_Iterator$();
-  var a = new $c_T2(this.sci_Map$Map1__f_key1, this.sci_Map$Map1__f_value1);
+  var a = $ct_T2__O__O__(new $c_T2(), this.sci_Map$Map1__f_key1, this.sci_Map$Map1__f_value1);
   return new $c_sc_Iterator$$anon$20(a)
 });
 $c_sci_Map$Map1.prototype.updated__O__O__sci_Map = (function(key, value) {
   return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map1__f_key1) ? new $c_sci_Map$Map1(this.sci_Map$Map1__f_key1, value) : new $c_sci_Map$Map2(this.sci_Map$Map1__f_key1, this.sci_Map$Map1__f_value1, key, value))
 });
 $c_sci_Map$Map1.prototype.forall__F1__Z = (function(p) {
-  return $uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map1__f_key1, this.sci_Map$Map1__f_value1)))
+  return $uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map1__f_key1, this.sci_Map$Map1__f_value1)))
 });
 $c_sci_Map$Map1.prototype.hashCode__I = (function() {
   var a = 0;
@@ -16642,7 +17192,7 @@ $c_sci_Map$Map2.prototype.updated__O__O__sci_Map = (function(key, value) {
   return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1) ? new $c_sci_Map$Map2(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1, value, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2) ? new $c_sci_Map$Map2(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2, value) : new $c_sci_Map$Map3(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2, key, value)))
 });
 $c_sci_Map$Map2.prototype.forall__F1__Z = (function(p) {
-  return ($uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1))) && $uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2))))
+  return ($uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1))) && $uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2))))
 });
 $c_sci_Map$Map2.prototype.hashCode__I = (function() {
   var a = 0;
@@ -16749,7 +17299,7 @@ $c_sci_Map$Map3.prototype.updated__O__O__sci_Map = (function(key, value) {
   return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1) ? new $c_sci_Map$Map3(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, value, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2) ? new $c_sci_Map$Map3(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, value, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3) ? new $c_sci_Map$Map3(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, value) : new $c_sci_Map$Map4(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3, key, value))))
 });
 $c_sci_Map$Map3.prototype.forall__F1__Z = (function(p) {
-  return (($uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1))) && $uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2)))) && $uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3))))
+  return (($uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1))) && $uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2)))) && $uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3))))
 });
 $c_sci_Map$Map3.prototype.hashCode__I = (function() {
   var a = 0;
@@ -16877,7 +17427,7 @@ $c_sci_Map$Map4.prototype.updated__O__O__sci_Map = (function(key, value) {
   }
 });
 $c_sci_Map$Map4.prototype.forall__F1__Z = (function(p) {
-  return ((($uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value1))) && $uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key2, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value2)))) && $uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key3, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value3)))) && $uZ(p.apply__O__O(new $c_T2(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key4, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value4))))
+  return ((($uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value1))) && $uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key2, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value2)))) && $uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key3, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value3)))) && $uZ(p.apply__O__O($ct_T2__O__O__(new $c_T2(), this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key4, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value4))))
 });
 $c_sci_Map$Map4.prototype.buildTo__sci_HashMapBuilder__sci_HashMapBuilder = (function(builder) {
   return builder.addOne__O__O__sci_HashMapBuilder(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value1).addOne__O__O__sci_HashMapBuilder(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key2, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value2).addOne__O__O__sci_HashMapBuilder(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key3, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value3).addOne__O__O__sci_HashMapBuilder(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key4, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value4)
@@ -18558,7 +19108,7 @@ $c_scm_HashMap.prototype.getOrElse__O__F0__O = (function(key, default$1) {
   }
 });
 $c_scm_HashMap.prototype.addOne__T2__scm_HashMap = (function(elem) {
-  $p_scm_HashMap__put0__O__O__Z__s_Some(this, elem.T2__f__1, elem.T2__f__2, false);
+  $p_scm_HashMap__put0__O__O__Z__s_Some(this, elem._1__O(), elem._2__O(), false);
   return this
 });
 $c_scm_HashMap.prototype.subtractOne__O__scm_HashMap = (function(elem) {
@@ -18595,6 +19145,9 @@ $c_scm_HashMap.prototype.hashCode__I = (function() {
     var tupleHashIterator = new $c_scm_HashMap$$anon$5(this);
     return $m_s_util_hashing_MurmurHash3$().unorderedHash__sc_IterableOnce__I__I(tupleHashIterator, $m_s_util_hashing_MurmurHash3$().s_util_hashing_MurmurHash3$__f_mapSeed)
   }
+});
+$c_scm_HashMap.prototype.subtractOne__O__scm_Shrinkable = (function(elem) {
+  return this.subtractOne__O__scm_HashMap(elem)
 });
 $c_scm_HashMap.prototype.addOne__O__scm_Growable = (function(elem) {
   return this.addOne__T2__scm_HashMap($as_T2(elem))
@@ -18853,7 +19406,7 @@ $c_sci_$colon$colon.prototype.$classData = $d_sci_$colon$colon;
 function $c_sci_Nil$() {
   this.sci_Nil$__f_EmptyUnzip = null;
   $n_sci_Nil$ = this;
-  this.sci_Nil$__f_EmptyUnzip = new $c_T2($m_sci_Nil$(), $m_sci_Nil$())
+  this.sci_Nil$__f_EmptyUnzip = $ct_T2__O__O__(new $c_T2(), $m_sci_Nil$(), $m_sci_Nil$())
 }
 $c_sci_Nil$.prototype = new $h_sci_List();
 $c_sci_Nil$.prototype.constructor = $c_sci_Nil$;

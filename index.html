@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="hero-search-results">
-          <div class="search-result">
+          <!-- <div class="search-result">
             <div class="search-result-content">
               <div class="result-title">KFC Chicken</div>
               <div class="result-details">100kCal 10P/10C/10F</div>
@@ -71,7 +71,7 @@
               <div class="result-details">100kCal 10P/10C/10F</div>
             </div>
             <button data-idx="3" class="button button-addmeal">Add meal</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -221,7 +221,11 @@
         <label class="content-title" for="birthdate">Birth Date</label>
         <input id="birthdate" type="text" placeholder="DDMMYYYY" required />
         <label class="content-title" for="gender">Gender</label>
-        <input id="gender" type="text" placeholder="M" required />
+        <select id="gender" required>
+          <option>Select one</option>
+          <option value="M">M</option>
+          <option value="F">F</option>
+        </select>
         <label class="content-title" for="weight">Weight (kg)</label>
         <input id="weight" type="text" required />
         <label class="content-title" for="height">Height (m)</label>

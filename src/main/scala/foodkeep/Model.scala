@@ -1,11 +1,8 @@
 package foodkeep.model
 
 import org.scalajs.dom
-import org.scalajs.dom.document
-import org.scalajs.dom.html
 import org.scalajs.dom.ext
 import scala.scalajs.js
-import js.annotation._
 
 // for making fetch request
 // import concurrent.ExecutionContext.Implicits.global
@@ -17,6 +14,7 @@ import foodkeep.config.Config._
 
 import foodkeep.helper._
 import foodkeep.util.util._
+import foodkeep.util.SearchResultUtil._
 import foodkeep.util.ProfileUtil._
 import foodkeep.util.DailyMealUtil._
 import foodkeep.util.MonthlyMealUtil._
@@ -27,7 +25,7 @@ object Model {
 
     init()
 
-    def setState(newState: State): Unit = {
+    private def setState(newState: State): Unit = {
         state = newState
         dom.window.localStorage.setItem("state", js.JSON.stringify(state))
     }
@@ -37,9 +35,9 @@ object Model {
         case s => Some(s)
     }
     
-    def clearStateFromLocalStorage: Unit = dom.window.localStorage.clear()
+    private def clearStateFromLocalStorage: Unit = dom.window.localStorage.clear()
 
-    def init(): Unit = {
+    private def init(): Unit = {
         getStateFromLocalStorage match {
             case Some(s) => setState(s)
             case _ => 
@@ -48,7 +46,7 @@ object Model {
 
     def getCurrentProfileFromState: Option[Profile] = state.getCurrentProfile
 
-    def pushNewProfileToState(profile: Profile)	= setState(state.pushNewProfile(profile))
+    def pushNewProfileToState(profile: Profile): Unit = setState(state.pushNewProfile(profile))
 
     def getSearchResultsFromState: Option[js.Array[SearchResult]] = state.getSearchResults
 
@@ -83,8 +81,27 @@ object Model {
 
     private def findNutrientValue(nutrientId: Int, nutrients: js.Array[js.Dynamic]): Int = {
         nutrients.filter(nutrient => nutrient.nutrientId.asInstanceOf[Int] == nutrientId).lastOption match {
-            case Some(n) => n.value.asInstanceOf[Double].toInt
+            case Some(n) => n.value.asInstanceOf[String].toInt
             case None => 0
         }
     }
+
+    def pushNewMealToState(index: Int, currentCaloriesTarget: Int, expense: Double): Unit = {
+        state.checkDailyMonthlyPresent(getDateDMY) match {
+            case (false, false) => {
+                setState(state.pushNewMonthlyMealState)
+                setState(state.pushNewDailyMealState(currentCaloriesTarget))
+            }
+            case (false, true) => {
+                setState(state.pushNewDailyMealState(currentCaloriesTarget))
+            }
+            case _ => 
+        }
+
+        val selectedMeal: Meal = state.getSearchResults.get(index).parseSearchResultAsMeal(expense)
+
+        setState(state.pushNewMealState(selectedMeal))
+    }
+
+    def getCurrentCaloriesTargetFromState: Option[Int] = state.getCurrentCaloriesTarget
 }

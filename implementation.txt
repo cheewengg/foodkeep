@@ -8,6 +8,8 @@ Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-j
 		- val carbContent: Int
 		- val proteinContent: Int
 		- val fatContent: Int
+	- Method
+		- def parseSearchResultAsMeal: Meal
 - Profile
 	- Fields
 		- val startDate: String
@@ -66,7 +68,9 @@ Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-j
 			- def getCurrentProfile: Option[Profile]
 			- def getCurrentCaloriesTarget: Option[Int]			
 			- def getFilterQuery(date: String): Option[(DailyMeal, MonthlyMeal)]
-			- def getSearchResults(): Option[js.Array[SearchResult]]
+			- def getSearchResults: Option[js.Array[SearchResult]]
+		- misc
+			- def checkDailyMonthlyPresent(date: String): (Boolean, Boolean) 
 
 			
 MVC		
@@ -74,47 +78,58 @@ MVC
 	- var state		// initialise State
 	- Functions
 		- inititate setState
-			- def pushNewProfileToState(profile: js.object)				
-			- def pushNewSearchResultsToState(query: String)		// initiate search; setState(state.parseNewSearchResults(newResults))
-			- def pushNewMealToState(index: Int)					// newMeal = state.getSearchResults()(index); *check if corresponding MonthlyMeal and DailyMeal exist*; setState(state.pushNewMeal(newMeal))	
+			- def pushNewProfileToState(profile: js.object): Unit				
+			- def pushNewSearchResultsToState(query: String): Future[Option[js.Array[SearchResult]]]
+			- def pushNewMealToState(index: Int): Unit		
 		- access state
 			- def getCurrentProfileFromState: Option[Profile]	
-			- def accessSearchMealResults()						// return state.getSearchResults()
-			- def accessSearchDateData(dateQuery: String)		// val (dailyMeal, monthlyMeal) = getFilterQuery(date: String)
+			- def getSearchResultsFromState: Option[js.Array[SearchResult]]						
+			- def getCurrentCaloriesTargetFromState: Option[Int]
+			- def getMealDataFromState(date: String)											// val (dailyMeal, monthlyMeal) = getFilterQuery(date: String)
 		- misc
-			- def setState(state: State): Unit					// replace state; e.g. newState = state.pushNewMeal()
-			- def init(): Unit										// get state from local storage (if any); else state = new State
+			- private def generateSearchResults(foods: js.Array[js.Dynamic]): js.Array[SearchResult]
+			- private def findNutrientValue(nutrientId: Int, nutrients: js.Array[js.Dynamic]): Int
+			- private def setState(state: State): Unit															
+			- private def getStateFromLocalStorage: Option[State]
+			- private def clearStateFromLocalStorage: Unit
+			- private def init(): Unit																		
+
 - View
-	- SearchMealView
-		- def addHandlerSearchMeal(handler)						// handler = controlSearchMeal; see: "controller :: controlSearchMeal"
-	- SearchMealResultsView
-		- def generateMarkUpSearchResults(searchResults)		// searchResults = model.loadSearchMealResult()
-		- def render(searchResults)								// set container.innerHTML = generateMarkUpSearchResults(searchResults)
-	- AddMealView
-		- def addHandlerAddMeal(handler)						// handler = controlAddMeal; see: "controller :: controlAddMeal"
-	- SummarySearchView
-		- def addHandlerSummarySearch(handler) 					// handler = controlSummarySearch; see: "controller :: controlSummarySearch"
-	- SummaryView
-		- def generateMarkUpSummaryTable(selectedDailyMeal)		
-		- def render(selectedMeal)								// set container.innerHTML = generateMarkUpSummaryTable(selectedMeal._1) + ...
 	- ProfileView
-		- def render(profile: Profile): Unit
+		- def render(profile: Option[Profile]): Unit
 		- private def renderBirthDate(date: String): String
 	- ProfileUpdateView
-		- def render(profile: Profile)	
+		- def render(profile: Profile): Unit
 		- def addHandlerToggleUpdateProfile: Unit									
 		- def addHandlerSubmitUpdateProfile(handler: Profile => Unit): Unit
 		- private def validateFormInput: Boolean
 		- private def formatBirthDate(date: String): String
 		- private def renderBirthDate(date: String): String
+	- SearchMealView
+		- def addHandlerStartSearchTimer(handler: String => Unit): Unit	
+		- def addHandlerClearSearchTimer: Unit					
+	- SearchMealResultsView
+		- def render(searchResults: Option[js.Array[SearchResult]])	
+		- private def renderFoodName(name: String)
+		- private def generateMarkUpSearchResults(searchResults): String
+	- AddMealView
+		- def addHandlerAddMeal(handler: (Int, Double) => Boolean): Unit					
+		- private def validateQueryFieldExpense(expense: String): Boolean
+		- private def renderTime(date: String): String
+	- SummarySearchView
+		- def addHandlerSummarySearch(handler) 					// handler = controlSummarySearch; see: "controller :: controlSummarySearch"
+	- SummaryView
+		- def generateMarkUpSummaryTable(selectedDailyMeal)		
+		- def render(selectedMeal)								// set container.innerHTML = generateMarkUpSummaryTable(selectedMeal._1) + ...
+
 		
 - Controller
-	- def controlSubmitUpdateProfile
-	- def controlSearchMeal(foodQuery)				// "model :: loadSearchMealData(foodQuery)"  >>   searchResults = model.accessSearchMealResults()  >>  "view :: SearchMealResultsView(searchResults)"
-	- def controlAddMeal(index)						//  "model :: loadSelectedMeal(index)"  >>  selectedMeal = model.accessSearchDateData(currentDate)  >>  "view :: SummaryView.render(selectedMeal)"
-	- def controlSummarySearch(dateQuery: String)	// "model :: accessSearchDateData(dateQuery)"  >>  returns selectedMeal  >>  "view :: SummaryView.render(selectedMeal)"
-	- def controlProfileUpdate(profile: js.object)	// 
-	- def init()									// initialise empty state; unload state from local storage (if any); SearchMealResultsView.render(...); SummaryView.render(...); ProfileView.render(...)
+	- def main(args: Array[String]): Unit						// SearchMealResultsView.render(...); SummaryView.render(...); ProfileView.render(...)
+	- def controlSubmitUpdateProfile(profile: Profile): Unit	
+	- def controlSearchMeal(query: String)						
+	- def controlAddMeal(index)def controlAddMeal(index: Int, expense: Double): Boolean	
+	- def controlSummarySearch(dateQuery: String)				// "model :: accessSearchDateData(dateQuery)"  >>  returns selectedMeal  >>  "view :: SummaryView.render(selectedMeal)"
+
 
 
 Misc
