@@ -37,6 +37,8 @@ object Controller {
         SearchMealView.addHandlerClearSearchTimer
         
         AddMealView.addHandlerAddMeal(controlAddMeal)
+
+        SummarySearchView.addHandlerSummarySearch(controlSummarySearch)
     }
 
     def controlSubmitUpdateProfile(profile: Profile): Boolean = {
@@ -66,7 +68,17 @@ object Controller {
             }
             case _ => false
         }
-    
-    }   
+    }
+
+    def controlSummarySearch(dateQuery: String): Boolean = {
+        Model.accessSearchDateData(dateQuery) match {
+            case Some(selectedMeal) => {
+                //render output to summary view
+                //SummaryView.render(selectedMeal)
+                true
+            }
+            case _ => false
+        }
+    }
 
 }
