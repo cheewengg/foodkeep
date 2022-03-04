@@ -106,4 +106,8 @@ object Model {
     }
 
     def getCurrentCaloriesTargetFromState: Option[Int] = state.getCurrentCaloriesTarget
+
+    def accessSearchDateData(dateQuery: String): Option[(DailyMeal, MonthlyMeal)] = {
+        state.getFilterQuery(dateQuery)
+    }
 }
