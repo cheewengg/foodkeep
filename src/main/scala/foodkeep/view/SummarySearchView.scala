@@ -24,7 +24,6 @@ object SummarySearchView{
   def addHandlerSummarySearch(handler: String => Boolean): Unit = {
     btnFilterDate.addEventListener("click", (e: dom.Event) => {
       e.preventDefault()
-      dom.console.log("Filter Button Pressed")
       val dateQuery = queryFieldDate.value
       if (validateQueryFieldDate(dateQuery)) {
         handler(dateQuery) match {

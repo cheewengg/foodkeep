@@ -964,6 +964,10 @@ $c_LController$.prototype.main__AT__V = (function(args) {
     var index = $uI(index$2);
     var expense = $uD(expense$2);
     return $m_LController$().controlAddMeal__I__D__Z(index, expense)
+  }))(this)));
+  $m_Lfoodkeep_view_SummarySearchView$().addHandlerSummarySearch__F1__V(new $c_sjsr_AnonFunction1(((this$4) => ((dateQuery$2) => {
+    var dateQuery = $as_T(dateQuery$2);
+    return $m_LController$().controlSummarySearch__T__Z(dateQuery)
   }))(this)))
 });
 $c_LController$.prototype.controlSubmitUpdateProfile__Lfoodkeep_helper_Profile__Z = (function(profile) {
@@ -996,6 +1000,10 @@ $c_LController$.prototype.controlAddMeal__I__D__Z = (function(index, expense) {
   } else {
     return false
   }
+});
+$c_LController$.prototype.controlSummarySearch__T__Z = (function(dateQuery) {
+  var x1 = $m_Lfoodkeep_model_Model$().accessSearchDateData__T__s_Option(dateQuery);
+  return (x1 instanceof $c_s_Some)
 });
 var $d_LController$ = new $TypeData().initClass({
   LController$: 0
@@ -1402,6 +1410,10 @@ $c_Lfoodkeep_model_Model$.prototype.getCurrentCaloriesTargetFromState__s_Option 
   var s = this.Lfoodkeep_model_Model$__f_state;
   return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).getCurrentCaloriesTarget__s_Option()
 });
+$c_Lfoodkeep_model_Model$.prototype.accessSearchDateData__T__s_Option = (function(dateQuery) {
+  var s = this.Lfoodkeep_model_Model$__f_state;
+  return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).getFilterQuery__T__s_Option(dateQuery)
+});
 var $d_Lfoodkeep_model_Model$ = new $TypeData().initClass({
   Lfoodkeep_model_Model$: 0
 }, false, "foodkeep.model.Model$", {
@@ -1678,6 +1690,37 @@ $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.getCurrentCaloriesTarget
     var x2 = $as_s_Some(x1);
     var p = x2.s_Some__f_value;
     return new $c_s_Some(new $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p).getCaloriesTarget__I())
+  } else {
+    return $m_s_None$()
+  }
+});
+$c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.getFilterQuery__T__s_Option = (function(date) {
+  var sC = $m_Lfoodkeep_helper_State$().apply__sjs_js_Dynamic__Lfoodkeep_helper_State($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_StateUtil_package$StateUtil__f_s));
+  var $$x1 = $m_sjs_js_ArrayOps$();
+  var array = sC.mealHistory;
+  var res = [];
+  var len = $uI(array.length);
+  var i = 0;
+  while ((i < len)) {
+    var arg1 = array[i];
+    if (($as_T(arg1.monthYear) === $m_sc_StringOps$().dropRight$extension__T__I__T(date, 2))) {
+      $uI(res.push(arg1))
+    };
+    i = ((1 + i) | 0)
+  };
+  var x1 = $$x1.lastOption$extension__sjs_js_Array__s_Option(res);
+  if ((x1 instanceof $c_s_Some)) {
+    var x2 = $as_s_Some(x1);
+    var m = x2.s_Some__f_value;
+    var _1 = new $c_s_Some(m);
+    var _2 = new $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil(m).getDailyMeal__T__s_Option(date);
+    var m$2 = _1.s_Some__f_value;
+    if ((_2 instanceof $c_s_Some)) {
+      var x4 = $as_s_Some(_2);
+      var d = x4.s_Some__f_value;
+      return new $c_s_Some($ct_T2__O__O__(new $c_T2(), d, m$2))
+    };
+    return $m_s_None$()
   } else {
     return $m_s_None$()
   }
@@ -2245,6 +2288,74 @@ function $m_Lfoodkeep_view_SearchMealView$() {
     $n_Lfoodkeep_view_SearchMealView$ = new $c_Lfoodkeep_view_SearchMealView$()
   };
   return $n_Lfoodkeep_view_SearchMealView$
+}
+function $p_Lfoodkeep_view_SummarySearchView$__validateQueryFieldDate__T__Z($thiz, dateQuery) {
+  try {
+    var this$4 = $m_jl_Integer$();
+    var x1 = new $c_s_util_Success(this$4.parseInt__T__I__I(dateQuery, 10))
+  } catch (e) {
+    var e$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e);
+    if ((e$2 !== null)) {
+      matchEnd8: {
+        var x1;
+        if ((e$2 !== null)) {
+          var o11 = $m_s_util_control_NonFatal$().unapply__jl_Throwable__s_Option(e$2);
+          if ((!o11.isEmpty__Z())) {
+            var e$3 = $as_jl_Throwable(o11.get__O());
+            var x1 = new $c_s_util_Failure(e$3);
+            break matchEnd8
+          }
+        };
+        throw $m_sjsr_package$().unwrapJavaScriptException__jl_Throwable__O(e$2)
+      }
+    } else {
+      var x1;
+      throw e
+    }
+  };
+  return ((x1 instanceof $c_s_util_Success) || (window.alert("Invalid value detected!"), false))
+}
+/** @constructor */
+function $c_Lfoodkeep_view_SummarySearchView$() {
+  this.Lfoodkeep_view_SummarySearchView$__f_queryFieldDate = null;
+  this.Lfoodkeep_view_SummarySearchView$__f_btnFilterDate = null;
+  $n_Lfoodkeep_view_SummarySearchView$ = this;
+  this.Lfoodkeep_view_SummarySearchView$__f_queryFieldDate = document.querySelector("#filter");
+  this.Lfoodkeep_view_SummarySearchView$__f_btnFilterDate = document.querySelector(".button-filter")
+}
+$c_Lfoodkeep_view_SummarySearchView$.prototype = new $h_O();
+$c_Lfoodkeep_view_SummarySearchView$.prototype.constructor = $c_Lfoodkeep_view_SummarySearchView$;
+/** @constructor */
+function $h_Lfoodkeep_view_SummarySearchView$() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_view_SummarySearchView$.prototype = $c_Lfoodkeep_view_SummarySearchView$.prototype;
+$c_Lfoodkeep_view_SummarySearchView$.prototype.addHandlerSummarySearch__F1__V = (function(handler) {
+  this.Lfoodkeep_view_SummarySearchView$__f_btnFilterDate.addEventListener("click", ((handler$1) => ((arg1$2) => $m_Lfoodkeep_view_SummarySearchView$().foodkeep$view$SummarySearchView$$$anonfun$addHandlerSummarySearch$1__Lorg_scalajs_dom_Event__F1__O(arg1$2, handler$1)))(handler))
+});
+$c_Lfoodkeep_view_SummarySearchView$.prototype.foodkeep$view$SummarySearchView$$$anonfun$addHandlerSummarySearch$1__Lorg_scalajs_dom_Event__F1__O = (function(e, handler$1) {
+  e.preventDefault();
+  var dateQuery = $as_T($m_Lfoodkeep_view_SummarySearchView$().Lfoodkeep_view_SummarySearchView$__f_queryFieldDate.value);
+  if ($p_Lfoodkeep_view_SummarySearchView$__validateQueryFieldDate__T__Z($m_Lfoodkeep_view_SummarySearchView$(), dateQuery)) {
+    var x1 = $uZ(handler$1.apply__O__O(dateQuery));
+    return ((x1 === false) ? (window.alert("Unable to find data corresponding to date entered!"), (void 0)) : (window.alert((("Data for " + dateQuery) + " has been loaded")), (void 0)))
+  } else {
+    return (void 0)
+  }
+});
+var $d_Lfoodkeep_view_SummarySearchView$ = new $TypeData().initClass({
+  Lfoodkeep_view_SummarySearchView$: 0
+}, false, "foodkeep.view.SummarySearchView$", {
+  Lfoodkeep_view_SummarySearchView$: 1,
+  O: 1
+});
+$c_Lfoodkeep_view_SummarySearchView$.prototype.$classData = $d_Lfoodkeep_view_SummarySearchView$;
+var $n_Lfoodkeep_view_SummarySearchView$;
+function $m_Lfoodkeep_view_SummarySearchView$() {
+  if ((!$n_Lfoodkeep_view_SummarySearchView$)) {
+    $n_Lfoodkeep_view_SummarySearchView$ = new $c_Lfoodkeep_view_SummarySearchView$()
+  };
+  return $n_Lfoodkeep_view_SummarySearchView$
 }
 /** @constructor */
 function $c_jl_Class(data0) {
