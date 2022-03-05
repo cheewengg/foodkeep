@@ -18,14 +18,13 @@ import scala.util.{Try,Success,Failure}
 
 
 object SummarySearchView{
-  private val queryFieldDate = document.querySelector("#filter").asInstanceOf[html.Input]
+  private val fieldFilterDate = document.querySelector("#filter").asInstanceOf[html.Input]
   private val btnFilterDate = document.querySelector(".button-filter")
 
   def addHandlerSummarySearch(handler: String => Boolean): Unit = {
     btnFilterDate.addEventListener("click", (e: dom.Event) => {
       e.preventDefault()
-      dom.console.log("Filter Button Pressed")
-      val dateQuery = queryFieldDate.value
+      val dateQuery = fieldFilterDate.value
       if (validateQueryFieldDate(dateQuery)) {
         handler(dateQuery) match {
           case false => dom.window.alert("Unable to find data corresponding to date entered!")
@@ -44,6 +43,5 @@ object SummarySearchView{
       }
     }
   }
-
 
 }

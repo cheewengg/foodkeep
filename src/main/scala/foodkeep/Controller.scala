@@ -63,8 +63,14 @@ object Controller {
         Model.getCurrentCaloriesTargetFromState match {
             case Some(calories) => {
                 Model.pushNewMealToState(index, calories, expense)
-                // render output to SummaryView
-                true
+
+                Model.getCurrentSelectedMeal() match {
+                    case Some(m) => {
+                        SummaryView.render(m)
+                        true
+                    }
+                    case _ => false
+                }
             }
             case _ => false
         }
@@ -74,7 +80,7 @@ object Controller {
         Model.accessSearchDateData(dateQuery) match {
             case Some(selectedMeal) => {
                 //render output to summary view
-                //SummaryView.render(selectedMeal)
+                SummaryView.render(selectedMeal)
                 true
             }
             case _ => false

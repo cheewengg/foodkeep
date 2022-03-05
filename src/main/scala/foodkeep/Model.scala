@@ -103,6 +103,7 @@ object Model {
         val selectedMeal: Meal = state.getSearchResults.get(index).parseSearchResultAsMeal(expense)
 
         setState(state.pushNewMealState(selectedMeal))
+
     }
 
     def getCurrentCaloriesTargetFromState: Option[Int] = state.getCurrentCaloriesTarget
@@ -110,4 +111,12 @@ object Model {
     def accessSearchDateData(dateQuery: String): Option[(DailyMeal, MonthlyMeal)] = {
         state.getFilterQuery(dateQuery)
     }
-}
+
+    def getCurrentSelectedMeal(): Option[(DailyMeal, MonthlyMeal)] = {
+        state.checkDailyMonthlyPresent(getDateDMY) match {
+            case (true, true) => accessSearchDateData(getDateDMY)
+            case _ => None
+        }
+        }
+
+    }
