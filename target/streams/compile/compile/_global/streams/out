@@ -1,5 +1,6 @@
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\src\main\scala\foodkeep\view\AddMealView.scala:30:40: match may not be exhaustive.[0m
-[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: None[0m
-[0m[[0m[33mwarn[0m] [0m[0m                eventTarget.dataset.get("idx") match {[0m
-[0m[[0m[33mwarn[0m] [0m[0m                                       ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\src\main\scala\foodkeep\view\ProfileUpdateView.scala:76:129: missing argument list for method && in class Boolean[0m
+[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
+[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `&& _` or `&&(_)` instead of `&&`.[0m
+[0m[[0m[31merror[0m] [0m[0m            case (Success(_), Success(_), Success(_)) if (!name.isEmpty && birthDate.length == 8 && activityLvl != "Select one" && ) => true[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

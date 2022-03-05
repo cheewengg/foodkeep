@@ -1868,9 +1868,11 @@ function $m_Lfoodkeep_view_AddMealView$() {
   return $n_Lfoodkeep_view_AddMealView$
 }
 function $p_Lfoodkeep_view_ProfileUpdateView$__validateFormInput__Z($thiz) {
+  var name = $as_T($thiz.Lfoodkeep_view_ProfileUpdateView$__f_fieldName.value);
   var birthDate = $as_T($thiz.Lfoodkeep_view_ProfileUpdateView$__f_fieldBirthDate.value);
   var weight = $as_T($thiz.Lfoodkeep_view_ProfileUpdateView$__f_fieldWeight.value);
   var height = $as_T($thiz.Lfoodkeep_view_ProfileUpdateView$__f_fieldHeight.value);
+  var activityLvl = $as_T($thiz.Lfoodkeep_view_ProfileUpdateView$__f_fieldActivityLvl.value);
   try {
     var this$4 = $m_jl_Integer$();
     var _1 = new $c_s_util_Success(this$4.parseInt__T__I__I(birthDate, 10))
@@ -1938,7 +1940,7 @@ function $p_Lfoodkeep_view_ProfileUpdateView$__validateFormInput__Z($thiz) {
       throw e$4
     }
   };
-  return (((_1 instanceof $c_s_util_Success) && ((_2 instanceof $c_s_util_Success) && ((_3 instanceof $c_s_util_Success) && ($uI(birthDate.length) === 8)))) || (window.alert("Invalid input detected!"), false))
+  return (((_1 instanceof $c_s_util_Success) && ((_2 instanceof $c_s_util_Success) && ((_3 instanceof $c_s_util_Success) && (((name !== "") && ($uI(birthDate.length) === 8)) && (activityLvl !== "Select one"))))) || (window.alert("Invalid input detected!"), false))
 }
 function $p_Lfoodkeep_view_ProfileUpdateView$__formatBirthDate__T__T($thiz, date) {
   var $$x2 = $m_sc_StringOps$().drop$extension__T__I__T(date, 4);

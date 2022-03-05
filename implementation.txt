@@ -41,7 +41,7 @@ Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-j
 		- val totalCalories: Int
 		- val caloriesTarget: Int
 	- Methods:
-		- def pushNewMeal(): DailyMeal
+		- def pushNewMeal(meal): DailyMeal
 - MonthlyMeal
 	- Fields
 		- val monthYear: String
@@ -73,7 +73,7 @@ Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-j
 		- misc
 			- def checkDailyMonthlyPresent(date: String): (Boolean, Boolean) 
 
-			
+
 MVC		
 - Model
 	- var state		// initialise State
@@ -152,3 +152,6 @@ Misc
 			- if food.description.length > 28, render ... after 28th char 
 				- e.g. "Roast Chicken Marinated With Rose Mary" == "Roast Chicken Marinated With..."
 			
+
+
+

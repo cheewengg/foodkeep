@@ -2,27 +2,27 @@
 [0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
 [0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 51 products, 20 sources, 4 libraries[0m
 [0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/main/scala/foodkeep/util/ProfileUtil.scala, ${BASE}/src/main/scala/foodkeep/util/MonthlyMealUtil.scala, ${BASE}/src/main/scala/foodkeep/util/DailyMealUtil.scala, ${BASE}/src/main/scala/foodkeep/view/ProfileView.scala, ${BASE}/src/main/scala/foodkeep/Config.scala, ${BASE}/src/main/scala/foodkeep/view/SearchMealView.scala, ${BASE}/src/main/scala/foodkeep/helper/Meal.scala, ${BASE}/src/main/scala/foodkeep/view/SearchMealResultsView.scala, ${BASE}/src/main/scala/foodkeep/util/SearchResultUtil.scala, ${BASE}/src/main/scala/foodkeep/helper/SearchResult.scala, ${BASE}/src/main/scala/foodkeep/helper/State.scala, ${BASE}/src/main/scala/foodkeep/helper/MonthlyMeal.scala, ${BASE}/src/main/scala/foodkeep/util/Util.scala, ${BASE}/src/main/scala/foodkeep/helper/Profile.scala, ${BASE}/src/main/scala/foodkeep/util/StateUtil.scala, ${BASE}/src/main/scala/foodkeep/Model.scala, ${BASE}/src/main/scala/foodkeep/Controller.scala, ${BASE}/src/main/scala/foodkeep/helper/DailyMeal.scala, ${BASE}/src/main/scala/foodkeep/view/AddMealView.scala, ${BASE}/src/main/scala/foodkeep/view/ProfileUpdateView.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/foodkeep/view/ProfileUpdateView.scala, ${BASE}/src/main/scala/foodkeep/util/StateUtil.scala, ${BASE}/src/main/scala/foodkeep/Controller.scala, ${BASE}/src/main/scala/foodkeep/Model.scala), unmodified = ...),Set(),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/foodkeep/view/ProfileUpdateView.scala), unmodified = ...),Set(),Set(),API Changes: Set())[0m
 [0m[[0m[0mdebug[0m] [0m[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial source changes:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	removed: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	added: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/src/main/scala/foodkeep/view/ProfileUpdateView.scala, ${BASE}/src/main/scala/foodkeep/util/StateUtil.scala, ${BASE}/src/main/scala/foodkeep/Controller.scala, ${BASE}/src/main/scala/foodkeep/Model.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/src/main/scala/foodkeep/view/ProfileUpdateView.scala)[0m
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(foodkeep.util.StateUtil.package, foodkeep.view.ProfileUpdateView, Controller, foodkeep.model.Model, foodkeep.util.StateUtil.StateUtil)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(foodkeep.view.ProfileUpdateView)[0m
 [0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(foodkeep.util.StateUtil.package, foodkeep.view.ProfileUpdateView, Controller, foodkeep.model.Model, foodkeep.util.StateUtil.StateUtil)[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/src/main/scala/foodkeep/view/ProfileUpdateView.scala, ${BASE}/src/main/scala/foodkeep/util/StateUtil.scala, ${BASE}/src/main/scala/foodkeep/Controller.scala, ${BASE}/src/main/scala/foodkeep/Model.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: foodkeep.util.StateUtil.package, foodkeep.view.ProfileUpdateView, Controller, foodkeep.model.Model, foodkeep.util.StateUtil.StateUtil[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(foodkeep.view.ProfileUpdateView)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/src/main/scala/foodkeep/view/ProfileUpdateView.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: foodkeep.view.ProfileUpdateView[0m
 [0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 4 Scala sources to C:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\target\scala-2.13\classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to C:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\target\scala-2.13\classes ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.13:1.6.0:compile for Scala 2.13.1[0m
-[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 1634f8f2 for Scala compiler version 2.13.1[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 5d7c4db9 for Scala compiler version 2.13.1[0m
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-deprecation[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-feature[0m
@@ -31,50 +31,11 @@
 [0m[[0m[0mdebug[0m] [0m[0m	C:\Users\cheew\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.1\scala-library-2.13.1.jar[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
 [0m[[0m[0mdebug[0m] [0m[0m	C:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\target\scala-2.13\classes;C:\Users\cheew\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-js\scalajs-library_2.13\1.9.0\scalajs-library_2.13-1.9.0.jar;C:\Users\cheew\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-js\scala-js-macrotask-executor_sjs1_2.13\1.0.0\scala-js-macrotask-executor_sjs1_2.13-1.0.0.jar;C:\Users\cheew\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-js\scalajs-dom_sjs1_2.13\2.1.0\scalajs-dom_sjs1_2.13-2.1.0.jar[0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from Controller...[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: Controller[0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(Controller)[0m
-[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(Controller,ModifiedNames(changes = UsedName(controlSubmitUpdateProfile,[Default]))) invalidates 1 classes due to The Controller has the following regular definitions changed:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	UsedName(controlSubmitUpdateProfile,[Default]).[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(Controller)[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > [0m
-[0m[[0m[0mdebug[0m] [0m[0m  > [0m
-[0m[[0m[0mdebug[0m] [0m[0m        [0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from foodkeep.model.Model...[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: foodkeep.model.Model[0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(foodkeep.model.Model)[0m
-[0m[[0m[0mdebug[0m] [0m[0mThe following modified names cause invalidation of Controller: [UsedName(getProfileHistoryFromState,[Default])][0m
-[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(foodkeep.model.Model,ModifiedNames(changes = UsedName(getProfileHistoryFromState,[Default]))) invalidates 2 classes due to The foodkeep.model.Model has the following regular definitions changed:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	UsedName(getProfileHistoryFromState,[Default]).[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(foodkeep.model.Model)[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > [0m
-[0m[[0m[0mdebug[0m] [0m[0m  > by member reference: Set(Controller)[0m
-[0m[[0m[0mdebug[0m] [0m[0m        [0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from foodkeep.view.ProfileUpdateView...[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: foodkeep.view.ProfileUpdateView[0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(foodkeep.view.ProfileUpdateView)[0m
-[0m[[0m[0mdebug[0m] [0m[0mThe following modified names cause invalidation of Controller: [UsedName(addHandlerSubmitUpdateProfile,[Default])][0m
-[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(foodkeep.view.ProfileUpdateView,ModifiedNames(changes = UsedName(addHandlerSubmitUpdateProfile,[Default]))) invalidates 2 classes due to The foodkeep.view.ProfileUpdateView has the following regular definitions changed:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	UsedName(addHandlerSubmitUpdateProfile,[Default]).[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(foodkeep.view.ProfileUpdateView)[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > [0m
-[0m[[0m[0mdebug[0m] [0m[0m  > by member reference: Set(Controller)[0m
-[0m[[0m[0mdebug[0m] [0m[0m        [0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from foodkeep.util.StateUtil.StateUtil...[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: foodkeep.util.StateUtil.StateUtil[0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(foodkeep.util.StateUtil.StateUtil)[0m
-[0m[[0m[0mdebug[0m] [0m[0mThe following modified names cause invalidation of foodkeep.model.Model: [UsedName(getProfileHistory,[Default])][0m
-[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(foodkeep.util.StateUtil.StateUtil,ModifiedNames(changes = UsedName(getProfileHistory,[Default]))) invalidates 2 classes due to The foodkeep.util.StateUtil.StateUtil has the following regular definitions changed:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	UsedName(getProfileHistory,[Default]).[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(foodkeep.util.StateUtil.StateUtil)[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > [0m
-[0m[[0m[0mdebug[0m] [0m[0m  > by member reference: Set(foodkeep.model.Model)[0m
-[0m[[0m[0mdebug[0m] [0m[0m        [0m
 [0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
 [0m[[0m[0mdebug[0m] [0m[0mPreviously invalidated, but (transitively) depend on new invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0mFinal step, transitive dependencies:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mNo classes were invalidated.[0m
-[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 5.9631284 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 2.0769498 s[0m
 [0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m

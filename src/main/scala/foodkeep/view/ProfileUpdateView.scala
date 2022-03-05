@@ -66,12 +66,14 @@ object ProfileUpdateView {
     }
 
     private def validateFormInput: Boolean = {
+        val name = fieldName.value
         val birthDate = fieldBirthDate.value
         val weight = fieldWeight.value
         val height = fieldHeight.value
-        
+        val activityLvl = fieldActivityLvl.value 
+
         (Try(birthDate.toInt), Try(weight.toDouble), Try(height.toDouble)) match {
-            case (Success(_), Success(_), Success(_)) if birthDate.length == 8 => true
+            case (Success(_), Success(_), Success(_)) if (!name.isEmpty && birthDate.length == 8 && activityLvl != "Select one") => true
             case _ => {
                 dom.window.alert("Invalid input detected!")
                 false 
