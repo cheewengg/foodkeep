@@ -34,13 +34,13 @@ object Model {
         case n if (n == null) => None
         case s => Some(s)
     }
-    
+
     private def clearStateFromLocalStorage: Unit = dom.window.localStorage.clear()
 
     private def init(): Unit = {
         getStateFromLocalStorage match {
             case Some(s) => setState(s)
-            case _ => 
+            case _ =>
         }
     }
 
@@ -62,8 +62,8 @@ object Model {
                 val foods = js.JSON.parse(responseText).foods.asInstanceOf[js.Array[js.Dynamic]]
                 val searchResults = generateSearchResults(foods)
                 setState(state.pushNewSearchResults(searchResults))
-                state.getSearchResults   
-            })      
+                state.getSearchResults
+            })
     }
 
     private def generateSearchResults(foods: js.Array[js.Dynamic]): js.Array[SearchResult] = {
@@ -97,13 +97,26 @@ object Model {
             case (false, true) => {
                 setState(state.pushNewDailyMealState(currentCaloriesTarget))
             }
-            case _ => 
+            case _ =>
         }
 
         val selectedMeal: Meal = state.getSearchResults.get(index).parseSearchResultAsMeal(expense)
 
         setState(state.pushNewMealState(selectedMeal))
+
     }
 
     def getCurrentCaloriesTargetFromState: Option[Int] = state.getCurrentCaloriesTarget
+
+    def accessSearchDateData(dateQuery: String): Option[(DailyMeal, MonthlyMeal)] = {
+        state.getFilterQuery(dateQuery)
+    }
+
+    def getCurrentSelectedMeal(): Option[(DailyMeal, MonthlyMeal)] = {
+        state.checkDailyMonthlyPresent(getDateDMY) match {
+            case (true, true) => accessSearchDateData(getDateDMY)
+            case _ => None
+        }
+    }
+
 }
