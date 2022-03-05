@@ -26,7 +26,7 @@ object ProfileView {
     def render(profileOption: Option[Profile]): Unit = profileOption match {
         case Some(profile) => {
             profileName.textContent = profile.name
-            profileBirthDate.textContent = renderBirthDate(profile.birthDate)
+            profileBirthDate.textContent = renderDateDOM(profile.birthDate)
             profileGender.textContent = profile.gender
             profileWeight.textContent = profile.weight.toString + " kg"
             profileHeight.textContent = profile.height.toString + " m"
@@ -42,10 +42,5 @@ object ProfileView {
             profileActivityLvl.textContent = "Not Available"
             profileCalories.textContent = "Not Available"
         }
-    }
-
-    private def renderBirthDate(date: String): String = 
-        //19940102 --> 02/01/1994
-        s"${date.drop(6)}/${date.drop(4).dropRight(2)}/${date.dropRight(4)}"
-    
+    }   
 }

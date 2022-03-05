@@ -953,6 +953,7 @@ $c_LController$.prototype.main__AT__V = (function(args) {
   $m_Lfoodkeep_view_ProfileView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getCurrentProfileFromState__s_Option());
   $m_Lfoodkeep_view_ProfileUpdateView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getCurrentProfileFromState__s_Option());
   $m_Lfoodkeep_view_SearchMealResultsView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getSearchResultsFromState__s_Option());
+  $m_Lfoodkeep_view_SummaryView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getMealDataFromState__T__s_Option($m_Lfoodkeep_util_util$().getDateDMY__T()));
   $m_Lfoodkeep_view_ProfileUpdateView$().addHandlerToggleUpdateProfile__V();
   $m_Lfoodkeep_view_ProfileUpdateView$().addHandlerSubmitUpdateProfile__F1__V(new $c_sjsr_AnonFunction1(((this$1) => ((profile$2) => $m_LController$().controlSubmitUpdateProfile__Lfoodkeep_helper_Profile__Z(profile$2)))(this)));
   $m_Lfoodkeep_view_SearchMealView$().addHandlerStartSearchTimer__F1__V(new $c_sjsr_AnonFunction1(((this$2) => ((query$2) => {
@@ -996,14 +997,15 @@ $c_LController$.prototype.controlAddMeal__I__D__Z = (function(index, expense) {
     var x2 = $as_s_Some(x1);
     var calories = $uI(x2.s_Some__f_value);
     $m_Lfoodkeep_model_Model$().pushNewMealToState__I__I__D__V(index, calories, expense);
+    $m_Lfoodkeep_view_SummaryView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getMealDataFromState__T__s_Option($m_Lfoodkeep_util_util$().getDateDMY__T()));
     return true
   } else {
     return false
   }
 });
 $c_LController$.prototype.controlSummarySearch__T__Z = (function(dateQuery) {
-  var x1 = $m_Lfoodkeep_model_Model$().accessSearchDateData__T__s_Option(dateQuery);
-  return (x1 instanceof $c_s_Some)
+  var x1 = $m_Lfoodkeep_model_Model$().getMealDataFromState__T__s_Option(dateQuery);
+  return ((x1 !== null) ? ($m_Lfoodkeep_view_SummaryView$().render__s_Option__V(x1), true) : ($m_Lfoodkeep_view_SummaryView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getMealDataFromState__T__s_Option($m_Lfoodkeep_util_util$().getDateDMY__T())), false))
 });
 var $d_LController$ = new $TypeData().initClass({
   LController$: 0
@@ -1410,7 +1412,7 @@ $c_Lfoodkeep_model_Model$.prototype.getCurrentCaloriesTargetFromState__s_Option 
   var s = this.Lfoodkeep_model_Model$__f_state;
   return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).getCurrentCaloriesTarget__s_Option()
 });
-$c_Lfoodkeep_model_Model$.prototype.accessSearchDateData__T__s_Option = (function(dateQuery) {
+$c_Lfoodkeep_model_Model$.prototype.getMealDataFromState__T__s_Option = (function(dateQuery) {
   var s = this.Lfoodkeep_model_Model$__f_state;
   return new $c_Lfoodkeep_util_StateUtil_package$StateUtil(s).getFilterQuery__T__s_Option(dateQuery)
 });
@@ -1767,7 +1769,9 @@ var $d_Lfoodkeep_util_StateUtil_package$StateUtil = new $TypeData().initClass({
 $c_Lfoodkeep_util_StateUtil_package$StateUtil.prototype.$classData = $d_Lfoodkeep_util_StateUtil_package$StateUtil;
 /** @constructor */
 function $c_Lfoodkeep_util_util$() {
-  /*<skip>*/
+  this.Lfoodkeep_util_util$__f_monthList = null;
+  $n_Lfoodkeep_util_util$ = this;
+  this.Lfoodkeep_util_util$__f_monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 }
 $c_Lfoodkeep_util_util$.prototype = new $h_O();
 $c_Lfoodkeep_util_util$.prototype.constructor = $c_Lfoodkeep_util_util$;
@@ -1812,6 +1816,18 @@ $c_Lfoodkeep_util_util$.prototype.getCustomDateDMY__I__T = (function(daysAhead) 
   var month = this.padZero__D__T(($uD(date.getMonth()) + 1.0));
   var year = this.padZero__D__T($uD(date.getFullYear()));
   return ((("" + year) + month) + day)
+});
+$c_Lfoodkeep_util_util$.prototype.renderDateDOM__T__T = (function(date) {
+  var $$x2 = $m_sc_StringOps$().drop$extension__T__I__T(date, 6);
+  var $$x1 = $m_sc_StringOps$();
+  var x = $m_sc_StringOps$().drop$extension__T__I__T(date, 4);
+  return (((($$x2 + "/") + $$x1.dropRight$extension__T__I__T(x, 2)) + "/") + $m_sc_StringOps$().dropRight$extension__T__I__T(date, 4))
+});
+$c_Lfoodkeep_util_util$.prototype.formatDateState__T__T = (function(date) {
+  var $$x2 = $m_sc_StringOps$().drop$extension__T__I__T(date, 4);
+  var $$x1 = $m_sc_StringOps$();
+  var x = $m_sc_StringOps$().drop$extension__T__I__T(date, 2);
+  return ((("" + $$x2) + $$x1.dropRight$extension__T__I__T(x, 4)) + $m_sc_StringOps$().dropRight$extension__T__I__T(date, 6))
 });
 var $d_Lfoodkeep_util_util$ = new $TypeData().initClass({
   Lfoodkeep_util_util$: 0
@@ -1985,12 +2001,6 @@ function $p_Lfoodkeep_view_ProfileUpdateView$__validateFormInput__Z($thiz) {
   };
   return (((_1 instanceof $c_s_util_Success) && ((_2 instanceof $c_s_util_Success) && ((_3 instanceof $c_s_util_Success) && (((name !== "") && ($uI(birthDate.length) === 8)) && (activityLvl !== "Select one"))))) || (window.alert("Invalid input detected!"), false))
 }
-function $p_Lfoodkeep_view_ProfileUpdateView$__formatBirthDate__T__T($thiz, date) {
-  var $$x2 = $m_sc_StringOps$().drop$extension__T__I__T(date, 4);
-  var $$x1 = $m_sc_StringOps$();
-  var x = $m_sc_StringOps$().drop$extension__T__I__T(date, 2);
-  return ((("" + $$x2) + $$x1.dropRight$extension__T__I__T(x, 4)) + $m_sc_StringOps$().dropRight$extension__T__I__T(date, 6))
-}
 function $p_Lfoodkeep_view_ProfileUpdateView$__renderBirthDate__T__T($thiz, date) {
   var $$x2 = $m_sc_StringOps$().drop$extension__T__I__T(date, 6);
   var $$x1 = $m_sc_StringOps$();
@@ -2068,7 +2078,7 @@ $c_Lfoodkeep_view_ProfileUpdateView$.prototype.foodkeep$view$ProfileUpdateView$$
   if ($p_Lfoodkeep_view_ProfileUpdateView$__validateFormInput__Z($m_Lfoodkeep_view_ProfileUpdateView$())) {
     var $$x5 = $m_Lfoodkeep_helper_Profile$();
     var $$x4 = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldName.value);
-    var $$x3 = $p_Lfoodkeep_view_ProfileUpdateView$__formatBirthDate__T__T($m_Lfoodkeep_view_ProfileUpdateView$(), $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldBirthDate.value));
+    var $$x3 = $m_Lfoodkeep_util_util$().formatDateState__T__T($as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldBirthDate.value));
     var $$x2 = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldGender.value);
     var x = $as_T($m_Lfoodkeep_view_ProfileUpdateView$().Lfoodkeep_view_ProfileUpdateView$__f_fieldWeight.value);
     var $$x1 = $m_jl_Double$().parseDouble__T__D(x);
@@ -2096,12 +2106,6 @@ function $m_Lfoodkeep_view_ProfileUpdateView$() {
     $n_Lfoodkeep_view_ProfileUpdateView$ = new $c_Lfoodkeep_view_ProfileUpdateView$()
   };
   return $n_Lfoodkeep_view_ProfileUpdateView$
-}
-function $p_Lfoodkeep_view_ProfileView$__renderBirthDate__T__T($thiz, date) {
-  var $$x2 = $m_sc_StringOps$().drop$extension__T__I__T(date, 6);
-  var $$x1 = $m_sc_StringOps$();
-  var x = $m_sc_StringOps$().drop$extension__T__I__T(date, 4);
-  return (((($$x2 + "/") + $$x1.dropRight$extension__T__I__T(x, 2)) + "/") + $m_sc_StringOps$().dropRight$extension__T__I__T(date, 4))
 }
 /** @constructor */
 function $c_Lfoodkeep_view_ProfileView$() {
@@ -2133,7 +2137,7 @@ $c_Lfoodkeep_view_ProfileView$.prototype.render__s_Option__V = (function(profile
     var x2 = $as_s_Some(profileOption);
     var profile = x2.s_Some__f_value;
     this.Lfoodkeep_view_ProfileView$__f_profileName.textContent = $as_T(profile.name);
-    this.Lfoodkeep_view_ProfileView$__f_profileBirthDate.textContent = $p_Lfoodkeep_view_ProfileView$__renderBirthDate__T__T(this, $as_T(profile.birthDate));
+    this.Lfoodkeep_view_ProfileView$__f_profileBirthDate.textContent = $m_Lfoodkeep_util_util$().renderDateDOM__T__T($as_T(profile.birthDate));
     this.Lfoodkeep_view_ProfileView$__f_profileGender.textContent = $as_T(profile.gender);
     var $$x1 = this.Lfoodkeep_view_ProfileView$__f_profileWeight;
     var this$1 = $uD(profile.weight);
@@ -2313,7 +2317,7 @@ function $p_Lfoodkeep_view_SummarySearchView$__validateQueryFieldDate__T__Z($thi
       throw e
     }
   };
-  return ((x1 instanceof $c_s_util_Success) || (window.alert("Invalid value detected!"), false))
+  return (((x1 instanceof $c_s_util_Success) && ($uI(dateQuery.length) === 8)) || (window.alert("Invalid value detected!"), false))
 }
 /** @constructor */
 function $c_Lfoodkeep_view_SummarySearchView$() {
@@ -2335,10 +2339,10 @@ $c_Lfoodkeep_view_SummarySearchView$.prototype.addHandlerSummarySearch__F1__V = 
 });
 $c_Lfoodkeep_view_SummarySearchView$.prototype.foodkeep$view$SummarySearchView$$$anonfun$addHandlerSummarySearch$1__Lorg_scalajs_dom_Event__F1__O = (function(e, handler$1) {
   e.preventDefault();
-  var dateQuery = $as_T($m_Lfoodkeep_view_SummarySearchView$().Lfoodkeep_view_SummarySearchView$__f_queryFieldDate.value);
+  var dateQuery = $m_Lfoodkeep_util_util$().formatDateState__T__T($as_T($m_Lfoodkeep_view_SummarySearchView$().Lfoodkeep_view_SummarySearchView$__f_queryFieldDate.value));
   if ($p_Lfoodkeep_view_SummarySearchView$__validateQueryFieldDate__T__Z($m_Lfoodkeep_view_SummarySearchView$(), dateQuery)) {
     var x1 = $uZ(handler$1.apply__O__O(dateQuery));
-    return ((x1 === false) ? (window.alert("Unable to find data corresponding to date entered!"), (void 0)) : (window.alert((("Data for " + dateQuery) + " has been loaded")), (void 0)))
+    return ((x1 === false) ? (window.alert("Unable to find data corresponding to date entered!"), (void 0)) : (window.alert((("Data for " + $m_Lfoodkeep_util_util$().renderDateDOM__T__T(dateQuery)) + " has been loaded")), (void 0)))
   } else {
     return (void 0)
   }
@@ -2356,6 +2360,202 @@ function $m_Lfoodkeep_view_SummarySearchView$() {
     $n_Lfoodkeep_view_SummarySearchView$ = new $c_Lfoodkeep_view_SummarySearchView$()
   };
   return $n_Lfoodkeep_view_SummarySearchView$
+}
+function $p_Lfoodkeep_view_SummaryView$__renderDailySummary__Lfoodkeep_helper_DailyMeal__V($thiz, dailyMeal) {
+  var date = $as_T(dailyMeal.date);
+  var record = dailyMeal.record;
+  var totalExpenses = $uD(dailyMeal.totalExpenses);
+  var totalCalories = $uI(dailyMeal.totalCalories);
+  var caloriesTarget = $uI(dailyMeal.caloriesTarget);
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayDesc.textContent = $p_Lfoodkeep_view_SummaryView$__renderDayDesc__T__T($thiz, date);
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayDate.textContent = $m_Lfoodkeep_util_util$().renderDateDOM__T__T(date);
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayCalories.textContent = $p_Lfoodkeep_view_SummaryView$__renderCalories__I__I__T($thiz, totalCalories, caloriesTarget);
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayExpenses.textContent = $p_Lfoodkeep_view_SummaryView$__renderExpense__D__T($thiz, totalExpenses);
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayTable.innerHTML = $p_Lfoodkeep_view_SummaryView$__generateMarkUpSummaryTable__sjs_js_Array__T($thiz, record)
+}
+function $p_Lfoodkeep_view_SummaryView$__renderMonthlySummary__Lfoodkeep_helper_MonthlyMeal__V($thiz, monthlyMeal) {
+  var monthYear = $as_T(monthlyMeal.monthYear);
+  var record = monthlyMeal.record;
+  var totalExpenses = $uD(monthlyMeal.totalExpenses);
+  var totalCalories = $uI(monthlyMeal.totalCalories);
+  var avgCaloriesTarget = $p_Lfoodkeep_view_SummaryView$__getAvgCaloriesTarget__sjs_js_Array__I($thiz, record);
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthDesc.textContent = $p_Lfoodkeep_view_SummaryView$__renderMonthDesc__T__T($thiz, monthYear);
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthDate.textContent = $p_Lfoodkeep_view_SummaryView$__renderMonthDate__T__T($thiz, monthYear);
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthTarget.textContent = $p_Lfoodkeep_view_SummaryView$__renderMonthTarget__sjs_js_Array__T($thiz, record);
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgCalories.textContent = $p_Lfoodkeep_view_SummaryView$__renderCalories__I__I__T($thiz, $intDiv(totalCalories, $uI(record.length)), avgCaloriesTarget);
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAllExpenses.textContent = $p_Lfoodkeep_view_SummaryView$__renderExpense__D__T($thiz, totalExpenses);
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgExpenses.textContent = $p_Lfoodkeep_view_SummaryView$__renderExpense__D__T($thiz, (totalExpenses / $uI(record.length)))
+}
+function $p_Lfoodkeep_view_SummaryView$__renderDailyNoData__V($thiz) {
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayDesc.textContent = "Not Available";
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayDate.textContent = "Not Available";
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayCalories.textContent = "Not Available";
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayExpenses.textContent = "Not Available";
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayTable.innerHTML = ""
+}
+function $p_Lfoodkeep_view_SummaryView$__renderMonthlyNoData__V($thiz) {
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthDesc.textContent = "Not Available";
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthDate.textContent = "Not Available";
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthTarget.textContent = "Not Available";
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgCalories.textContent = "Not Available";
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAllExpenses.textContent = "Not Available";
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgExpenses.textContent = "Not Available"
+}
+function $p_Lfoodkeep_view_SummaryView$__generateMarkUpSummaryTable__sjs_js_Array__T($thiz, record) {
+  var len = $uI(record.length);
+  var res = new Array(len);
+  var i = 0;
+  while ((i < len)) {
+    var $$x2 = i;
+    var arg1 = record[i];
+    var time = $p_Lfoodkeep_view_SummaryView$__renderTime__T__T($m_Lfoodkeep_view_SummaryView$(), $as_T(arg1.dateTime));
+    var foodName = $p_Lfoodkeep_view_SummaryView$__renderFoodName__T__T($m_Lfoodkeep_view_SummaryView$(), $as_T(arg1.foodName));
+    var expense = $p_Lfoodkeep_view_SummaryView$__renderExpense__D__T($m_Lfoodkeep_view_SummaryView$(), $uD(arg1.expense));
+    res[$$x2] = (((((("<div class=\"table-row\">\r\n              <div class=\"row-time\">" + time) + "</div>\r\n              <div class=\"row-meal\">") + foodName) + "</div>\r\n              <div class=\"row-expense\">") + expense) + "</div>\r\n            </div>");
+    i = ((1 + i) | 0)
+  };
+  var $$x1 = res.join("");
+  return $as_T($$x1)
+}
+function $p_Lfoodkeep_view_SummaryView$__renderDayDesc__T__T($thiz, date) {
+  return ((date === $m_Lfoodkeep_util_util$().getDateDMY__T()) ? "Today" : "History")
+}
+function $p_Lfoodkeep_view_SummaryView$__renderMonthDesc__T__T($thiz, monthYear) {
+  return ((monthYear === $m_Lfoodkeep_util_util$().getDateMY__T()) ? "This month" : "History")
+}
+function $p_Lfoodkeep_view_SummaryView$__renderTime__T__T($thiz, dateTime) {
+  return ($m_sc_StringOps$().drop$extension__T__I__T(dateTime, 8) + " h")
+}
+function $p_Lfoodkeep_view_SummaryView$__renderFoodName__T__T($thiz, foodName) {
+  return (($uI(foodName.length) > 16) ? ($m_sc_StringOps$().slice$extension__T__I__I__T(foodName, 0, 13) + "...") : foodName)
+}
+function $p_Lfoodkeep_view_SummaryView$__renderExpense__D__T($thiz, expense) {
+  var x1 = ("$ " + expense);
+  return (($uI(x1.indexOf(".")) !== (-1)) ? x1 : (x1 + ".00"))
+}
+function $p_Lfoodkeep_view_SummaryView$__renderCalories__I__I__T($thiz, calories, caloriesTarget) {
+  var fieldCalories = [$thiz.Lfoodkeep_view_SummaryView$__f_dailyDayCalories, $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgCalories];
+  if ((calories <= caloriesTarget)) {
+    var len = $uI(fieldCalories.length);
+    var i = 0;
+    while ((i < len)) {
+      var arg1 = fieldCalories[i];
+      arg1.classList.add("on-target");
+      arg1.classList.remove("off-target");
+      i = ((1 + i) | 0)
+    }
+  } else {
+    var len$1 = $uI(fieldCalories.length);
+    var i$1 = 0;
+    while ((i$1 < len$1)) {
+      var arg1$1 = fieldCalories[i$1];
+      arg1$1.classList.remove("on-target");
+      arg1$1.classList.add("off-target");
+      i$1 = ((1 + i$1) | 0)
+    }
+  };
+  return (calories + " kCal")
+}
+function $p_Lfoodkeep_view_SummaryView$__renderMonthTarget__sjs_js_Array__T($thiz, record) {
+  var res = [];
+  var len = $uI(record.length);
+  var i = 0;
+  while ((i < len)) {
+    var arg1 = record[i];
+    if (($uI(arg1.totalCalories) <= $uI(arg1.caloriesTarget))) {
+      $uI(res.push(arg1))
+    };
+    i = ((1 + i) | 0)
+  };
+  var $$x1 = res.length;
+  var target = $uI($$x1);
+  if ((Math.fround((Math.fround(target) / Math.fround($uI(record.length)))) >= 0.6)) {
+    $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthTarget.classList.add("on-target");
+    $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthTarget.classList.remove("off-target")
+  } else {
+    $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthTarget.classList.add("off-target");
+    $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthTarget.classList.remove("on-target")
+  };
+  return ((((target + "/") + $uI(record.length)) + " day") + (($uI(record.length) > 1) ? "s" : ""))
+}
+function $p_Lfoodkeep_view_SummaryView$__getAvgCaloriesTarget__sjs_js_Array__I($thiz, record) {
+  var elem = null;
+  elem = 0;
+  var len = $uI(record.length);
+  var i = 0;
+  while ((i < len)) {
+    var arg1 = record[i];
+    var arg1$1 = elem;
+    var sum = $uI(arg1$1);
+    elem = ((sum + $uI(arg1.caloriesTarget)) | 0);
+    i = ((1 + i) | 0)
+  };
+  return $intDiv($uI(elem), $uI(record.length))
+}
+function $p_Lfoodkeep_view_SummaryView$__renderMonthDate__T__T($thiz, monthYear) {
+  var $$x2 = $m_Lfoodkeep_util_util$().Lfoodkeep_util_util$__f_monthList;
+  var x = $m_sc_StringOps$().drop$extension__T__I__T(monthYear, 4);
+  var this$4 = $m_jl_Integer$();
+  var $$x1 = $$x2[(((-1) + this$4.parseInt__T__I__I(x, 10)) | 0)];
+  return (($as_T($$x1) + " ") + $m_sc_StringOps$().dropRight$extension__T__I__T(monthYear, 2))
+}
+/** @constructor */
+function $c_Lfoodkeep_view_SummaryView$() {
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayDesc = null;
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayDate = null;
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayCalories = null;
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayExpenses = null;
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayTable = null;
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthDesc = null;
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthDate = null;
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthTarget = null;
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgCalories = null;
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthAllExpenses = null;
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgExpenses = null;
+  $n_Lfoodkeep_view_SummaryView$ = this;
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayDesc = document.querySelector(".day--desc");
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayDate = document.querySelector(".day--date");
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayCalories = document.querySelector(".day--calories");
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayExpenses = document.querySelector(".day--expenses");
+  this.Lfoodkeep_view_SummaryView$__f_dailyDayTable = document.querySelector(".day--table");
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthDesc = document.querySelector(".month--desc");
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthDate = document.querySelector(".month--date");
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthTarget = document.querySelector(".month--target");
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgCalories = document.querySelector(".month--avgcalories");
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthAllExpenses = document.querySelector(".month--allexpenses");
+  this.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgExpenses = document.querySelector(".month--avgexpenses")
+}
+$c_Lfoodkeep_view_SummaryView$.prototype = new $h_O();
+$c_Lfoodkeep_view_SummaryView$.prototype.constructor = $c_Lfoodkeep_view_SummaryView$;
+/** @constructor */
+function $h_Lfoodkeep_view_SummaryView$() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_view_SummaryView$.prototype = $c_Lfoodkeep_view_SummaryView$.prototype;
+$c_Lfoodkeep_view_SummaryView$.prototype.render__s_Option__V = (function(mealsOption) {
+  if ((mealsOption instanceof $c_s_Some)) {
+    var x2 = $as_s_Some(mealsOption);
+    var meals = $as_T2(x2.s_Some__f_value);
+    $p_Lfoodkeep_view_SummaryView$__renderDailySummary__Lfoodkeep_helper_DailyMeal__V(this, meals._1__O());
+    $p_Lfoodkeep_view_SummaryView$__renderMonthlySummary__Lfoodkeep_helper_MonthlyMeal__V(this, meals._2__O())
+  } else {
+    $p_Lfoodkeep_view_SummaryView$__renderDailyNoData__V(this);
+    $p_Lfoodkeep_view_SummaryView$__renderMonthlyNoData__V(this)
+  }
+});
+var $d_Lfoodkeep_view_SummaryView$ = new $TypeData().initClass({
+  Lfoodkeep_view_SummaryView$: 0
+}, false, "foodkeep.view.SummaryView$", {
+  Lfoodkeep_view_SummaryView$: 1,
+  O: 1
+});
+$c_Lfoodkeep_view_SummaryView$.prototype.$classData = $d_Lfoodkeep_view_SummaryView$;
+var $n_Lfoodkeep_view_SummaryView$;
+function $m_Lfoodkeep_view_SummaryView$() {
+  if ((!$n_Lfoodkeep_view_SummaryView$)) {
+    $n_Lfoodkeep_view_SummaryView$ = new $c_Lfoodkeep_view_SummaryView$()
+  };
+  return $n_Lfoodkeep_view_SummaryView$
 }
 /** @constructor */
 function $c_jl_Class(data0) {

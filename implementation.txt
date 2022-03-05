@@ -72,8 +72,14 @@ Helper classes (doc: https://www.scala-js.org/doc/interoperability/sjs-defined-j
 			- def getProfileHistory: Option[js.Array[Profile]]
 		- misc
 			- def checkDailyMonthlyPresent(date: String): (Boolean, Boolean) 
-
-
+- util 
+	- def padZero(num: Double): String
+	- def getDateDMYT: String
+	- def getDateDMY: String
+	- def getDateMY: String
+	- def getCustomDateDMY(daysAhead: Int): String
+	- def renderBirthDate(date: String): String
+	
 MVC		
 - Model
 	- var state		// initialise State
@@ -154,4 +160,4 @@ Misc
 			
 
 
-
+- add validation for date query in summary view 

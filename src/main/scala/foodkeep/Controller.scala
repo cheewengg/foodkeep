@@ -28,6 +28,8 @@ object Controller {
         ProfileUpdateView.render(Model.getCurrentProfileFromState)
 
         SearchMealResultsView.render(Model.getSearchResultsFromState)
+        
+        SummaryView.render(Model.getMealDataFromState(getDateDMY))
 
         // add event handlers to DOM
         ProfileUpdateView.addHandlerToggleUpdateProfile
@@ -63,7 +65,7 @@ object Controller {
         Model.getCurrentCaloriesTargetFromState match {
             case Some(calories) => {
                 Model.pushNewMealToState(index, calories, expense)
-                // render output to SummaryView
+                SummaryView.render(Model.getMealDataFromState(getDateDMY))
                 true
             }
             case _ => false
@@ -71,13 +73,15 @@ object Controller {
     }
 
     def controlSummarySearch(dateQuery: String): Boolean = {
-        Model.accessSearchDateData(dateQuery) match {
-            case Some(selectedMeal) => {
-                //render output to summary view
-                //SummaryView.render(selectedMeal)
+        Model.getMealDataFromState(dateQuery) match {
+            case mealsOption: Option[(DailyMeal, MonthlyMeal)] => {
+                SummaryView.render(mealsOption)
                 true
             }
-            case _ => false
+            case _ => {
+                SummaryView.render(Model.getMealDataFromState(getDateDMY))
+                false
+            }
         }
     }
 

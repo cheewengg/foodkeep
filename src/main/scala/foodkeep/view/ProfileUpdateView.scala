@@ -55,7 +55,7 @@ object ProfileUpdateView {
         btnSubmitUpdateProfile.addEventListener("click", (e: dom.Event) => {
             e.preventDefault()       
             if (validateFormInput) {
-                val newProfile = Profile("", "", fieldName.value, formatBirthDate(fieldBirthDate.value), fieldGender.value, fieldWeight.value.toDouble, fieldHeight.value.toDouble, fieldActivityLvl.value, 0)
+                val newProfile = Profile("", "", fieldName.value, formatDateState(fieldBirthDate.value), fieldGender.value, fieldWeight.value.toDouble, fieldHeight.value.toDouble, fieldActivityLvl.value, 0)
                 
                 if (!handler(newProfile)) dom.window.alert("Updated profile will take effect tomorrow!")
 
@@ -79,11 +79,6 @@ object ProfileUpdateView {
                 false 
             }
         }    
-    }
-
-    private def formatBirthDate(date: String): String = {
-        // 02011994 --> 19940102
-        date.drop(4) + date.drop(2).dropRight(4) + date.dropRight(6)
     }
 
     private def renderBirthDate(date: String): String = 

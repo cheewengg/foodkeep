@@ -4,6 +4,8 @@ import scala.language.implicitConversions
 import scala.scalajs.js
 
 object util {
+    val monthList = js.Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+
     implicit def convertToJSDynamic(obj: js.Object): js.Dynamic = js.JSON.parse(js.JSON.stringify(obj))
 
     def padZero(num: Double): String = num.toString().reverse.padTo(2, '0').reverse
@@ -42,5 +44,12 @@ object util {
         year + month + day
     }
 
+    def renderDateDOM(date: String): String = 
+        //19940102 --> 02/01/1994
+        s"${date.drop(6)}/${date.drop(4).dropRight(2)}/${date.dropRight(4)}"
 
+    def formatDateState(date: String): String = {
+        // 02011994 --> 19940102
+        date.drop(4) + date.drop(2).dropRight(4) + date.dropRight(6)
+    }
 }

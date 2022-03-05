@@ -24,19 +24,18 @@ object SummarySearchView{
   def addHandlerSummarySearch(handler: String => Boolean): Unit = {
     btnFilterDate.addEventListener("click", (e: dom.Event) => {
       e.preventDefault()
-      val dateQuery = queryFieldDate.value
-      if (validateQueryFieldDate(dateQuery)) {
+      val dateQuery = formatDateState(queryFieldDate.value)
+      if (validateQueryFieldDate(dateQuery)) 
         handler(dateQuery) match {
           case false => dom.window.alert("Unable to find data corresponding to date entered!")
-          case _ => dom.window.alert(s"Data for ${dateQuery} has been loaded")
+          case _ => dom.window.alert(s"Data for ${renderDateDOM(dateQuery)} has been loaded")
         }
-      }
     })
   }
 
   private def validateQueryFieldDate(dateQuery: String): Boolean = {
     Try(dateQuery.toInt) match {
-      case Success(v) => true
+      case Success(v) if (dateQuery.length == 8) => true
       case _ => {
         dom.window.alert("Invalid value detected!")
         false

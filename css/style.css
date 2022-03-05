@@ -155,6 +155,11 @@
   color: #2f9e44;
 }
 
+.content--inline-details.off-target,
+.detail-row-details.off-target {
+  color: #fa5252;
+}
+
 .content--multi-line {
   display: flex;
   flex-direction: column;
