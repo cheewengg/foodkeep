@@ -954,6 +954,7 @@ $c_LController$.prototype.main__AT__V = (function(args) {
   $m_Lfoodkeep_view_ProfileUpdateView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getCurrentProfileFromState__s_Option());
   $m_Lfoodkeep_view_SearchMealResultsView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getSearchResultsFromState__s_Option());
   $m_Lfoodkeep_view_SummaryView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getMealDataFromState__T__s_Option($m_Lfoodkeep_util_util$().getDateDMY__T()));
+  $m_Lfoodkeep_view_NavBarView$().addHandlerNavBar__V();
   $m_Lfoodkeep_view_ProfileUpdateView$().addHandlerToggleUpdateProfile__V();
   $m_Lfoodkeep_view_ProfileUpdateView$().addHandlerSubmitUpdateProfile__F1__V(new $c_sjsr_AnonFunction1(((this$1) => ((profile$2) => $m_LController$().controlSubmitUpdateProfile__Lfoodkeep_helper_Profile__Z(profile$2)))(this)));
   $m_Lfoodkeep_view_SearchMealView$().addHandlerStartSearchTimer__F1__V(new $c_sjsr_AnonFunction1(((this$2) => ((query$2) => {
@@ -1994,6 +1995,48 @@ function $m_Lfoodkeep_view_AddMealView$() {
     $n_Lfoodkeep_view_AddMealView$ = new $c_Lfoodkeep_view_AddMealView$()
   };
   return $n_Lfoodkeep_view_AddMealView$
+}
+/** @constructor */
+function $c_Lfoodkeep_view_NavBarView$() {
+  this.Lfoodkeep_view_NavBarView$__f_sectionHeader = null;
+  this.Lfoodkeep_view_NavBarView$__f_buttonMobileNav = null;
+  this.Lfoodkeep_view_NavBarView$__f_linkContainerNavBar = null;
+  $n_Lfoodkeep_view_NavBarView$ = this;
+  this.Lfoodkeep_view_NavBarView$__f_sectionHeader = document.querySelector(".section-header");
+  this.Lfoodkeep_view_NavBarView$__f_buttonMobileNav = document.querySelector(".button-mobile-nav");
+  this.Lfoodkeep_view_NavBarView$__f_linkContainerNavBar = document.querySelector(".header-nav-list")
+}
+$c_Lfoodkeep_view_NavBarView$.prototype = new $h_O();
+$c_Lfoodkeep_view_NavBarView$.prototype.constructor = $c_Lfoodkeep_view_NavBarView$;
+/** @constructor */
+function $h_Lfoodkeep_view_NavBarView$() {
+  /*<skip>*/
+}
+$h_Lfoodkeep_view_NavBarView$.prototype = $c_Lfoodkeep_view_NavBarView$.prototype;
+$c_Lfoodkeep_view_NavBarView$.prototype.addHandlerNavBar__V = (function() {
+  this.Lfoodkeep_view_NavBarView$__f_buttonMobileNav.addEventListener("click", ((arg1$2) => $m_Lfoodkeep_view_NavBarView$().foodkeep$view$NavBarView$$$anonfun$addHandlerNavBar$1__Lorg_scalajs_dom_Event__Z(arg1$2)));
+  this.Lfoodkeep_view_NavBarView$__f_linkContainerNavBar.addEventListener("click", ((arg1$2$1) => $m_Lfoodkeep_view_NavBarView$().foodkeep$view$NavBarView$$$anonfun$addHandlerNavBar$3__Lorg_scalajs_dom_Event__O(arg1$2$1)))
+});
+$c_Lfoodkeep_view_NavBarView$.prototype.foodkeep$view$NavBarView$$$anonfun$addHandlerNavBar$1__Lorg_scalajs_dom_Event__Z = (function(e) {
+  return $uZ($m_Lfoodkeep_view_NavBarView$().Lfoodkeep_view_NavBarView$__f_sectionHeader.classList.toggle("nav-open"))
+});
+$c_Lfoodkeep_view_NavBarView$.prototype.foodkeep$view$NavBarView$$$anonfun$addHandlerNavBar$3__Lorg_scalajs_dom_Event__O = (function(e) {
+  var eventTarget = e.target;
+  return (($uZ(eventTarget.classList.contains("nav-link")) && $uZ($m_Lfoodkeep_view_NavBarView$().Lfoodkeep_view_NavBarView$__f_sectionHeader.classList.contains("nav-open"))) ? ($m_Lfoodkeep_view_NavBarView$().Lfoodkeep_view_NavBarView$__f_sectionHeader.classList.remove("nav-open"), (void 0)) : (void 0))
+});
+var $d_Lfoodkeep_view_NavBarView$ = new $TypeData().initClass({
+  Lfoodkeep_view_NavBarView$: 0
+}, false, "foodkeep.view.NavBarView$", {
+  Lfoodkeep_view_NavBarView$: 1,
+  O: 1
+});
+$c_Lfoodkeep_view_NavBarView$.prototype.$classData = $d_Lfoodkeep_view_NavBarView$;
+var $n_Lfoodkeep_view_NavBarView$;
+function $m_Lfoodkeep_view_NavBarView$() {
+  if ((!$n_Lfoodkeep_view_NavBarView$)) {
+    $n_Lfoodkeep_view_NavBarView$ = new $c_Lfoodkeep_view_NavBarView$()
+  };
+  return $n_Lfoodkeep_view_NavBarView$
 }
 function $p_Lfoodkeep_view_ProfileUpdateView$__validateFormInput__Z($thiz) {
   var name = $as_T($thiz.Lfoodkeep_view_ProfileUpdateView$__f_fieldName.value);

@@ -32,6 +32,7 @@ object Controller {
         SummaryView.render(Model.getMealDataFromState(getDateDMY))
 
         // add event handlers to DOM
+        NavBarView.addHandlerNavBar
         ProfileUpdateView.addHandlerToggleUpdateProfile
         ProfileUpdateView.addHandlerSubmitUpdateProfile(controlSubmitUpdateProfile)
 

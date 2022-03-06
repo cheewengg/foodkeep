@@ -21,10 +21,16 @@
         <img class="header-logo" src="logos/foodkeep_cropped-v2.png" />
       </a>
       <nav class="header-nav">
-        <a href="#search" class="nav-link">Search Meal</a>
-        <a href="#summary" class="nav-link">View Summary</a>
-        <a href="#profile" class="nav-link">Update Profile</a>
+        <div class="header-nav-list">
+          <a href="#search" class="nav-link">Search Meal</a>
+          <a href="#summary" class="nav-link">View Summary</a>
+          <a href="#profile" class="nav-link">Update Profile</a>
+        </div>
       </nav>
+      <button class="button-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+      </button>
     </div>
     <div id="search" class="section-hero">
       <div class="hero-content">
@@ -43,36 +49,7 @@
             <input id="expense" type="text" placeholder="10" required />
           </div>
         </div>
-        <div class="hero-search-results">
-          <!-- <div class="search-result">
-            <div class="search-result-content">
-              <div class="result-title">KFC Chicken</div>
-              <div class="result-details">100kCal 10P/10C/10F</div>
-            </div>
-            <button data-idx="0" class="button button-addmeal">Add meal</button>
-          </div>
-          <div class="search-result">
-            <div class="search-result-content">
-              <div class="result-title">KFC Popcorn Chicken</div>
-              <div class="result-details">100kCal 10P/10C/10F</div>
-            </div>
-            <button data-idx="1" class="button button-addmeal">Add meal</button>
-          </div>
-          <div class="search-result">
-            <div class="search-result-content">
-              <div class="result-title">KFC Biscuit</div>
-              <div class="result-details">100kCal 10P/10C/10F</div>
-            </div>
-            <button data-idx="2" class="button button-addmeal">Add meal</button>
-          </div>
-          <div class="search-result">
-            <div class="search-result-content">
-              <div class="result-title">KFC Chicken</div>
-              <div class="result-details">100kCal 10P/10C/10F</div>
-            </div>
-            <button data-idx="3" class="button button-addmeal">Add meal</button>
-          </div> -->
-        </div>
+        <div class="hero-search-results"></div>
       </div>
     </div>
     <div id="summary" class="section-summary">
@@ -97,43 +74,7 @@
             <div class="content-title">Expenses</div>
             <div class="content--inline-details day--expenses">$ 25</div>
           </div>
-          <div class="content--table day--table">
-            <!-- <div class="table-row">
-              <div class="row-time">0800h</div>
-              <div class="row-meal">Egg (Boiled)</div>
-              <div class="row-expense">$ 0.80</div>
-            </div>
-            <div class="table-row">
-              <div class="row-time">0805h</div>
-              <div class="row-meal">Coffee (Black)</div>
-              <div class="row-expense">$ 0.80</div>
-            </div>
-            <div class="table-row">
-              <div class="row-time">1205h</div>
-              <div class="row-meal">Fried Chicken</div>
-              <div class="row-expense">$ 6.80</div>
-            </div>
-            <div class="table-row">
-              <div class="row-time">1210h</div>
-              <div class="row-meal">Pepsi</div>
-              <div class="row-expense">$ 0.00</div>
-            </div>
-            <div class="table-row">
-              <div class="row-time">1500h</div>
-              <div class="row-meal">Mars Bar</div>
-              <div class="row-expense">$ 1.00</div>
-            </div>
-            <div class="table-row">
-              <div class="row-time">1800h</div>
-              <div class="row-meal">Steak</div>
-              <div class="row-expense">$ 10.00</div>
-            </div>
-            <div class="table-row">
-              <div class="row-time">2100h</div>
-              <div class="row-meal">Red Wine</div>
-              <div class="row-expense">$ 4.00</div>
-            </div> -->
-          </div>
+          <div class="content--table day--table"></div>
         </div>
         <div class="content-box content--month content-box--hover">
           <div class="content-header">
@@ -237,8 +178,20 @@
     <!-- <div class="overlay"></div> -->
     <div class="overlay hidden"></div>
     <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- <script
       type="text/javascript"
       src="./target/scala-2.13/foodkeep-fastopt/main.js"
+    ></script> -->
+    <script
+      type="text/javascript"
+      src="./target/scala-2.13/foodkeep-opt/main.js"
     ></script>
   </body>
 </html>
