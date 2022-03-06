@@ -1005,7 +1005,14 @@ $c_LController$.prototype.controlAddMeal__I__D__Z = (function(index, expense) {
 });
 $c_LController$.prototype.controlSummarySearch__T__Z = (function(dateQuery) {
   var x1 = $m_Lfoodkeep_model_Model$().getMealDataFromState__T__s_Option(dateQuery);
-  return ((x1 !== null) ? ($m_Lfoodkeep_view_SummaryView$().render__s_Option__V(x1), true) : ($m_Lfoodkeep_view_SummaryView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getMealDataFromState__T__s_Option($m_Lfoodkeep_util_util$().getDateDMY__T())), false))
+  var x = $m_s_None$();
+  if ((x === x1)) {
+    $m_Lfoodkeep_view_SummaryView$().render__s_Option__V($m_Lfoodkeep_model_Model$().getMealDataFromState__T__s_Option($m_Lfoodkeep_util_util$().getDateDMY__T()));
+    return false
+  } else {
+    $m_Lfoodkeep_view_SummaryView$().render__s_Option__V(x1);
+    return true
+  }
 });
 var $d_LController$ = new $TypeData().initClass({
   LController$: 0
@@ -1520,6 +1527,68 @@ var $d_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil = new $TypeData().initClas
   O: 1
 });
 $c_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil.prototype.$classData = $d_Lfoodkeep_util_MonthlyMealUtil$MonthlyMealUtil;
+function $p_Lfoodkeep_util_ProfileUtil_package$ProfileUtil__calculateCaloriesTarget__D__D__T__T__T__D($thiz, height, weight, birthDate, levelOfActivity, gender) {
+  var dateNow = $m_Lfoodkeep_util_util$().getDateDMY__T();
+  var x = $m_sc_StringOps$().dropRight$extension__T__I__T(dateNow, 4);
+  var this$4 = $m_jl_Integer$();
+  var $$x1 = this$4.parseInt__T__I__I(x, 10);
+  var x$1 = $m_sc_StringOps$().dropRight$extension__T__I__T(birthDate, 4);
+  var this$8 = $m_jl_Integer$();
+  var diffYear = (($$x1 - this$8.parseInt__T__I__I(x$1, 10)) | 0);
+  var x$2 = $m_sc_StringOps$().drop$extension__T__I__T(dateNow, 4);
+  var this$12 = $m_jl_Integer$();
+  var $$x2 = this$12.parseInt__T__I__I(x$2, 10);
+  var x$3 = $m_sc_StringOps$().drop$extension__T__I__T(birthDate, 4);
+  var this$16 = $m_jl_Integer$();
+  if (($$x2 > this$16.parseInt__T__I__I(x$3, 10))) {
+    var age = diffYear
+  } else {
+    var age = ((1 + diffYear) | 0)
+  };
+  var baseTarget = ((24.0 * (weight * $p_Lfoodkeep_util_ProfileUtil_package$ProfileUtil__leanFactorMultiplier__D__D__T__I__D($thiz, height, weight, gender, age))) * $p_Lfoodkeep_util_ProfileUtil_package$ProfileUtil__activityLvlMultiplier__T__D($thiz, levelOfActivity));
+  return ((gender === "F") ? (0.9 * baseTarget) : baseTarget)
+}
+function $p_Lfoodkeep_util_ProfileUtil_package$ProfileUtil__leanFactorMultiplier__D__D__T__I__D($thiz, height, weight, gender, age) {
+  var bmi = (weight / (height * height));
+  if ((gender === "F")) {
+    var bfc = (((1.2 * bmi) + (0.23 * age)) - 5.4);
+    if ((bfc <= 19.0)) {
+      return 1.0
+    } else if (((19.0 < bfc) && (bfc <= 29.0))) {
+      return 0.95
+    } else if (((29.0 < bfc) && (bfc <= 39.0))) {
+      return 0.9
+    } else if ((39.0 < bfc)) {
+      return 0.85
+    } else {
+      throw new $c_s_MatchError(bfc)
+    }
+  } else {
+    var bfc$2 = (((1.2 * bmi) + (0.23 * age)) - 16.2);
+    if ((bfc$2 <= 15.0)) {
+      return 1.0
+    } else if (((15.0 < bfc$2) && (bfc$2 <= 21.0))) {
+      return 0.95
+    } else if (((21.0 < bfc$2) && (bfc$2 <= 29.0))) {
+      return 0.9
+    } else if ((29.0 < bfc$2)) {
+      return 0.85
+    } else {
+      throw new $c_s_MatchError(bfc$2)
+    }
+  }
+}
+function $p_Lfoodkeep_util_ProfileUtil_package$ProfileUtil__activityLvlMultiplier__T__D($thiz, levelOfActivity) {
+  if ((levelOfActivity === "Light")) {
+    return 1.55
+  } else if ((levelOfActivity === "Moderate")) {
+    return 1.65
+  } else if ((levelOfActivity === "Heavy")) {
+    return 1.8
+  } else {
+    throw new $c_s_MatchError(levelOfActivity)
+  }
+}
 /** @constructor */
 function $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil(p) {
   this.Lfoodkeep_util_ProfileUtil_package$ProfileUtil__f_p = null;
@@ -1534,7 +1603,7 @@ function $h_Lfoodkeep_util_ProfileUtil_package$ProfileUtil() {
 $h_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype = $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype;
 $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.updateCaloriesTarget__Lfoodkeep_helper_Profile = (function() {
   var pC = $m_Lfoodkeep_helper_Profile$().apply__sjs_js_Dynamic__Lfoodkeep_helper_Profile($m_Lfoodkeep_util_util$().convertToJSDynamic__sjs_js_Object__sjs_js_Dynamic(this.Lfoodkeep_util_ProfileUtil_package$ProfileUtil__f_p));
-  var caloriesTarget = $doubleToInt((10.0 * ($uD(pC.height) * $uD(pC.weight))));
+  var caloriesTarget = $doubleToInt($p_Lfoodkeep_util_ProfileUtil_package$ProfileUtil__calculateCaloriesTarget__D__D__T__T__T__D(this, $uD(pC.height), $uD(pC.weight), $as_T(pC.birthDate), $as_T(pC.levelOfActivity), $as_T(pC.gender)));
   return $m_Lfoodkeep_helper_Profile$().apply__T__T__T__T__T__D__D__T__I__Lfoodkeep_helper_Profile($as_T(pC.startDate), $as_T(pC.endDate), $as_T(pC.name), $as_T(pC.birthDate), $as_T(pC.gender), $uD(pC.weight), $uD(pC.height), $as_T(pC.levelOfActivity), caloriesTarget)
 });
 $c_Lfoodkeep_util_ProfileUtil_package$ProfileUtil.prototype.updateEndDate__T__Lfoodkeep_helper_Profile = (function(date) {
@@ -1871,7 +1940,7 @@ function $p_Lfoodkeep_view_AddMealView$__validateQueryFieldExpense__T__Z($thiz, 
 function $p_Lfoodkeep_view_AddMealView$__renderTime__T__T($thiz, date) {
   var $$x1 = $m_sc_StringOps$();
   var x = $m_sc_StringOps$().drop$extension__T__I__T(date, 8);
-  return ((("" + $$x1.dropRight$extension__T__I__T(x, 2)) + $m_sc_StringOps$().drop$extension__T__I__T(date, 10)) + "h")
+  return ((("" + $$x1.dropRight$extension__T__I__T(x, 2)) + $m_sc_StringOps$().drop$extension__T__I__T(date, 10)) + " h")
 }
 /** @constructor */
 function $c_Lfoodkeep_view_AddMealView$() {

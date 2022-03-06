@@ -74,14 +74,15 @@ object Controller {
 
     def controlSummarySearch(dateQuery: String): Boolean = {
         Model.getMealDataFromState(dateQuery) match {
-            case mealsOption: Option[(DailyMeal, MonthlyMeal)] => {
-                SummaryView.render(mealsOption)
-                true
-            }
-            case _ => {
+            case None => {
                 SummaryView.render(Model.getMealDataFromState(getDateDMY))
                 false
             }
+            case mealsOption => {
+                SummaryView.render(mealsOption)
+                true
+            }
+
         }
     }
 

@@ -99,10 +99,10 @@ object SummaryView {
         }).join("")
     }
 
-    private def renderDayDesc(date: String) = 
+    private def renderDayDesc(date: String): String = 
         if (date == getDateDMY) "Today" else "History"
     
-    private def renderMonthDesc(monthYear: String) = 
+    private def renderMonthDesc(monthYear: String): String = 
         if (monthYear == getDateMY) "This month" else "History"
 
     private def renderTime(dateTime: String): String = dateTime.drop(8) + " h"
@@ -124,7 +124,8 @@ object SummaryView {
             field.classList.remove("on-target")
             field.classList.add("off-target")
         })
-        calories + " kCal"}
+        s"${calories} kCal"
+    }
 
     private def renderMonthTarget(record: js.Array[DailyMeal]): String = {
         val target = record.filter(daily => daily.totalCalories <= daily.caloriesTarget).length
@@ -146,5 +147,5 @@ object SummaryView {
     
     private def renderMonthDate(monthYear: String): String = 
         monthList(monthYear.drop(4).toInt - 1) + " " + monthYear.dropRight(2)
-         
+
 }

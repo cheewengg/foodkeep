@@ -1,4 +1,4 @@
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\src\main\scala\foodkeep\view\SummaryView.scala:127:18: method + in class Int is deprecated (since 2.13.0): Adding a number and a String is deprecated. Use the string interpolation `s"$num$str"`[0m
-[0m[[0m[33mwarn[0m] [0m[0m        calories + " kCal"}[0m
-[0m[[0m[33mwarn[0m] [0m[0m                 ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\src\main\scala\foodkeep\Controller.scala:82:36: not found: value mealsOption[0m
+[0m[[0m[31merror[0m] [0m[0m                SummaryView.render(mealsOption)[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

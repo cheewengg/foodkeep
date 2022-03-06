@@ -160,4 +160,8 @@ Misc
 			
 
 
-- add validation for date query in summary view 
+To-do
+- convert meal caloriescontent from kJ to kCal 
+- calculate calories
+- sticky nav bar
+- make site responsive

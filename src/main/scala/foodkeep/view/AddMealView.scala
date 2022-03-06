@@ -47,6 +47,6 @@ object AddMealView {
             }
         }
 
-    private def renderTime(date: String): String = s"${date.drop(8).dropRight(2)}${date.drop(10)}h"
+    private def renderTime(date: String): String = s"${date.drop(8).dropRight(2)}${date.drop(10)} h"
      
 }
