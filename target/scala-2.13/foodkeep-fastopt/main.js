@@ -2481,7 +2481,7 @@ function $p_Lfoodkeep_view_SummaryView$__renderDailySummary__Lfoodkeep_helper_Da
   var caloriesTarget = $uI(dailyMeal.caloriesTarget);
   $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayDesc.textContent = $p_Lfoodkeep_view_SummaryView$__renderDayDesc__T__T($thiz, date);
   $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayDate.textContent = $m_Lfoodkeep_util_util$().renderDateDOM__T__T(date);
-  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayCalories.textContent = $p_Lfoodkeep_view_SummaryView$__renderCalories__I__I__T($thiz, totalCalories, caloriesTarget);
+  $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayCalories.textContent = $p_Lfoodkeep_view_SummaryView$__renderCalories__I__I__Lorg_scalajs_dom_Element__T($thiz, totalCalories, caloriesTarget, $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayCalories);
   $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayExpenses.textContent = $p_Lfoodkeep_view_SummaryView$__renderExpense__D__T($thiz, totalExpenses);
   $thiz.Lfoodkeep_view_SummaryView$__f_dailyDayTable.innerHTML = $p_Lfoodkeep_view_SummaryView$__generateMarkUpSummaryTable__sjs_js_Array__T($thiz, record)
 }
@@ -2494,7 +2494,7 @@ function $p_Lfoodkeep_view_SummaryView$__renderMonthlySummary__Lfoodkeep_helper_
   $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthDesc.textContent = $p_Lfoodkeep_view_SummaryView$__renderMonthDesc__T__T($thiz, monthYear);
   $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthDate.textContent = $p_Lfoodkeep_view_SummaryView$__renderMonthDate__T__T($thiz, monthYear);
   $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthTarget.textContent = $p_Lfoodkeep_view_SummaryView$__renderMonthTarget__sjs_js_Array__T($thiz, record);
-  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgCalories.textContent = $p_Lfoodkeep_view_SummaryView$__renderCalories__I__I__T($thiz, $intDiv(totalCalories, $uI(record.length)), avgCaloriesTarget);
+  $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgCalories.textContent = $p_Lfoodkeep_view_SummaryView$__renderCalories__I__I__Lorg_scalajs_dom_Element__T($thiz, $intDiv(totalCalories, $uI(record.length)), avgCaloriesTarget, $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgCalories);
   $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAllExpenses.textContent = $p_Lfoodkeep_view_SummaryView$__renderExpense__D__T($thiz, totalExpenses);
   $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgExpenses.textContent = $p_Lfoodkeep_view_SummaryView$__renderExpense__D__T($thiz, (totalExpenses / $uI(record.length)))
 }
@@ -2542,29 +2542,18 @@ function $p_Lfoodkeep_view_SummaryView$__renderFoodName__T__T($thiz, foodName) {
   return (($uI(foodName.length) > 16) ? ($m_sc_StringOps$().slice$extension__T__I__I__T(foodName, 0, 13) + "...") : foodName)
 }
 function $p_Lfoodkeep_view_SummaryView$__renderExpense__D__T($thiz, expense) {
-  var x1 = ("$ " + expense);
-  return (($uI(x1.indexOf(".")) !== (-1)) ? x1 : (x1 + ".00"))
+  var x = (100.0 * expense);
+  var res = ("$ " + ($uD(Math.floor(x)) / 100.0));
+  console.log(res);
+  return res
 }
-function $p_Lfoodkeep_view_SummaryView$__renderCalories__I__I__T($thiz, calories, caloriesTarget) {
-  var fieldCalories = [$thiz.Lfoodkeep_view_SummaryView$__f_dailyDayCalories, $thiz.Lfoodkeep_view_SummaryView$__f_monthlyMonthAvgCalories];
+function $p_Lfoodkeep_view_SummaryView$__renderCalories__I__I__Lorg_scalajs_dom_Element__T($thiz, calories, caloriesTarget, field) {
   if ((calories <= caloriesTarget)) {
-    var len = $uI(fieldCalories.length);
-    var i = 0;
-    while ((i < len)) {
-      var arg1 = fieldCalories[i];
-      arg1.classList.add("on-target");
-      arg1.classList.remove("off-target");
-      i = ((1 + i) | 0)
-    }
+    field.classList.add("on-target");
+    field.classList.remove("off-target")
   } else {
-    var len$1 = $uI(fieldCalories.length);
-    var i$1 = 0;
-    while ((i$1 < len$1)) {
-      var arg1$1 = fieldCalories[i$1];
-      arg1$1.classList.remove("on-target");
-      arg1$1.classList.add("off-target");
-      i$1 = ((1 + i$1) | 0)
-    }
+    field.classList.remove("on-target");
+    field.classList.add("off-target")
   };
   return (calories + " kCal")
 }

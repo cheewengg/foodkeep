@@ -1,26 +1,26 @@
 [0m[[0m[0minfo[0m] [0m[0mFull optimizing C:\Users\cheew\OneDrive\Desktop\NUS MComp\Y1S2\IT5100A\project\main\target\scala-2.13\foodkeep-opt[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: Compute reachability: 94278 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: Assemble LinkedClasses: 4184 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: Check IR: 221797 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: 337886 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: Compute reachability: 279892 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: Assemble LinkedClasses: 25554 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: Check IR: 341794 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: 679863 us[0m
 [0m[[0m[0mdebug[0m] [0m[0mOptimizer: Batch mode: true[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Incremental part: 20464 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizing 2965 methods.[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizer part: 122434 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: 145531 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mRefiner: Compute reachability: 18923 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mRefiner: Assemble LinkedClasses: 1670 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mRefiner: 22620 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Calculate Dependency Info: 197 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Analyze Modules: 50 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Assemble Modules: 333 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: 660 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Generate Classes: 163991 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Write trees: 4716 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Class tree cache stats: reused: 0 -- invalidated: 491[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Method tree cache stats: reused: 0 -- invalidated: 1750[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: 173228 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mClosure: Create trees): 224695 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Incremental part: 115720 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizing 3717 methods.[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizer part: 720809 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: 854111 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mRefiner: Compute reachability: 245467 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mRefiner: Assemble LinkedClasses: 29258 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mRefiner: 341512 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Calculate Dependency Info: 11919 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Analyze Modules: 1818 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Assemble Modules: 24649 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: 42441 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Generate Classes: 615911 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Write trees: 30105 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Class tree cache stats: reused: 0 -- invalidated: 536[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Method tree cache stats: reused: 0 -- invalidated: 1978[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: 722158 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mClosure: Create trees): 227966 us[0m
 [0m[[0m[0minfo[0m] [0m[0mClosure: 0 error(s), 0 warning(s)[0m
-[0m[[0m[0mdebug[0m] [0m[0mClosure: Compiler pass: 4807396 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mClosure: Write result: 79498 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mClosure: Compiler pass: 6065971 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mClosure: Write result: 107231 us[0m

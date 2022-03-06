@@ -161,7 +161,5 @@ Misc
 
 
 To-do
-- convert meal caloriescontent from kJ to kCal 
-- calculate calories
 - sticky nav bar
 - make site responsive

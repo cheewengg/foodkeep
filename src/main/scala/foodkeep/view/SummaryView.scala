@@ -48,7 +48,7 @@ object SummaryView {
 
         dailyDayDesc.textContent = renderDayDesc(date)
         dailyDayDate.textContent = renderDateDOM(date)
-        dailyDayCalories.textContent = renderCalories(totalCalories, caloriesTarget)
+        dailyDayCalories.textContent = renderCalories(totalCalories, caloriesTarget, dailyDayCalories)
         dailyDayExpenses.textContent = renderExpense(totalExpenses)
         dailyDayTable.innerHTML = generateMarkUpSummaryTable(record)
     }
@@ -63,7 +63,7 @@ object SummaryView {
         monthlyMonthDesc.textContent = renderMonthDesc(monthYear)
         monthlyMonthDate.textContent = renderMonthDate(monthYear)
         monthlyMonthTarget.textContent = renderMonthTarget(record)
-        monthlyMonthAvgCalories.textContent = renderCalories(totalCalories/record.length, avgCaloriesTarget)
+        monthlyMonthAvgCalories.textContent = renderCalories(totalCalories/record.length, avgCaloriesTarget, monthlyMonthAvgCalories)
         monthlyMonthAllExpenses.textContent = renderExpense(totalExpenses)
         monthlyMonthAvgExpenses.textContent = renderExpense(totalExpenses/record.length) 
     }
@@ -109,21 +109,17 @@ object SummaryView {
 
     private def renderFoodName(foodName: String): String = if (foodName.length > 16) foodName.slice(0, 13) + "..." else foodName
 
-    private def renderExpense(expense: Double): String = "$ " + expense match {
-        case s if s.contains(".") => s
-        case j => j + ".00"
-    }
+    private def renderExpense(expense: Double): String = f"$$ $expense%1.2f"
 
-    private def renderCalories(calories: Int, caloriesTarget: Int): String = {
-        val fieldCalories = js.Array(dailyDayCalories, monthlyMonthAvgCalories)
-        if (calories <= caloriesTarget) fieldCalories.foreach(field => {
+    private def renderCalories(calories: Int, caloriesTarget: Int, field: dom.Element): String = {
+        if (calories <= caloriesTarget) {
             field.classList.add("on-target")
             field.classList.remove("off-target")
-        })
-        else fieldCalories.foreach(field => {
+        }
+        else {
             field.classList.remove("on-target")
             field.classList.add("off-target")
-        })
+        }
         s"${calories} kCal"
     }
 
